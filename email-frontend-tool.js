@@ -68,6 +68,12 @@ let effectObj = {
             "value": "black"
         }
     },
+    5: {
+        "name": "Scrollbar",
+        "col": 1,
+        "on": false,
+        "type": "styling"
+    },
 }
 
 
@@ -119,29 +125,7 @@ function showControlPanel() {
             newSlot.appendChild(newInterval);
         }
 
-
-        // if (effectObj[i + 1].type == "switch") {
-        //     // console.log("TEST", effectObj[i + 1].typeData.value)
-        //     let newSwitch = document.createElement("div");
-        //     newSwitch.innerHTML = `
-        //     <p class="panel-type-label">Line color</p>
-        //     <div class="switch-wrapper">
-        //         <input ${(effectObj[i + 1].typeData.value == undefined || effectObj[i + 1].typeData.value == "black") ? "checked" : null} type="radio" id="black" name="borderColor" value="black" onchange="switchHandler(this);" >
-        //         <label for="black">Black</label>
-        //         <input ${effectObj[i + 1].typeData.value == "white" ? "checked" : null} type="radio" id="white" name="borderColor" value="white" onchange="switchHandler(this);">
-        //         <label for="white">White</label>
-        //     </div>
-        //     <div class="switch-wrapper">
-        //         <input ${(effectObj[i + 1].typeData.value == "red") ? "checked" : null} type="radio" id="red" name="borderColor" value="red" onchange="switchHandler(this);" >
-        //         <label for="red">Red</label>
-        //         <input ${effectObj[i + 1].typeData.value == "aqua" ? "checked" : null} type="radio" id="aqua" name="borderColor" value="aqua" onchange="switchHandler(this);">
-        //         <label for="aqua">Aqua</label>
-        //     </div>`;
-        //     newSlot.appendChild(newSwitch);
-        // }
-
         if (effectObj[i + 1].type == "switch") {
-            // console.log("TEST", effectObj[i + 1].typeData.value)
             let newSwitch = document.createElement("div");
             newSwitch.innerHTML = `
                 <p class="panel-type-label">Line color</p>
@@ -324,6 +308,12 @@ function runEffects(slotNum, slotDOM) {
         } else {
             moduleWrapper.classList.remove("grid");
         }
+    } else if (effectObj[slotNum].name === "Scrollbar") {
+        if (effectObj[slotNum].on) {
+            document.querySelector("body").classList.add("hide-scrollbar");
+        } else {
+            document.querySelector("body").classList.remove("hide-scrollbar");
+        }
     }
 
 }
@@ -383,6 +373,10 @@ function addFromLocalStorage() {
             moduleWrapper.style.borderColor = effectObj[4].typeData.value;
         }
 
+        // if scrollbar
+        if (effectObj[5] !== undefined && effectObj[5].on) {
+            document.querySelector("body").classList.add("hide-scrollbar");
+        }
 
 
     } else {

@@ -203,3 +203,13 @@ div[class*="col_"].on:hover {
 .switch-wrapper-v2>input[type="radio"]:checked+label {
     border: 2px solid darkgreen;
 }
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
