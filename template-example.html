@@ -1,0 +1,2699 @@
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <title>Email Frontend Tool Example</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <link type="text/css" rel="stylesheet" href="email-frontend-tool.css">
+    <style type="text/css">
+        /* CLIENT-SPECIFIC STYLES */
+
+        #outlook a {
+            padding: 0;
+        }
+
+        /* Force Outlook to provide a "view in browser" message */
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        /* Force Hotmail to display emails at full width */
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
+        /* Force Hotmail to display normal line spacing */
+
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        /* Prevent WebKit and Windows mobile changing default text sizes */
+
+        td,
+        a,
+        span {
+            border-collapse: collapse;
+            mso-line-height-rule: exactly;
+        }
+
+        /* MSO clients doesnt overule line height */
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        /* Remove spacing between tables in Outlook 2007 and up */
+
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* Allow smoother rendering of resized image in Internet Explorer */
+        /* RESET STYLES */
+
+        body {
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            border: 0;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0;
+            width: 100% !important;
+        }
+
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        /* Remove blue links */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        .remove_blue a {
+            color: inherit !important;
+            text-decoration: none !important;
+            pointer-events: none;
+        }
+
+        /* TAILORED STYLES */
+
+
+
+        /* MOBILE STYLES */
+
+        @media screen and (max-device-width: 600px),
+        screen and (max-width: 600px) {
+            .w-full {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .w-50p {
+                width: 50% !important;
+                height: auto !important;
+            }
+
+            .w-33p {
+                width: 33.33% !important;
+                height: auto !important;
+            }
+
+            .w-15 {
+                width: 15px !important;
+                height: auto !important;
+            }
+
+            .w-20 {
+                width: 20px !important;
+                height: auto !important;
+            }
+
+            .w-30 {
+                width: 30px !important;
+                height: auto !important;
+            }
+
+            .w-50 {
+                width: 50px !important;
+                height: auto !important;
+            }
+
+            .w-80 {
+                width: 80px !important;
+                height: auto !important;
+            }
+
+            .w-120 {
+                width: 120px !important;
+                height: auto !important;
+            }
+
+            .w-160 {
+                width: 160px !important;
+                height: auto !important;
+            }
+
+            .h-10 {
+                height: 10px !important;
+            }
+
+            .h-20 {
+                height: 20px !important;
+            }
+
+            .h-40 {
+                height: 40px !important;
+            }
+
+            .min-width {
+                min-width: 320px !important;
+            }
+
+            .hide {
+                display: none !important;
+            }
+
+            .show {
+                display: block !important;
+                visibility: unset !important;
+                overflow: auto !important;
+                max-height: unset !important;
+            }
+
+            .break {
+                width: 100% !important;
+                display: block;
+                clear: both;
+            }
+
+            .align-center {
+                text-align: center !important;
+                text-align: -webkit-center !important;
+            }
+
+            /* TAILORED MOBILE STYLES */
+
+            .font-24 {
+                font-size: 24px !important;
+                line-height: 36px !important;
+            }
+
+        }
+    </style>
+    <!--[if mso]>
+        <style>
+            /* Force Hotmail to display normal line spacing */
+
+            body,
+            table,
+            td,
+            a {
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+            }
+
+            /* MSO clients doesnt overule line height */
+
+            table,
+            td {
+                mso-table-lspace: 0pt;
+                mso-table-rspace: 0pt;
+            }
+
+            /* Remove spacing between tables in Outlook 2007 and up */
+
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
+
+            /* Fallbacks */
+
+            table, td, th, span, a, div {
+                font-family: Arial !important;
+            }
+
+            .button-auto {
+                padding-left: 30px !important;
+                padding-right: 30px !important;
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+            }
+
+            .button-full {
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+            }
+
+        </style>
+    <![endif]-->
+    <!--[if gte mso 9]>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:AllowPNG />
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    <![endif]-->
+</head>
+
+<body style="margin: 0; padding: 0; min-width: 100%; width: 100% !important;">
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td class="min-width" style="min-width: 600px;">
+
+
+                <!-- HEADER START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="145" style="width: 145px;">
+                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/e02f63f5-5c7a-4fd4-8ea5-c8c033153250.png"
+                                                         alt="" width="145" height="auto"
+                                                         style="display: block; border: 0; width: 145px;" class="w-120">
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td class="hide" align="right" valign="bottom"
+                                                    style="font-size: 12px; line-height: 18px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    Can't see the images in the mail? <a href="#" target="_blank"
+                                                       style="color: #008811; text-decoration: underline;">View in
+                                                        browser</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" height="10"
+                                                    style="font-size: 1px; line-height: 1px; height: 10px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" height="2"
+                                                    style="font-size: 1px; line-height: 1px; height: 2px;"
+                                                    bgcolor="#D8D8D8">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- HEADER END -->
+
+                <!-- HERO 1 START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x300?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-24" align="left"
+                                                    style="font-size: 28px; line-height: 36px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Tum dicere exorsus est laborum et dolorem ipsum autem
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="16" style="font-size: 1px; line-height: 1px; height: 16px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    <b>Hello [Name]!</b>
+                                                    <br>
+                                                    Probabo, inquit, sic agam, ut ipsi auctori huius disciplinae placet:
+                                                    constituam, quid et quas molestias excepturi sint, obcaecati
+                                                    cupiditate non fuisse torquem.
+                                                    <br><br>
+                                                    Best regards,
+                                                    <br>
+                                                    <b>Firstname Lastname</b>
+                                                    <br>
+                                                    Work Title
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="30" style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <th class="button-full" align="center"
+                                                                style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block; width: 100%; box-sizing: border-box;">
+                                                                    Button label
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- HERO 1 END -->
+
+                <!-- HERO 1 w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x300?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-24" align="left"
+                                                    style="font-size: 28px; line-height: 36px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Tum dicere exorsus est laborum et dolorem ipsum autem
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="16" style="font-size: 1px; line-height: 1px; height: 16px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    <b>Hello [Name]!</b>
+                                                    <br>
+                                                    Probabo, inquit, sic agam, ut ipsi auctori huius disciplinae placet:
+                                                    constituam, quid et quas molestias excepturi sint, obcaecati
+                                                    cupiditate non fuisse torquem.
+                                                    <br><br>
+                                                    Best regards,
+                                                    <br>
+                                                    <b>Firstname Lastname</b>
+                                                    <br>
+                                                    Work Title
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- HERO 1 w/o CTA END -->
+
+                <!-- HERO 2 START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="w-33p" valign="top" width="200" style="width: 200px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/200x280?text=200 x H"
+                                                                     alt="" width="200" height="auto"
+                                                                     style="display: block; border: 0; width: 200px;"
+                                                                     class="w-full">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td valign="middle">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 24px; line-height: 32px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Lorem headline here
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0"
+                                                                       width="100%">
+                                                                    <tr>
+                                                                        <th class="button-full" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block; width: 100%; box-sizing: border-box;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- HERO 2 END -->
+
+                <!-- HERO 2 w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="w-33p" valign="top" width="200" style="width: 200px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/200x280?text=200 x H"
+                                                                     alt="" width="200" height="auto"
+                                                                     style="display: block; border: 0; width: 200px;"
+                                                                     class="w-full">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td valign="middle">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 24px; line-height: 32px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Lorem headline here
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- HERO 2 w/o CTA END -->
+
+                <!-- CONTENT 1 START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x200?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    SUPERSCRIPT
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Headline lorem ipsum
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="6" style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    You’ve read about the importance of being courageous, rebellious and
+                                                    imaginative. These are all vital ingredients in an effective
+                                                    advertising campaign.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="button-auto" align="center"
+                                                                style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                    Button label
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 1 END -->
+
+                <!-- CONTENT 1 w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x200?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    SUPERSCRIPT
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Headline lorem ipsum
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="6" style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    You’ve read about the importance of being courageous, rebellious and
+                                                    imaginative. These are all vital ingredients in an effective
+                                                    advertising campaign.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 1 w/o CTA END -->
+
+                <!-- CONTENT 1 w/o Superscript START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x200?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Headline lorem ipsum
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="6" style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    You’ve read about the importance of being courageous, rebellious and
+                                                    imaginative. These are all vital ingredients in an effective
+                                                    advertising campaign.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="button-auto" align="center"
+                                                                style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                    Button label
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 1 w/o Superscript END -->
+
+                <!-- CONTENT 1 w/o CTA and Superscript START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/560x200?text=560 x H" alt=""
+                                                         width="560" height="auto"
+                                                         style="display: block; border: 0; width: 560px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td height="24" style="font-size: 1px; line-height: 1px; height: 24px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Headline lorem ipsum
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="6" style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    You’ve read about the importance of being courageous, rebellious and
+                                                    imaginative. These are all vital ingredients in an effective
+                                                    advertising campaign.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 1 w/o CTA and Superscript END -->
+
+                <!-- CONTENT 2 - IMAGE RIGHT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="rtl">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                SUPERSCRIPT
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 - IMAGE RIGHT END -->
+
+                <!-- CONTENT 2 w/o CTA - IMAGE RIGHT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="rtl">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                SUPERSCRIPT
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 w/o CTA - IMAGE RIGHT END -->
+
+                <!-- CONTENT 2 w/o Superscript - IMAGE RIGHT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="rtl">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2  w/o Superscript - IMAGE RIGHT END -->
+
+                <!-- CONTENT 2 w/o CTA and Superscript - IMAGE RIGHT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="rtl">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2  w/o CTA and Superscript - IMAGE RIGHT END -->
+
+                <!-- CONTENT 2 - IMAGE LEFT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="ltr">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                SUPERSCRIPT
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 - IMAGE LEFT END -->
+
+                <!-- CONTENT 2 w/o CTA - IMAGE LEFT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="ltr">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 12px; line-height: 18px; color: #55555A; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                SUPERSCRIPT
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 w/o CTA - IMAGE LEFT END -->
+
+                <!-- CONTENT 2 w/o Superscript - IMAGE LEFT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="ltr">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 w/o superscript- IMAGE LEFT END -->
+
+                <!-- CONTENT 2 w/o CTA and Superscrip - IMAGE LEFT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="ltr">
+                                            <tr>
+                                                <th class="break" valign="middle" width="220" style="width: 220px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td>
+                                                                <img src="https://via.placeholder.com/220x150?text=220 x H"
+                                                                     alt="" width="220" height="auto"
+                                                                     style="display: block; border: 0; width: 220px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="20" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 20px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="middle" width="320" style="width: 320px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Headline lorem ipsum
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Duis aute irure dolor in reprehenderit in voluptate
+                                                                velit esse cillum dolore eu fugiat nulla pariatur.
+                                                                Excepteur sint occaecat cupidatat.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- CONTENT 2 w/o CTA and Superscrip - IMAGE LEFT END -->
+
+                <!-- QUOTE SMALL START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#F5F5F5">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt ut labore et
+                                                                dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                                nostrud exercitation ullamco.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Dr. Sarah Algot - PhD, MSc, Professor of Biomedical
+                                                                engineering, Luleå University, Sweden
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE SMALL END -->
+
+                <!-- QUOTE SMALL w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#F5F5F5">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt ut labore et
+                                                                dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                                nostrud exercitation ullamco.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Dr. Sarah Algot - PhD, MSc, Professor of Biomedical
+                                                                engineering, Luleå University, Sweden
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE SMALL w/o CTA END -->
+
+                <!-- QUOTE SMALL w/o Body text START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#F5F5F5">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt ut labore et
+                                                                dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                                nostrud exercitation ullamco.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE SMALL w/o Body text END -->
+
+                <!-- QUOTE BIG START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#009C14">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-24" align="left"
+                                                                style="font-size: 26px; line-height: 34px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Dr. Sarah Algot - PhD, MSc, Professor of Biomedical
+                                                                engineering, Luleå University, Sweden
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #009C14; background-color: #FFFFFF; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #009C14; background-color: #FFFFFF; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE BIG END -->
+
+                <!-- QUOTE BIG w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#009C14">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-24" align="left"
+                                                                style="font-size: 26px; line-height: 34px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Dr. Sarah Algot - PhD, MSc, Professor of Biomedical
+                                                                engineering, Luleå University, Sweden
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE BIG w/o CTA END -->
+
+                <!-- QUOTE BIG w/o Body text START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#009C14">
+                                            <tr>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-24" align="left"
+                                                                style="font-size: 26px; line-height: 34px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                ”Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                elit, sed do eiusmod tempor incididunt.”
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #009C14; background-color: #FFFFFF; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #009C14; background-color: #FFFFFF; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="30"
+                                                                style="font-size: 1px; line-height: 1px; height: 30px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td class="w-20" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- QUOTE BIG w/o Body text END -->
+
+                <!-- TEXT ONLY START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="font-24" align="left"
+                                                    style="font-size: 28px; line-height: 36px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Tum dicere exorsus est laborum et dolorem ipsum autem quidam
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    Probabo, inquit, sic agam, ut ipsi auctori huius disciplinae placet:
+                                                    constituam, quid et quas molestias excepturi sint, obcaecati
+                                                    cupiditate non fuisse torquem.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="button-auto" align="center"
+                                                                style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                    Button label
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- TEXT ONLY END -->
+
+                <!-- TEXT ONLY w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="font-24" align="left"
+                                                    style="font-size: 28px; line-height: 36px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Tum dicere exorsus est laborum et dolorem ipsum autem quidam
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    Probabo, inquit, sic agam, ut ipsi auctori huius disciplinae placet:
+                                                    constituam, quid et quas molestias excepturi sint, obcaecati
+                                                    cupiditate non fuisse torquem.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- TEXT ONLY w/o CTA END -->
+
+                <!-- TEXT ONLY w/o Body START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="font-24" align="left"
+                                                    style="font-size: 28px; line-height: 36px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                    Tum dicere exorsus est laborum et dolorem ipsum autem quidam
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="button-auto" align="center"
+                                                                style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                    Button label
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- TEXT ONLY w/o Body END -->
+
+                <!-- IMAGE - Fullwidth START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <img src="https://via.placeholder.com/560x300?text=560 x H" alt="" width="560"
+                                             height="auto" style="display: block; border: 0; width: 560px;"
+                                             class="w-full">
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- IMAGE - Fullwidth END -->
+
+                <!-- IMAGE - x2 START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/270x270?text=270 x H" alt=""
+                                                         width="270" height="auto"
+                                                         style="display: block; border: 0; width: 270px;" class="w-full">
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/270x270?text=270 x H" alt=""
+                                                         width="270" height="auto"
+                                                         style="display: block; border: 0; width: 270px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- IMAGE - x2 END -->
+
+                <!-- IMAGE - x3 START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/170x170?text=170 x H" alt=""
+                                                         width="170" height="auto"
+                                                         style="display: block; border: 0; width: 170px;" class="w-full">
+                                                </td>
+                                                <td class="w-15" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/170x170?text=170 x H" alt=""
+                                                         width="170" height="auto"
+                                                         style="display: block; border: 0; width: 170px;" class="w-full">
+                                                </td>
+                                                <td class="w-15" width="25"
+                                                    style="font-size: 1px; line-height: 1px; width: 25px;">&nbsp;</td>
+                                                <td>
+                                                    <img src="https://via.placeholder.com/170x170?text=170 x H" alt=""
+                                                         width="170" height="auto"
+                                                         style="display: block; border: 0; width: 170px;" class="w-full">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width=" 20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- IMAGE - x3 END -->
+
+                <!-- EVENT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#EEF7F7">
+                                            <tr>
+                                                <td colspan="5" height="20"
+                                                    style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td class="w-30" valign="top" width="40" style="width: 40px;">
+                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/cf62033a-4125-4113-bfff-a0fe8a854357.png"
+                                                         alt="" width="40" height="auto"
+                                                         style="display: block; border: 0; width: 40px;" class="w-30">
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td valign="top">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Event title lorem ipsum dolor sit amet
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                <b>Date:</b> XXth of XXXXX 2021
+                                                                <br>
+                                                                <b>Time:</b> XX.XX AM (GMT-4)
+                                                                <br>
+                                                                <b>Speaker:</b> Lorem ipsum dolor sit amet consectetur adipisicing.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="20"
+                                                                style="font-size: 1px; line-height: 1px; height: 20px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <th class="button-auto" align="center"
+                                                                            style="color: #FFFFFF; background-color: #009C14; font-size: 16px; line-height: 18px; font-family: Arial, sans-serif; font-weight: 700; display: block;">
+                                                                            <a href="#" target="_blank"
+                                                                               style="color: #FFFFFF; background-color: #009C14; padding: 10px 30px; text-decoration: none; display: inline-block;">
+                                                                                Button label
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" height="20"
+                                                    style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- EVENT END -->
+
+                <!-- EVENT w/o CTA START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                               bgcolor="#EEF7F7">
+                                            <tr>
+                                                <td colspan="5" height="20"
+                                                    style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td class="w-30" valign="top" width="40" style="width: 40px;">
+                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/cf62033a-4125-4113-bfff-a0fe8a854357.png"
+                                                         alt="" width="40" height="auto"
+                                                         style="display: block; border: 0; width: 40px;" class="w-30">
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td valign="top">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                                                Event title lorem ipsum dolor sit amet
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                <b>Date:</b> XXth of XXXXX 2021
+                                                                <br>
+                                                                <b>Time:</b> XX.XX AM (GMT-4)
+                                                                <br>
+                                                                <b>Speaker:</b> Lorem ipsum dolor sit amet consectetur adipisicing.
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5" height="20"
+                                                    style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- EVEN w/o CTA END -->
+
+                <!-- PORTRAIT START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="w-80" valign="top" width="110" style="width: 110px;">
+                                                    <img src="https://via.placeholder.com/110x140?text=110 x H" alt=""
+                                                         width="110" height="auto"
+                                                         style="display: block; border: 0; width: 110px;" class="w-80">
+                                                </td>
+                                                <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">
+                                                    &nbsp;</td>
+                                                <td valign="top">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td height="6"
+                                                                style="font-size: 1px; line-height: 1px; height: 6px;">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left"
+                                                                style="font-size: 16px; line-height: 24px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                <b>Name Lastname</b>
+                                                                <br>
+                                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, perspiciatis.
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" height="10"
+                                                    style="font-size: 1px; line-height: 1px; height: 10px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" height="2"
+                                                    style="font-size: 1px; line-height: 1px; height: 2px;"
+                                                    bgcolor="#D8D8D8">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- PORTRAIT END -->
+
+                <!-- BREAKER START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td align="left"
+                                        style="font-size: 20px; line-height: 30px; color: #282828; font-family: Arial, sans-serif; font-weight: 700;">
+                                        Breaker headline lorem ipsum dolor sit amet
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20" style="font-size: 1px; line-height: 1px; height: 20px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- BREAKER END -->
+
+                <!-- BULLET START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td valign="top" width="10" style="width: 10px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                                        <tr>
+                                                            <td valign="middle" height="18" style="height: 18px;">
+                                                                <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/2de21bbb-e321-4a62-86f4-a1e051869f1e.png" alt="" width="10"
+                                                                     height="auto"
+                                                                     style="display: block; border: 0; width: 10px;">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td width="8" style="font-size: 1px; line-height: 1px; width: 8px;">
+                                                    &nbsp;</td>
+                                                <td valign="top" align="left"
+                                                    style="font-size: 16px; line-height: 18px; color: #282828; font-family: Arial, sans-serif; font-weight: 400;">
+                                                    List module, place several after each other to create a list.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- BULLET END -->
+
+                <!-- PADDING START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td height="30" style="font-size: 1px; line-height: 1px; height: 30px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- PADDING END -->
+
+                <!-- PREFOOTER START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full">
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="h-40" height="60"
+                                                    style="font-size: 1px; line-height: 1px; height: 60px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td align="center">
+                                                                <a href="#" target="_blank"
+                                                                   style="text-decoration: none;">
+                                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/bcb410bd-5347-4c0f-9a41-82027544f1ad.png"
+                                                                         alt="in" width="60" height="auto"
+                                                                         style="display: block; border: 0; width: 60px; font-size: 30px; line-height: 40px; color: #64656A; font-family: Arial, sans-serif; font-weight: 700;"
+                                                                         class="w-50">
+                                                                </a>
+                                                            </td>
+                                                            <td class="w-20" width="30"
+                                                                style="font-size: 1px; line-height: 1px; width: 30px;">
+                                                                &nbsp;</td>
+                                                            <td align="center">
+                                                                <a href="#" target="_blank"
+                                                                   style="text-decoration: none;">
+                                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/e4397b97-d168-4e71-9825-569228563492.png"
+                                                                         alt="tw" width="60" height="auto"
+                                                                         style="display: block; border: 0; width: 60px; font-size: 30px; line-height: 40px; color: #64656A; font-family: Arial, sans-serif; font-weight: 700;"
+                                                                         class="w-50">
+                                                                </a>
+                                                            </td>
+                                                            <td class="w-20" width="30"
+                                                                style="font-size: 1px; line-height: 1px; width: 30px;">
+                                                                &nbsp;</td>
+                                                            <td align="center">
+                                                                <a href="#" target="_blank"
+                                                                   style="text-decoration: none;">
+                                                                    <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/8adff37e-b77a-446c-8fe7-81200f1a6288.png"
+                                                                         alt="fb" width="60" height="auto"
+                                                                         style="display: block; border: 0; width: 60px; font-size: 30px; line-height: 40px; color: #64656A; font-family: Arial, sans-serif; font-weight: 700;"
+                                                                         class="w-50">
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="h-40" height="60"
+                                                    style="font-size: 1px; line-height: 1px; height: 60px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- PREFOOTER END -->
+
+                <!-- FOOTER START -->
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" width="600" style="width: 600px;"
+                                   class="w-full" bgcolor="#008811">
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="40" style="font-size: 1px; line-height: 1px; width: 40px;">&nbsp;</td>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" dir="rtl">
+                                            <tr>
+                                                <th class="break" valign="top" width="190" style="width: 190px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td align="center">
+                                                                <img src="http://image.marketing.molnlycke.com/lib/fe3b15707564057e701373/m/4/9b60be7f-f9cb-48ec-bed4-74c32d105182.png"
+                                                                     alt="" width="190" height="auto"
+                                                                     style="display: block; border: 0; width: 190px;"
+                                                                     class="w-160">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="break" width="120" height="20"
+                                                    style="font-size: 1px; line-height: 1px; width: 120px; height: 20px;">
+                                                    &nbsp;</th>
+                                                <th class="break" valign="top" width="210" style="width: 210px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%"
+                                                           dir="ltr">
+                                                        <tr>
+                                                            <td class="align-center" align="left"
+                                                                style="font-size: 14px; line-height: 16px; color: #FFFFFF; font-family: Arial, sans-serif; font-weight: 400;">
+                                                                Mölnlycke Health Care AB
+                                                                <br>
+                                                                Box 130 80
+                                                                <br>
+                                                                SE-402 52 Gothenburg, Sweden
+                                                                <br>
+                                                                <br>
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; text-decoration: underline;">
+                                                                    Write us a message
+                                                                </a>
+                                                                <br>
+                                                                <br>
+                                                                <a href="#" target="_blank"
+                                                                   style="color: #FFFFFF; text-decoration: underline;">
+                                                                    Unsubscribe to our emails
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="40" style="font-size: 1px; line-height: 1px; width: 40px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="40" style="font-size: 1px; line-height: 1px; height: 40px;">
+                                        &nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- FOOTER END -->
+
+                <script type="text/javascript" src="email-frontend-tool.js"></script>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
