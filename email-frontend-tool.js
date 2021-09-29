@@ -345,6 +345,7 @@ function getLinklist() {
     for (let i = 0; i < linkList.length; i++) {
 
         let newlink = {};
+
         newlink["url"] = linkList[i].getAttribute("href");
 
         let currentInner = linkList[i].innerHTML.trim();
@@ -356,6 +357,8 @@ function getLinklist() {
         } else {
             newlink["text"] = currentInner;
         }
+
+        newlink["DOM"] = linkList[i];
 
         linkObj[i] = newlink;
         linkArr.push(linkList[i].href)
