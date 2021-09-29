@@ -331,13 +331,13 @@ function runEffects(slotNum, slotDOM) {
         }
     } else if (effectObj[slotNum].name === "Link list") {
         if (effectObj[slotNum].on) {
-            getLinks()
+            getLinklist()
         }
     }
 
 }
 
-function getLinks() {
+function getLinklist() {
     const linkList = document.querySelectorAll("a");
     let linkObj = {}
     let linkArr = [];
@@ -361,12 +361,8 @@ function getLinks() {
         linkObj[i] = newlink;
         linkArr.push(linkList[i].href)
 
-
-
-        // console.log(`%c ${currentInner} `, 'background: #222; color: #bada55', "\n", linkList[i].href)
     }
-    console.log(linkObj);
-    // console.log(linkArr);
+    console.log(`%c Link list: ${Object.keys(linkObj).length} `, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px;', "\n", linkObj)
 }
 
 // Add styles from local storage data
@@ -430,7 +426,7 @@ function addFromLocalStorage() {
 
         // if link list
         if (effectObj[6] !== undefined && effectObj[6].on) {
-            getLinks();
+            getLinklist();
         }
 
 
