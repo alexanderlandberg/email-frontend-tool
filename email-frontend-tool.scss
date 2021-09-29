@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// --------------------------------------------
+// -------------------- UI --------------------
+// --------------------------------------------
+
+.control-panel-wrapper {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(51, 51, 51, 0.6);
+    font-family: 'Fraunces', serif;
+    .control-panel {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 600px;
+        background-color: #FFF;
+        padding: 10px;
+    
+        div[class*="col_"] {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            height: 180px;
+            margin: 10px;
+            background: #d3d3d3;
+            &.on {
+                background: #aaca85;
+            }
+            &.col_1 {
+                width: 180px;
+            }
+        
+            &.col_2 {
+                width: 380px;
+            }
+            &>span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 20px;
+                font-weight: 900;
+                background-color: darkgrey;
+            }
+            &>p {
+                display: flex;
+                align-self: center;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            &[data-type="interval"]>p {
+                margin: 0px;
+                margin-top: 40px;
+            }
+            &[data-type="switch"]>p {
+                margin: 0px;
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// ----------------- FEATURES -----------------
+// --------------------------------------------
+
+// 1 Border
+.border-bottom>table {
+    border-bottom: 1px solid #000000;
+}
+
+// 2 Margin
+.margin>table {
+    margin: 30px auto;
+}
+
+// 3 Interval
+.interval .interval-hide {
+    display: none !important;
+}
+
+// 4 Grid
+@mixin mix-grid-color($grid-color){
+    table,
+    th,
+    td {
+        box-shadow: $grid-color 0 0 0 .5px;
+    }
+}
+.grid {
+    // border-color: black;
+    &[grid-color="black"]{
+        @include mix-grid-color(black);
+    }
+    &[grid-color="white"]{
+        @include mix-grid-color(white);
+    }
+    &[grid-color="red"]{
+        @include mix-grid-color(red);
+    }
+    &[grid-color="aqua"]{
+        @include mix-grid-color(aqua);
+    }
+    div {
+        border-color: inherit;
+    }
+}
+
+// 5 Scrollbar
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// --------------------------------------------
+// ---------------- COMPONENTS ----------------
+// --------------------------------------------
+
+// Range wrapper (from x to y)
+.range-wrapper {
+    display: flex;
+    margin: 20px;
+    &>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        &>span {
+            text-align: center;
+            &:first-of-type {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+// Sub-label
+.panel-type-label {
+    margin: 0;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+// Colored radio buttons
+.switch-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 8px 10px;
+    &>input {
+        display: none;
+        &[type="radio"]:checked+label {
+            border: 2px solid darkgreen;
+        }
+    }
+    &>label {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-radius: 50%;
+        opacity: 0.3;
+    }
+}
+[class*="col_"].on .switch-wrapper>label {
+    opacity: 1;
+}

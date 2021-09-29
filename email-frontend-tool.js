@@ -129,7 +129,7 @@ function showControlPanel() {
             let newSwitch = document.createElement("div");
             newSwitch.innerHTML = `
                 <p class="panel-type-label">Line color</p>
-                <div class="switch-wrapper-v2">
+                <div class="switch-wrapper">
                     <input ${(effectObj[i + 1].typeData.value == undefined || effectObj[i + 1].typeData.value == "black") ? "checked" : null} type="radio" id="black" name="borderColor" value="black" onchange="switchHandler(this);" >
                     <label for="black" style="background-color: black;"></label>
                     <input ${effectObj[i + 1].typeData.value == "white" ? "checked" : null} type="radio" id="white" name="borderColor" value="white" onchange="switchHandler(this);">
@@ -198,7 +198,7 @@ function switchHandler(e) {
 
     const moduleWrapper = document.querySelector(`.min-width`);
 
-    moduleWrapper.style.borderColor = selectedColor;
+    moduleWrapper.setAttribute("grid-color", selectedColor);
 }
 
 // Handle mouse click
@@ -304,7 +304,7 @@ function runEffects(slotNum, slotDOM) {
     } else if (effectObj[slotNum].name === "Grid") {
         if (effectObj[slotNum].on) {
             moduleWrapper.classList.add("grid");
-            moduleWrapper.style.border = effectObj[4].typeData.value;
+            moduleWrapper.setAttribute("grid-color", effectObj[4].typeData.value);
         } else {
             moduleWrapper.classList.remove("grid");
         }
@@ -370,7 +370,7 @@ function addFromLocalStorage() {
         // if grid
         if (effectObj[4] !== undefined && effectObj[4].on) {
             moduleWrapper.classList.add("grid");
-            moduleWrapper.style.borderColor = effectObj[4].typeData.value;
+            moduleWrapper.setAttribute("grid-color", effectObj[4].typeData.value);
         }
 
         // if scrollbar
@@ -386,4 +386,4 @@ function addFromLocalStorage() {
 addFromLocalStorage()
 
 
-// showControlPanel()
+showControlPanel()
