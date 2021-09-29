@@ -344,9 +344,8 @@ function getLinklist() {
 
     for (let i = 0; i < linkList.length; i++) {
 
-        let newlink = {
-            url: linkList[i].href
-        }
+        let newlink = {};
+        newlink["url"] = linkList[i].getAttribute("href");
 
         let currentInner = linkList[i].innerHTML.trim();
 
@@ -435,6 +434,3 @@ function addFromLocalStorage() {
     }
 }
 addFromLocalStorage()
-
-
-// showControlPanel()
