@@ -171,9 +171,12 @@
   font-weight: bold;
 }
 
+[data-type="switch"] .panel-type-label {
+  margin-top: 20px;
+}
+
 .panel-type-label {
   margin: 0;
-  margin-top: 20px;
   text-align: center;
   font-size: 12px;
 }

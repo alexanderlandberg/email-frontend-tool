@@ -74,6 +74,12 @@ let effectObj = {
         "on": false,
         "type": "styling"
     },
+    6: {
+        "name": "Link list",
+        "col": 1,
+        "on": false,
+        "type": "styling+label"
+    },
 }
 
 
@@ -139,6 +145,12 @@ function showControlPanel() {
                     <input ${effectObj[i + 1].typeData.value == "aqua" ? "checked" : null} type="radio" id="aqua" name="borderColor" value="aqua" onchange="switchHandler(this);">
                     <label for="aqua" style="background-color: aqua;"></label>
                 </div>`;
+            newSlot.appendChild(newSwitch);
+        }
+
+        if (effectObj[i + 1].type.includes("+label")) {
+            let newSwitch = document.createElement("div");
+            newSwitch.innerHTML = `<p class="panel-type-label">List in console</p>`;
             newSlot.appendChild(newSwitch);
         }
 
@@ -314,10 +326,45 @@ function runEffects(slotNum, slotDOM) {
         } else {
             document.querySelector("body").classList.remove("hide-scrollbar");
         }
+    } else if (effectObj[slotNum].name === "Link list") {
+        if (effectObj[slotNum].on) {
+            getLinks()
+        }
     }
 
 }
 
+function getLinks() {
+    const linkList = document.querySelectorAll("a");
+    let linkObj = {}
+    let linkArr = [];
+
+    for (let i = 0; i < linkList.length; i++) {
+
+        let newlink = {
+            url: linkList[i].href
+        }
+
+        let currentInner = linkList[i].innerHTML.trim();
+
+        if (currentInner.includes("<img")) {
+            newlink["img"] = linkList[i].querySelector("img").getAttribute("src");
+        } else if (currentInner.length > 20) {
+            newlink["text"] = currentInner.substring(0, 19).trim() + "...";
+        } else {
+            newlink["text"] = currentInner;
+        }
+
+        linkObj[i] = newlink;
+        linkArr.push(linkList[i].href)
+
+
+
+        // console.log(`%c ${currentInner} `, 'background: #222; color: #bada55', "\n", linkList[i].href)
+    }
+    console.log(linkObj);
+    // console.log(linkArr);
+}
 
 // Add styles from local storage data
 function addFromLocalStorage() {
@@ -376,6 +423,11 @@ function addFromLocalStorage() {
         // if scrollbar
         if (effectObj[5] !== undefined && effectObj[5].on) {
             document.querySelector("body").classList.add("hide-scrollbar");
+        }
+
+        // if link list
+        if (effectObj[6] !== undefined && effectObj[6].on) {
+            getLinks();
         }
 
 
