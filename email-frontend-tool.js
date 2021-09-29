@@ -162,7 +162,7 @@ function showControlPanel() {
     // add eventlisteners
 
     for (let i = 0; i < document.querySelectorAll(`div[data-slot]`).length; i++) {
-        document.querySelector(`div[data-slot="${i + 1}"]>p`).addEventListener("click", handleMouseClick);
+        document.querySelector(`div[data-slot="${i + 1}"]`).addEventListener("click", handleMouseClick);
     }
 
     document.querySelector(".control-panel-wrapper").addEventListener("click", closeControlPanel)
@@ -214,13 +214,16 @@ function switchHandler(e) {
 }
 
 // Handle mouse click
-function handleMouseClick() {
+function handleMouseClick(clickTarget) {
 
-    let slotNum = Number(this.parentNode.getAttribute("data-slot"));
-    let slotDOM = this.parentNode;
+    let slotNum = Number(this.getAttribute("data-slot"));
+    let slotDOM = this;
 
-    // console.log(slotNum, slotDOM)
-    runEffects(slotNum, slotDOM)
+    let targetTag = clickTarget.target.tagName.toLowerCase();
+
+    if (targetTag !== "input" && targetTag !== "label") {
+        runEffects(slotNum, slotDOM)
+    }
 }
 
 // Handle key down
