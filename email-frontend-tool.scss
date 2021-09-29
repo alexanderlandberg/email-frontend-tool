@@ -83,6 +83,67 @@
 }
 
 // --------------------------------------------
+// ---------------- COMPONENTS ----------------
+// --------------------------------------------
+
+.control-panel-wrapper {
+
+    // Range wrapper (from x to y)
+    .range-wrapper {
+        display: flex;
+        margin: 20px;
+        &>div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50%;
+            &>span {
+                text-align: center;
+                &:first-of-type {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    // Sub-label
+    [data-type="switch"] .panel-type-label {
+        margin-top: 20px;
+    }
+    .panel-type-label {
+        margin: 0;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    // Colored radio buttons
+    .switch-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 8px 10px;
+        &>input {
+            display: none;
+            &[type="radio"]:checked+label {
+                border: 2px solid darkgreen;
+            }
+        }
+        &>label {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            box-sizing: border-box;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+    }
+    [class*="col_"].on .switch-wrapper>label {
+        opacity: 1;
+    }
+    
+}
+
+// --------------------------------------------
 // ----------------- FEATURES -----------------
 // --------------------------------------------
 
@@ -136,61 +197,4 @@
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
-
-// --------------------------------------------
-// ---------------- COMPONENTS ----------------
-// --------------------------------------------
-
-// Range wrapper (from x to y)
-.range-wrapper {
-    display: flex;
-    margin: 20px;
-    &>div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 50%;
-        &>span {
-            text-align: center;
-            &:first-of-type {
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-// Sub-label
-[data-type="switch"] .panel-type-label {
-    margin-top: 20px;
-}
-.panel-type-label {
-    margin: 0;
-    text-align: center;
-    font-size: 12px;
-}
-
-// Colored radio buttons
-.switch-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 8px 10px;
-    &>input {
-        display: none;
-        &[type="radio"]:checked+label {
-            border: 2px solid darkgreen;
-        }
-    }
-    &>label {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        box-sizing: border-box;
-        border-radius: 50%;
-        opacity: 0.3;
-    }
-}
-[class*="col_"].on .switch-wrapper>label {
-    opacity: 1;
 }
