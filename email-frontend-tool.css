@@ -179,11 +179,11 @@
   opacity: 1;
 }
 
-.border-bottom > table {
+.border-bottom > * {
   border-bottom: 1px solid #000000;
 }
 
-.margin > table {
+.margin > * {
   margin: 30px auto;
 }
 

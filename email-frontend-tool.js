@@ -34,7 +34,8 @@ function konami(e) {
     }
 }
 
-const moduleList = document.querySelectorAll(`.min-width>table`);
+const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*`);
+console.log(moduleList)
 
 let effectObj = {
     1: {
@@ -208,9 +209,21 @@ function switchHandler(e) {
 
     // console.log(effectObj)
 
-    const moduleWrapper = document.querySelector(`.min-width`);
+    const moduleWrapper = document.querySelector(getModuleContainerSelector());
 
     moduleWrapper.setAttribute("grid-color", selectedColor);
+}
+
+// return module container selector
+function getModuleContainerSelector() {
+
+    if (typeof (document.querySelector(".acr-container")) != 'undefined' && document.querySelector(".acr-container") != null) {
+        // adobe
+        return ".acr-container";
+    } else {
+        // default
+        return ".min-width";
+    }
 }
 
 // Handle mouse click
@@ -275,7 +288,8 @@ function closeControlPanel(parm) {
 function runEffects(slotNum, slotDOM) {
     // console.log("TEST", slotNum, slotDOM)
 
-    const moduleWrapper = document.querySelector(`.min-width`);
+    const moduleWrapper = document.querySelector(getModuleContainerSelector());
+    console.log(moduleWrapper)
 
     if (!slotDOM.classList.contains("on")) {
         slotDOM.classList.add("on")
@@ -390,7 +404,7 @@ function addFromLocalStorage() {
         }
 
 
-        const moduleWrapper = document.querySelector(`.min-width`);
+        const moduleWrapper = document.querySelector(getModuleContainerSelector());
 
         // if border
         if (effectObj[1] !== undefined && effectObj[1].on) {

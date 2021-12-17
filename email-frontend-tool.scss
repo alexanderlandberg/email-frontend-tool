@@ -148,12 +148,12 @@
 // --------------------------------------------
 
 // 1 Border
-.border-bottom>table {
+.border-bottom>* {
     border-bottom: 1px solid #000000;
 }
 
 // 2 Margin
-.margin>table {
+.margin>* {
     margin: 30px auto;
 }
 
