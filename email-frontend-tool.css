@@ -104,6 +104,46 @@
   margin-top: 20px;
 }
 
+.control-panel-button {
+  position: fixed;
+  bottom: 0;
+  background-color: mediumaquamarine;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 100% 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.control-panel-button svg {
+  padding: 15%;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.control-panel-button:hover {
+  width: 60px;
+  height: 60px;
+}
+
+.control-panel-button:hover svg {
+  width: 28px;
+  height: 28px;
+}
+
 .control-panel-wrapper .range-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
