@@ -23,7 +23,7 @@ function konami(e) {
         if (konamiArr[pressedArr.length] == pressedArr[konamiArr.length]) {
             window.removeEventListener("keydown", konami);
             showControlPanel()
-            console.log("Control panel opened")
+            // console.log("Control panel opened")
             pressedArr = [];
         }
     } else {
@@ -35,7 +35,6 @@ function konami(e) {
 }
 
 const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*`);
-console.log(moduleList)
 
 let effectObj = {
     1: {
@@ -289,7 +288,6 @@ function runEffects(slotNum, slotDOM) {
     // console.log("TEST", slotNum, slotDOM)
 
     const moduleWrapper = document.querySelector(getModuleContainerSelector());
-    console.log(moduleWrapper)
 
     if (!slotDOM.classList.contains("on")) {
         slotDOM.classList.add("on")
