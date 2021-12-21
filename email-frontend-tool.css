@@ -8,9 +8,9 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(51, 51, 51, 0.6);
-  color: #000000;
-  font-family: 'Fraunces', serif;
+  background-color: rgba(18, 18, 18, 0.6);
+  color: #121212;
+  font-family: "Fraunces", serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -29,8 +29,9 @@
       flex-wrap: wrap;
   margin: auto;
   width: 620px;
-  background-color: #FFF;
+  background-color: #f2f2f2;
   padding: 10px;
+  border-radius: 4px;
 }
 
 .control-panel-wrapper .control-panel div[class*="col_"] {
@@ -111,53 +112,6 @@
   margin-top: 20px;
 }
 
-.control-panel-button {
-  position: fixed;
-  bottom: 0;
-  background-color: mediumaquamarine;
-  width: 50px;
-  height: 50px;
-  border-radius: 0 100% 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.control-panel-button * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.control-panel-button svg {
-  margin: 15%;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-.control-panel-button:hover {
-  width: 60px;
-  height: 60px;
-}
-
-.control-panel-button:hover svg {
-  width: 28px;
-  height: 28px;
-}
-
 .control-panel-wrapper .range-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -229,12 +183,28 @@
   opacity: 0.3;
 }
 
+.control-panel-wrapper .switch-wrapper > label[for="black"] {
+  background-color: #121212;
+}
+
+.control-panel-wrapper .switch-wrapper > label[for="white"] {
+  background-color: #f2f2f2;
+}
+
+.control-panel-wrapper .switch-wrapper > label[for="red"] {
+  background-color: red;
+}
+
+.control-panel-wrapper .switch-wrapper > label[for="aqua"] {
+  background-color: aqua;
+}
+
 .control-panel-wrapper [class*="col_"].on .switch-wrapper > label {
   opacity: 1;
 }
 
 .border-bottom > * {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #121212;
 }
 
 .margin > * {
@@ -248,15 +218,15 @@
 .grid[grid-color="black"] table,
 .grid[grid-color="black"] th,
 .grid[grid-color="black"] td {
-  -webkit-box-shadow: black 0 0 0 0.5px;
-          box-shadow: black 0 0 0 0.5px;
+  -webkit-box-shadow: #121212 0 0 0 0.5px;
+          box-shadow: #121212 0 0 0 0.5px;
 }
 
 .grid[grid-color="white"] table,
 .grid[grid-color="white"] th,
 .grid[grid-color="white"] td {
-  -webkit-box-shadow: white 0 0 0 0.5px;
-          box-shadow: white 0 0 0 0.5px;
+  -webkit-box-shadow: #f2f2f2 0 0 0 0.5px;
+          box-shadow: #f2f2f2 0 0 0 0.5px;
 }
 
 .grid[grid-color="red"] table,
@@ -284,5 +254,52 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.control-panel-button {
+  position: fixed;
+  bottom: 0;
+  background-color: mediumaquamarine;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 100% 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.control-panel-button * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.control-panel-button svg {
+  margin: 15%;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.control-panel-button:hover {
+  width: 60px;
+  height: 60px;
+}
+
+.control-panel-button:hover svg {
+  width: 28px;
+  height: 28px;
 }
 /*# sourceMappingURL=email-frontend-tool.css.map */

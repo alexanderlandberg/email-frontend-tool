@@ -1,0 +1,51 @@
+// 1 Border
+.border-bottom>* {
+    border-bottom: 1px solid $color-dark;
+}
+
+// 2 Margin
+.margin>* {
+    margin: 30px auto;
+}
+
+// 3 Interval
+.interval .interval-hide {
+    display: none !important;
+}
+
+// 4 Grid
+@mixin mix-grid-color($grid-color){
+    table,
+    th,
+    td {
+        box-shadow: $grid-color 0 0 0 .5px;
+    }
+}
+.grid {
+    // border-color: black;
+    &[grid-color="black"]{
+        @include mix-grid-color($color-grid-black);
+    }
+    &[grid-color="white"]{
+        @include mix-grid-color($color-grid-white);
+    }
+    &[grid-color="red"]{
+        @include mix-grid-color($color-grid-red);
+    }
+    &[grid-color="aqua"]{
+        @include mix-grid-color($color-grid-aqua);
+    }
+    div {
+        border-color: inherit;
+    }
+}
+
+// 5 Scrollbar
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

@@ -149,13 +149,13 @@ function showControlPanel() {
                 <p class="panel-type-label">Line color</p>
                 <div class="switch-wrapper">
                     <input ${(effectObj[i + 1].typeData.value == undefined || effectObj[i + 1].typeData.value == "black") ? "checked" : null} type="radio" id="black" name="borderColor" value="black" onchange="switchHandler(this);" >
-                    <label for="black" style="background-color: black;"></label>
+                    <label for="black"></label>
                     <input ${effectObj[i + 1].typeData.value == "white" ? "checked" : null} type="radio" id="white" name="borderColor" value="white" onchange="switchHandler(this);">
-                    <label for="white" style="background-color: white;"></label>
+                    <label for="white"></label>
                     <input ${(effectObj[i + 1].typeData.value == "red") ? "checked" : null} type="radio" id="red" name="borderColor" value="red" onchange="switchHandler(this);" >
-                    <label for="red" style="background-color: red;"></label>
+                    <label for="red"></label>
                     <input ${effectObj[i + 1].typeData.value == "aqua" ? "checked" : null} type="radio" id="aqua" name="borderColor" value="aqua" onchange="switchHandler(this);">
-                    <label for="aqua" style="background-color: aqua;"></label>
+                    <label for="aqua"></label>
                 </div>`;
             newSlot.appendChild(newSwitch);
         }
