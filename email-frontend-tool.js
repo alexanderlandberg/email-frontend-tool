@@ -1,13 +1,11 @@
 "use strict";
 
-
 function addToggleBtn() {
     let newBtn = document.createElement("div");
     newBtn.classList.add("control-panel-button");
     newBtn.setAttribute("title", "Open Email Frontend Tool");
     newBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" /></svg>`
     newBtn.addEventListener("click", showControlPanel);
-
     document.querySelector("body").appendChild(newBtn);
 }
 addToggleBtn()
@@ -22,9 +20,7 @@ const keysObj = {
     66: "b"
 }
 
-// const konamiArr = ["up", "up", "down", "down", "left", "right", "left", "right", "b", "a",]
 const konamiArr = ["up", "down", "left", "right"]
-// const konamiArr = ["a"]
 let pressedArr = []
 
 window.addEventListener("keydown", konami);
@@ -94,13 +90,13 @@ let effectObj = {
     },
 }
 
-
 // Build and show control panel
 function showControlPanel() {
 
     // build panel
     let newWrapper = document.createElement("div");
     newWrapper.classList.add("control-panel-wrapper");
+    // newWrapper.classList.add("police");
 
     let newPanel = document.createElement("div");
     newPanel.classList.add("control-panel");
@@ -180,6 +176,7 @@ function showControlPanel() {
     document.querySelector(".control-panel-wrapper").addEventListener("click", closeControlPanel)
 
     window.addEventListener("keydown", handleKeyDown)
+    window.addEventListener("keydown", eastereggs)
 
 }
 
@@ -281,6 +278,9 @@ function closeControlPanel(parm) {
 
         // re-add konami listener
         window.addEventListener("keydown", konami);
+
+        // remove easteregg listener
+        window.removeEventListener("keydown", eastereggs);
 
         // remove panel
         if (parm === "Escape") {
@@ -461,3 +461,22 @@ function addFromLocalStorage() {
     }
 }
 addFromLocalStorage()
+
+// EASTER EGG
+const policeEgg = [9, 1, 1];
+let policePressedArr = []
+function eastereggs(e) {
+    if (Number(e.key) === policeEgg[policePressedArr.length]) {
+        policePressedArr.push(Number(e.key));
+        if (policeEgg[policePressedArr.length] == policePressedArr[policeEgg.length]) {
+            window.removeEventListener("keydown", eastereggs);
+            document.querySelector(".control-panel-wrapper").classList.add("police");
+            policePressedArr = [];
+        }
+    } else {
+        policePressedArr = [];
+        if (Number(e.key) === policeEgg[policePressedArr.length]) {
+            policePressedArr.push(Number(e.key));
+        }
+    }
+}

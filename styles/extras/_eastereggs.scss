@@ -1,0 +1,76 @@
+.control-panel-wrapper.police {
+
+    .control-panel {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .control-panel div[class*="col_"] {
+        background-color: $color-brand-1-lighter;
+        color: $color-text-dark;
+        animation-duration: 0.5s;
+        animation-timing-function: $easing;
+        animation-iteration-count: infinite;
+        box-shadow: blue;
+
+        &:nth-child(odd){
+            animation-name: kf_police_odd;
+        }
+        &:nth-child(even){
+            animation-name: kf_police_even;
+        }
+    }
+
+    .control-panel:first-child:after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 0;
+        width: 100%;
+        background-image: url("https://preview.redd.it/q5a6096y6ia51.png?auto=webp&s=ae860856526b62199852f60555e983cfd9f3c2b1");
+        height: 100%;
+        background-size: 200px;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        animation-name: kf_police_officer;
+        animation-duration: 3s;
+        animation-timing-function: $easing;
+    }
+}
+
+@keyframes kf_police_odd {
+    0% {
+        background-color: blue;
+        box-shadow: 0px 0px 10px 2px blue;
+    }
+    50% {
+        background-color: red;
+        box-shadow: 0px 0px 10px 2px red;
+    }
+    100% {
+        background-color: blue;
+        box-shadow: 0px 0px 10px 2px blue;
+    }
+}
+@keyframes kf_police_even {
+    0% {
+        background-color: red;
+        box-shadow: 0px 0px 10px 2px red;
+    }
+    50% {
+        background-color: blue;
+        box-shadow: 0px 0px 10px 2px blue;
+    }
+    100% {
+        background-color: red;
+        box-shadow: 0px 0px 10px 2px red;
+    }
+}
+@keyframes kf_police_officer {
+    0% {
+        top: 100%;
+    }
+    100% {
+        top: 10%;
+    }
+}
