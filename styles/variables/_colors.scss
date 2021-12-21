@@ -1,18 +1,34 @@
 // main
 $color-dark: #121212;
 $color-light: #f2f2f2;
+
+$color-brand-1-lighter: hsl(160, 50%, 95%);
+$color-brand-1-light: hsl(160, 50%, 85%);
+$color-brand-1: hsl(160, 50%, 43%);
+$color-brand-1-dark: hsl(160, 50%, 10%);
+
+$color-brand-2-lighter: hsl(285, 50%, 95%);
+$color-brand-2-light: hsl(285, 50%, 85%);
+$color-brand-2: hsl(285, 50%, 43%);
+$color-brand-2-dark: hsl(285, 50%, 10%);
+
 $color-overlay: rgba($color-dark, 0.6);
 
+// panel
+$color-panel-bg: $color-brand-1-light;
+$color-text-dark: $color-brand-1-dark;
+$color-text-light: $color-brand-1-lighter;
+
 // cols
-$color-col-bg: #d3d3d3;
-$color-col-bg-active: #aaca85;
-$color-col-label: darkgrey;
+$color-col-bg: $color-brand-1-lighter;
+$color-col-bg-active: $color-brand-1;
+$color-col-label: $color-brand-1-dark;
 
 // components
-$color-radio-checked: darkgreen;
+$color-radio-checked: $color-brand-2;
 
 // features
-$color-grid-black: $color-dark;
-$color-grid-white: $color-light;
+$color-grid-black: black;
+$color-grid-white: white;
 $color-grid-red: red;
 $color-grid-aqua: aqua;

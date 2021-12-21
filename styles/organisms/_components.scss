@@ -3,17 +3,92 @@
     // Range wrapper (from x to y)
     .range-wrapper {
         display: flex;
-        margin: 20px;
+        margin: 16px;
+
         &>div {
             display: flex;
             flex-direction: column;
             justify-content: center;
             width: 50%;
+            margin: 0 3px;
+
             &>span {
                 text-align: center;
+                font-size: 16px;
+
                 &:first-of-type {
                     font-weight: bold;
                 }
+            }
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 20px;
+            background: $color-brand-2-lighter;
+            outline: none;
+            border-radius: $border-radius;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: $border-radius;
+                background: $color-brand-2-light;
+                cursor: pointer;
+            }
+
+            &::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border-radius: $border-radius;
+                background: $color-brand-2-light;
+                cursor: pointer;
+            }
+        }
+
+        @include mix-below($size-w-dog) {
+            margin: 8px;
+
+            &>div>span:first-of-type {
+                font-size: 11px;
+            }
+
+            input[type="range"] {
+                height: 16px;
+
+                &::-webkit-slider-thumb {
+                    width: 16px;
+                    height: 16px;
+                }
+
+                &::-moz-range-thumb {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+    }
+
+    .on .range-wrapper {
+        input[type="range"] {
+            background: $color-brand-2-light;
+
+            &::-webkit-slider-thumb {
+                background: $color-brand-2;
+            }
+
+            &::-moz-range-thumb {
+                background: $color-brand-2;
             }
         }
     }
@@ -22,6 +97,7 @@
     [data-type="switch"] .panel-type-label {
         margin-top: 20px;
     }
+
     .panel-type-label {
         margin: 0;
         text-align: center;
@@ -34,12 +110,15 @@
         flex-direction: row;
         justify-content: space-evenly;
         margin: 8px 10px;
+
         &>input {
             display: none;
+
             &[type="radio"]:checked+label {
                 border: 2px solid $color-radio-checked;
             }
         }
+
         &>label {
             width: 30px;
             height: 30px;
@@ -47,20 +126,32 @@
             box-sizing: border-box;
             border-radius: 50%;
             opacity: 0.3;
-            &[for="black"]{
+
+            &[for="black"] {
                 background-color: $color-grid-black;
             }
-            &[for="white"]{
+
+            &[for="white"] {
                 background-color: $color-grid-white;
             }
-            &[for="red"]{
+
+            &[for="red"] {
                 background-color: $color-grid-red;
             }
-            &[for="aqua"]{
+
+            &[for="aqua"] {
                 background-color: $color-grid-aqua;
             }
         }
+
+        @include mix-below($size-w-dog) {
+            &>label {
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
+
     [class*="col_"].on .switch-wrapper>label {
         opacity: 1;
     }
