@@ -14,6 +14,7 @@
   min-width: 320px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  z-index: 999999;
 }
 
 .control-panel-wrapper * {
@@ -315,6 +316,83 @@
 
 .control-panel-wrapper [class*="col_"].on .switch-wrapper > label {
   opacity: 1;
+}
+
+.control-panel-wrapper .toggle-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.control-panel-wrapper .toggle-wrapper span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.control-panel-wrapper .toggle-wrapper label {
+  display: inline-block;
+  height: 28px;
+  position: relative;
+  width: 52px;
+  margin: 6px;
+}
+
+.control-panel-wrapper .toggle-wrapper label .toggleSlider {
+  background-color: #f5ecf9;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 4px;
+  opacity: 0.7;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+}
+
+.control-panel-wrapper .toggle-wrapper label .toggleSlider:hover {
+  opacity: 1;
+}
+
+.control-panel-wrapper .toggle-wrapper label .toggleSlider:before {
+  content: "";
+  background-color: #e2c6ec;
+  bottom: 4px;
+  height: 20px;
+  left: 4px;
+  position: absolute;
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+  width: 20px;
+  border-radius: 4px;
+}
+
+.control-panel-wrapper .toggle-wrapper label input {
+  display: none;
+}
+
+.control-panel-wrapper .toggle-wrapper label input:checked + .toggleSlider:before {
+  -webkit-transform: translateX(24px);
+          transform: translateX(24px);
+}
+
+.control-panel-wrapper .on .toggle-wrapper .toggleSlider {
+  background: #e2c6ec;
+}
+
+.control-panel-wrapper .on .toggle-wrapper .toggleSlider:before {
+  background: #8937a4;
 }
 
 .border-bottom > * {

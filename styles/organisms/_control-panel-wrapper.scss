@@ -10,6 +10,7 @@
     font-family: $fontstack-brand;
     min-width: 320px;
     box-sizing: border-box;
+    z-index: 999999;
     * {
         box-sizing: border-box;
     }

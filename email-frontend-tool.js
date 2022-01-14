@@ -64,7 +64,8 @@ let effectObj = {
         "type": "interval",
         "typeData": {
             "from": undefined,
-            "amount": undefined
+            "amount": undefined,
+            "toggle": false
         }
     },
     4: {
@@ -122,6 +123,17 @@ function showControlPanel() {
         newSlot.appendChild(newP);
 
         if (effectObj[i + 1].type == "interval") {
+            let newToggle = document.createElement("div");
+            newToggle.innerHTML = `
+            <div class="toggle-wrapper">
+            <span class="toggle-left">Show</span>
+                <label for="toggle-interval">
+                <input type="checkbox" id="toggle-interval" ${effectObj[i + 1].typeData.toggle ? "checked" : null} oninput="intervalHandler(this)">
+                <div class="toggleSlider"></div>
+                </label>
+                <span class="toggle-right">Hide</span>
+            </div>
+            `
             let newInterval = document.createElement("div");
             newInterval.innerHTML = `
             <div class="range-wrapper">
@@ -136,6 +148,7 @@ function showControlPanel() {
                 <span>${effectObj[i + 1].typeData.amount == undefined ? 1 : effectObj[i + 1].typeData.amount}</span>
             </div>
         </div>`;
+            newSlot.appendChild(newToggle);
             newSlot.appendChild(newInterval);
         }
 
@@ -182,7 +195,10 @@ function showControlPanel() {
 
 function intervalHandler(e) {
 
+    const toggle = document.querySelector("#toggle-interval");
+
     // get slot number and create wrapper variable
+
     const slotNum = e.parentNode.parentNode.parentNode.parentNode.getAttribute("data-slot");
     const rangeWrapper1 = document.querySelector(`div[data-slot="${slotNum}"] .range-from`)
     const rangeWrapper2 = document.querySelector(`div[data-slot="${slotNum}"] .range-plus`)
@@ -193,15 +209,20 @@ function intervalHandler(e) {
     // update number
     rangeWrapper1.children[2].innerHTML = Number(rangeWrapper1.children[1].value);
     rangeWrapper2.children[2].innerHTML = Number(rangeWrapper2.children[1].value);
+
+    // update effectObj
     effectObj[slotNum].typeData.from = Number(rangeWrapper1.children[1].value);
     effectObj[slotNum].typeData.amount = Number(rangeWrapper2.children[1].value);
+    effectObj[slotNum].typeData.toggle = toggle.checked;
 
     // add classes to selected modules
     for (let i = 0; i < moduleList.length; i++) {
         if (i + 2 > Number(rangeWrapper1.children[1].value) && i < (Number(rangeWrapper2.children[1].value) + Number(rangeWrapper1.children[1].value) - 1)) {
-            moduleList[i].classList.remove("interval-hide");
+            // check show/hide
+            !effectObj[slotNum].typeData.toggle ? moduleList[i].classList.remove("interval-hide") : moduleList[i].classList.add("interval-hide")
         } else {
-            moduleList[i].classList.add("interval-hide");
+            // check show/hide
+            !effectObj[slotNum].typeData.toggle ? moduleList[i].classList.add("interval-hide") : moduleList[i].classList.remove("interval-hide")
         }
     }
 }
@@ -228,10 +249,10 @@ function getModuleContainerSelector() {
     if (typeof (document.querySelector(".acr-container")) != 'undefined' && document.querySelector(".acr-container") != null) {
         // adobe
         return ".acr-container";
-    } else {
-        // default
-        return ".min-width";
     }
+
+    // default
+    return ".min-width";
 }
 
 // Handle mouse click
@@ -240,9 +261,10 @@ function handleMouseClick(clickTarget) {
     let slotNum = Number(this.getAttribute("data-slot"));
     let slotDOM = this;
 
-    let targetTag = clickTarget.target.tagName.toLowerCase();
+    let t = clickTarget.target;
+    let targetTag = t.tagName.toLowerCase();
 
-    if (targetTag !== "input" && targetTag !== "label") {
+    if (targetTag !== "input" && targetTag !== "label" && !t.classList.contains("toggleSlider")) {
         runEffects(slotNum, slotDOM)
     }
 }
@@ -405,6 +427,7 @@ function addFromLocalStorage() {
             if (effectObj[i + 1].type === "interval") {
                 effectObj[i + 1].typeData.from = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.from;
                 effectObj[i + 1].typeData.amount = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.amount;
+                effectObj[i + 1].typeData.toggle = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.toggle;
             }
 
             // get switch status from localstorage
@@ -434,8 +457,9 @@ function addFromLocalStorage() {
         for (let i = 0; i < moduleList.length; i++) {
             moduleList[i].classList.add("interval-hide");
             if (i + 1 >= effectObj[3].typeData.from && i + 2 <= (effectObj[3].typeData.from + effectObj[3].typeData.amount)) {
-                moduleList[i].classList.remove("interval-hide");
-                // console.log(i, "shown")
+                !effectObj[3].typeData.toggle ? moduleList[i].classList.remove("interval-hide") : moduleList[i].classList.add("interval-hide")
+            } else {
+                !effectObj[3].typeData.toggle ? moduleList[i].classList.add("interval-hide") : moduleList[i].classList.remove("interval-hide")
             }
         }
 
