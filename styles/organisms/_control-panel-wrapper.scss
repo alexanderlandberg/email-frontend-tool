@@ -72,6 +72,9 @@
             &[data-type="interval"]>p {
                 margin: 0px;
                 margin-top: 40px;
+                @include mix-below($size-w-dog) {
+                    margin-top: 20px;
+                }
             }
             &[data-type="switch"]>p {
                 margin: 0px;

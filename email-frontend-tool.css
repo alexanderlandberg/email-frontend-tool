@@ -104,6 +104,12 @@
   margin-top: 40px;
 }
 
+@media screen and (max-width: 767px) {
+  .control-panel-wrapper .control-panel div[class*="col_"][data-type="interval"] > p {
+    margin-top: 20px;
+  }
+}
+
 .control-panel-wrapper .control-panel div[class*="col_"][data-type="switch"] > p {
   margin: 0px;
   margin-top: 20px;
@@ -332,9 +338,21 @@
   margin-bottom: -10px;
 }
 
+@media screen and (max-width: 767px) {
+  .control-panel-wrapper .toggle-wrapper {
+    margin-top: 0px;
+  }
+}
+
 .control-panel-wrapper .toggle-wrapper span {
   font-size: 12px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 767px) {
+  .control-panel-wrapper .toggle-wrapper span {
+    font-size: 10px;
+  }
 }
 
 .control-panel-wrapper .toggle-wrapper label {
@@ -385,6 +403,24 @@
 .control-panel-wrapper .toggle-wrapper label input:checked + .toggleSlider:before {
   -webkit-transform: translateX(24px);
           transform: translateX(24px);
+}
+
+@media screen and (max-width: 767px) {
+  .control-panel-wrapper .toggle-wrapper label input:checked + .toggleSlider:before {
+    -webkit-transform: translateX(18px);
+            transform: translateX(18px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .control-panel-wrapper .toggle-wrapper label {
+    height: 24px;
+    width: 42px;
+  }
+  .control-panel-wrapper .toggle-wrapper label .toggleSlider:before {
+    height: 16px;
+    width: 16px;
+  }
 }
 
 .control-panel-wrapper .on .toggle-wrapper .toggleSlider {

@@ -164,10 +164,17 @@
 
         margin-top: 10px;
         margin-bottom: -10px;
+        
+        @include mix-below($size-w-dog) {
+            margin-top: 0px;
+        }
 
         span {
             font-size: 12px;
             font-weight: bold;
+            @include mix-below($size-w-dog) {
+                font-size: 10px;
+            }
         }
 
         label {
@@ -208,12 +215,19 @@
 
             input {
                 display: none;
-
-                &:checked+.toggleSlider {
-
-                    &:before {
-                        transform: translateX(24px);
+                &:checked+.toggleSlider:before {
+                    transform: translateX(24px);
+                    @include mix-below($size-w-dog) {
+                        transform: translateX(18px);
                     }
+                }
+            }
+            @include mix-below($size-w-dog) {
+                height: 24px;
+                width: 42px;
+                .toggleSlider:before {
+                    height: 16px;
+                    width: 16px;
                 }
             }
         }
