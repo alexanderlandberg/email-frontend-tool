@@ -388,6 +388,8 @@ function getLinklist() {
     let linkObj = {}
     let linkArr = [];
 
+    let emptyLinksAmount = 0;
+
     for (let i = 0; i < linkList.length; i++) {
 
         let newlink = {};
@@ -409,8 +411,9 @@ function getLinklist() {
         linkObj[i] = newlink;
         linkArr.push(linkList[i].href)
 
+        linkList[i].href.replace(window.location.href, "") === "#" ? emptyLinksAmount++ : null;
     }
-    console.log(`%c Link list: ${Object.keys(linkObj).length} `, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px;', "\n", linkObj)
+    console.log(`%c Link list: ${Object.keys(linkObj).length} %c Empty Links: ${emptyLinksAmount}`, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px; margin-right: 10px;', 'background: #c93737; color: #FFFFFF; padding: 6px; border-radius: 4px;', "\n", linkObj)
 }
 
 // Add styles from local storage data
