@@ -89,6 +89,12 @@ let effectObj = {
         "on": false,
         "type": "styling+label"
     },
+    7: {
+        "name": "Inspector",
+        "col": 1,
+        "on": false,
+        "type": "styling"
+    },
 }
 
 // Build and show control panel
@@ -379,10 +385,17 @@ function runEffects(slotNum, slotDOM) {
         if (effectObj[slotNum].on) {
             getLinklist()
         }
+    } else if (effectObj[slotNum].name === "Inspector") {
+        if (effectObj[slotNum].on) {
+            hoverInspect();
+        } else {
+            hoverInspect("off");
+        }
     }
 
 }
 
+// Link list
 function getLinklist() {
     const linkList = document.querySelectorAll("a");
     let linkObj = {}
@@ -415,6 +428,79 @@ function getLinklist() {
     }
     console.log(`%c Link list: ${Object.keys(linkObj).length} %c Empty Links: ${emptyLinksAmount}`, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px; margin-right: 10px;', 'background: #c93737; color: #FFFFFF; padding: 6px; border-radius: 4px;', "\n", linkObj)
 }
+
+// Hover Inspect
+function hoverInspect(toggle) {
+    if (toggle !== "off") {
+        window.addEventListener('mouseover', hoverInspect_On, false);
+        window.addEventListener('mouseout', hoverInspect_Off, false);
+    } else {
+        window.removeEventListener('mouseover', hoverInspect_On, false);
+        window.removeEventListener('mouseout', hoverInspect_Off, false);
+    }
+
+}
+function hoverInspect_On(e) {
+    if (e.target.closest(".min-width") !== null && !e.target.classList.contains("highlight-info")) {
+        hoverInspect_AddHighlight(e.target);
+    }
+}
+function hoverInspect_Off(e) {
+    if (e.target.closest(".min-width") !== null && !e.target.classList.contains("highlight-info")) {
+        hoverInspect_RemoveHighlight(e.target);
+    }
+}
+function hoverInspect_AddHighlight(e) {
+    let targetContainer = e.tagName === "IMG" ? e.parentNode : e;
+
+    targetContainer.classList.add('highlighted');
+
+    if (targetContainer.tagName === "A") {
+        targetContainer.style.display = "inline-block";
+    }
+
+    let newDiv = document.createElement("div");
+    newDiv.classList.add("highlight-info");
+    let inner = "";
+    let addHighlight = false;
+
+    if (e.getAttribute("class") && e.classList.length > 1) {
+        inner += "<b>Class</b><br>";
+        inner += e.getAttribute("class").replace("highlighted", "").split(";").join("<br>");
+        inner += "<br>"
+        addHighlight = true;
+    }
+
+    if (e.getAttribute("style")) {
+        inner += "<b>Style</b><br>";
+        inner += e.getAttribute("style").split(";").join("<br>");
+        addHighlight = true;
+    }
+
+    if (addHighlight) {
+        newDiv.innerHTML = inner;
+        targetContainer.appendChild(newDiv);
+    }
+}
+function hoverInspect_RemoveHighlight(e) {
+
+    if (e.tagName !== "IMG") {
+        // not image
+        if (e.getAttribute("style")) {
+            e.querySelector(".highlight-info").remove();
+        }
+        e.classList.remove('highlighted');
+
+    } else {
+        // image
+        if (e.parentNode.classList.contains("highlighted")) {
+            e.parentNode.querySelector(".highlight-info").remove();
+        }
+        e.parentNode.classList.remove('highlighted');
+
+    }
+}
+
 
 // Add styles from local storage data
 function addFromLocalStorage() {
@@ -480,6 +566,11 @@ function addFromLocalStorage() {
         // if link list
         if (effectObj[6] !== undefined && effectObj[6].on) {
             getLinklist();
+        }
+
+        // if inspector
+        if (effectObj[7] !== undefined && effectObj[7].on) {
+            hoverInspect();
         }
 
 
