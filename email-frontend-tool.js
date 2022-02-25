@@ -95,6 +95,12 @@ let effectObj = {
         "on": false,
         "type": "styling"
     },
+    8: {
+        "name": "Remove content-editable",
+        "col": 1,
+        "on": false,
+        "type": "styling"
+    },
 }
 
 // Build and show control panel
@@ -391,6 +397,18 @@ function runEffects(slotNum, slotDOM) {
         } else {
             hoverInspect("off");
         }
+    } else if (effectObj[slotNum].name === "Remove content-editable") {
+        if (effectObj[slotNum].on) {
+            let editableList = document.querySelectorAll("[contenteditable='true']");
+            for (let i = 0; i < editableList.length; i++) {
+                editableList[i].setAttribute("contenteditable", "overwrite-disable")
+            }
+        } else {
+            let editableList = document.querySelectorAll("[contenteditable='overwrite-disable']");
+            for (let i = 0; i < editableList.length; i++) {
+                editableList[i].setAttribute("contenteditable", "true")
+            }
+        }
     }
 
 }
@@ -571,6 +589,14 @@ function addFromLocalStorage() {
         // if inspector
         if (effectObj[7] !== undefined && effectObj[7].on) {
             hoverInspect();
+        }
+
+        // if remove contenteditable
+        if (effectObj[8] !== undefined && effectObj[8].on) {
+            let editableList = document.querySelectorAll("[contenteditable='true']");
+            for (let i = 0; i < editableList.length; i++) {
+                editableList[i].setAttribute("contenteditable", "overwrite-disable")
+            }
         }
 
 
