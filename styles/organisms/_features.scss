@@ -21,27 +21,34 @@
 }
 
 // 4 Grid
-@mixin mix-grid-color($grid-color){
+@mixin mix-grid-color($grid-color) {
+
     table,
     th,
     td {
         box-shadow: $grid-color 0 0 0 .5px;
     }
 }
+
 .grid {
+
     // border-color: black;
-    &[grid-color="black"]{
+    &[grid-color="black"] {
         @include mix-grid-color($color-grid-black);
     }
-    &[grid-color="white"]{
+
+    &[grid-color="white"] {
         @include mix-grid-color($color-grid-white);
     }
-    &[grid-color="red"]{
+
+    &[grid-color="red"] {
         @include mix-grid-color($color-grid-red);
     }
-    &[grid-color="aqua"]{
+
+    &[grid-color="aqua"] {
         @include mix-grid-color($color-grid-aqua);
     }
+
     div {
         border-color: inherit;
     }
@@ -55,4 +62,33 @@
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+// 9 Dark mode
+.darkmode-feature {
+    .darkmode-background {
+        background: #fff;
+        position: fixed;
+        pointer-events: none;
+        z-index: -10;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .darkmode-layer {
+        position: fixed;
+        pointer-events: none;
+        background: #fff;
+        mix-blend-mode: difference;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+img {
+    isolation: isolate;
 }

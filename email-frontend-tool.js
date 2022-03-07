@@ -102,6 +102,12 @@ let effectObj = {
         "on": false,
         "type": "styling"
     },
+    9: {
+        "name": "Dark mode",
+        "col": 1,
+        "on": false,
+        "type": "styling"
+    },
 }
 
 // Build and show control panel
@@ -278,6 +284,11 @@ function handleMouseClick(clickTarget) {
     let slotNum = Number(this.getAttribute("data-slot"));
     let slotDOM = this;
 
+    // disabled
+    if (slotDOM.classList.contains("disabled")) {
+        return;
+    }
+
     let t = clickTarget.target;
     let targetTag = t.tagName.toLowerCase();
 
@@ -293,7 +304,7 @@ function handleKeyDown(e) {
         let slotNum = Number(e.key);
         let slotDOM = document.querySelector(`div[data-slot="${e.key}"]`);
 
-        // disable
+        // disabled
         if (slotDOM.classList.contains("disabled")) {
             return;
         }
@@ -419,6 +430,12 @@ function runEffects(slotNum, slotDOM) {
                 editableList[i].setAttribute("contenteditable", "true")
             }
         }
+    } else if (effectObj[slotNum].name === "Dark mode") {
+        if (effectObj[slotNum].on) {
+            darkmode()
+        } else {
+            darkmode("off")
+        }
     }
 
 }
@@ -529,6 +546,29 @@ function hoverInspect_RemoveHighlight(e) {
     }
 }
 
+// Dark Mode 
+function darkmode(toggle) {
+    if (toggle !== "off") {
+
+        let newDarkmode = document.createElement("div");
+        newDarkmode.classList.add("darkmode-feature");
+
+        let newDarkmodeBackground = document.createElement("div");
+        newDarkmodeBackground.classList.add("darkmode-background");
+
+        let newDarkmodeLayer = document.createElement("div");
+        newDarkmodeLayer.classList.add("darkmode-layer");
+
+        newDarkmode.appendChild(newDarkmodeBackground);
+        newDarkmode.appendChild(newDarkmodeLayer);
+
+        // document.body.appendChild(newDarkmode);
+        document.body.insertBefore(newDarkmode, document.body.firstChild);
+
+    } else {
+        document.querySelector(".darkmode-feature").remove();
+    }
+}
 
 // Add styles from local storage data
 function addFromLocalStorage() {
@@ -609,6 +649,10 @@ function addFromLocalStorage() {
             }
         }
 
+        // if darkmode
+        if (effectObj[9] !== undefined && effectObj[9].on) {
+            darkmode();
+        }
 
     } else {
         localStorage.removeItem('EmailFrontendTool_DataObj');
