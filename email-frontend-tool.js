@@ -93,7 +93,8 @@ let effectObj = {
         "name": "Inspector",
         "col": 1,
         "on": false,
-        "type": "styling"
+        "type": "styling",
+        "disabled": true
     },
     8: {
         "name": "Remove content-editable",
@@ -124,6 +125,10 @@ function showControlPanel() {
 
         if (effectObj[i + 1].on == true) {
             newSlot.classList.add(`on`);
+        }
+
+        if (effectObj[i + 1].disabled == true) {
+            newSlot.classList.add(`disabled`);
         }
 
         let newSpan = document.createElement("span");
@@ -287,6 +292,11 @@ function handleKeyDown(e) {
     if (Number(e.key) > 0 && Number(e.key) < (Object.keys(effectObj).length + 1)) {
         let slotNum = Number(e.key);
         let slotDOM = document.querySelector(`div[data-slot="${e.key}"]`);
+
+        // disable
+        if (slotDOM.classList.contains("disabled")) {
+            return;
+        }
 
         // console.log(slotNum, slotDOM)
         runEffects(slotNum, slotDOM)
