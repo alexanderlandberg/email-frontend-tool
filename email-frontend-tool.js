@@ -1,5 +1,11 @@
 "use strict";
 
+// ----- SETTINGS -----
+
+const panelLayout = "wrap"; // wrap / *empty*
+
+// ----- SETTINGS -----
+
 function addToggleBtn() {
     let newBtn = document.createElement("div");
     newBtn.classList.add("control-panel-button");
@@ -114,13 +120,17 @@ let effectObj = {
 function showControlPanel() {
 
     // build panel
-    let newWrapper = document.createElement("div");
-    newWrapper.classList.add("control-panel-wrapper");
-    // newWrapper.classList.add("police");
+    let newOuter = document.createElement("div");
+    newOuter.classList.add("control-panel-outer");
+
+    let newInner = document.createElement("div");
+    newInner.classList.add("control-panel-inner");
+    newInner.style.transform = "translateX(-100%)";
 
     let newPanel = document.createElement("div");
     newPanel.classList.add("control-panel");
-    newWrapper.appendChild(newPanel);
+    panelLayout === "wrap" ? newPanel.classList.add("wrap") : null;
+    newInner.appendChild(newPanel);
 
     for (let i = 0; i < Object.keys(effectObj).length; i++) {
 
@@ -137,13 +147,23 @@ function showControlPanel() {
             newSlot.classList.add(`disabled`);
         }
 
-        let newSpan = document.createElement("span");
-        newSpan.innerHTML = i + 1;
-        newSlot.appendChild(newSpan);
+        let newSlotLabel = document.createElement("div");
+        newSlotLabel.classList.add("slot-label");
+        newSlot.appendChild(newSlotLabel);
 
         let newP = document.createElement("p");
-        newP.innerHTML = effectObj[i + 1].name;
-        newSlot.appendChild(newP);
+        newP.innerHTML = (i + 1) + ". " + effectObj[i + 1].name;
+        newSlotLabel.appendChild(newP);
+
+        let newAccordionContent;
+        newAccordionContent = document.createElement("div");
+        newAccordionContent.classList.add("accordion-content");
+        if (effectObj[i + 1].type !== "styling") {
+            let newAccordionArrow = document.createElement("div");
+            newAccordionArrow.classList.add("accordion-arrow");
+            newAccordionArrow.setAttribute("onclick", "toggleAccordion(this)");
+            newSlotLabel.appendChild(newAccordionArrow);
+        }
 
         if (effectObj[i + 1].type == "interval") {
             let newToggle = document.createElement("div");
@@ -171,8 +191,8 @@ function showControlPanel() {
                 <span>${effectObj[i + 1].typeData.amount == undefined ? 1 : effectObj[i + 1].typeData.amount}</span>
             </div>
         </div>`;
-            newSlot.appendChild(newToggle);
-            newSlot.appendChild(newInterval);
+            newAccordionContent.appendChild(newToggle);
+            newAccordionContent.appendChild(newInterval);
         }
 
         if (effectObj[i + 1].type == "switch") {
@@ -189,19 +209,26 @@ function showControlPanel() {
                     <input ${effectObj[i + 1].typeData.value == "aqua" ? "checked" : null} type="radio" id="aqua" name="borderColor" value="aqua" onchange="switchHandler(this);">
                     <label for="aqua"></label>
                 </div>`;
-            newSlot.appendChild(newSwitch);
+            newAccordionContent.appendChild(newSwitch);
         }
 
         if (effectObj[i + 1].type.includes("+label")) {
             let newSwitch = document.createElement("div");
             newSwitch.innerHTML = `<p class="panel-type-label">List in console</p>`;
-            newSlot.appendChild(newSwitch);
+            newAccordionContent.appendChild(newSwitch);
         }
 
+        if (effectObj[i + 1].type !== "styling") {
+            newSlot.appendChild(newAccordionContent);
+        }
         newPanel.appendChild(newSlot);
     }
 
-    document.querySelector("body").appendChild(newWrapper);
+    newOuter.appendChild(newInner);
+    document.querySelector("body").appendChild(newOuter);
+    setTimeout(() => {
+        newInner.style.transform = "";
+    }, 100);
 
     // add eventlisteners
 
@@ -209,7 +236,7 @@ function showControlPanel() {
         document.querySelector(`div[data-slot="${i + 1}"]`).addEventListener("click", handleMouseClick);
     }
 
-    document.querySelector(".control-panel-wrapper").addEventListener("click", closeControlPanel)
+    document.querySelector(".control-panel-outer").addEventListener("click", closeControlPanel)
 
     window.addEventListener("keydown", handleKeyDown)
     window.addEventListener("keydown", eastereggs)
@@ -221,8 +248,7 @@ function intervalHandler(e) {
     const toggle = document.querySelector("#toggle-interval");
 
     // get slot number and create wrapper variable
-
-    const slotNum = e.parentNode.parentNode.parentNode.parentNode.getAttribute("data-slot");
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
     const rangeWrapper1 = document.querySelector(`div[data-slot="${slotNum}"] .range-from`)
     const rangeWrapper2 = document.querySelector(`div[data-slot="${slotNum}"] .range-plus`)
 
@@ -290,9 +316,8 @@ function handleMouseClick(clickTarget) {
     }
 
     let t = clickTarget.target;
-    let targetTag = t.tagName.toLowerCase();
 
-    if (targetTag !== "input" && targetTag !== "label" && !t.classList.contains("toggleSlider")) {
+    if (!t.closest(".accordion-content") && !t.classList.contains("accordion-arrow")) {
         runEffects(slotNum, slotDOM)
     }
 }
@@ -322,13 +347,13 @@ function handleKeyDown(e) {
 
 // Close control panel
 function closeControlPanel(parm) {
-    if (parm === "Escape" || parm.target === document.querySelector(".control-panel-wrapper")) {
+    if (parm === "Escape" || parm.target === document.querySelector(".control-panel-outer")) {
 
         // remove eventlisteners
         for (let i = 0; i < document.querySelectorAll(`div[data-slot]`).length; i++) {
             document.querySelector(`div[data-slot="${i + 1}"]`).removeEventListener("click", handleMouseClick);
         }
-        document.querySelector(".control-panel-wrapper").removeEventListener("click", closeControlPanel)
+        document.querySelector(".control-panel-outer").removeEventListener("click", closeControlPanel)
         window.removeEventListener("keydown", handleKeyDown)
 
         // re-add konami listener
@@ -338,10 +363,11 @@ function closeControlPanel(parm) {
         window.removeEventListener("keydown", eastereggs);
 
         // remove panel
-        if (parm === "Escape") {
-            document.querySelector(".control-panel-wrapper").remove()
-        } else if (parm.target === document.querySelector(".control-panel-wrapper")) {
-            document.querySelector(".control-panel-wrapper").remove()
+        if (parm === "Escape" || parm.target === document.querySelector(".control-panel-outer")) {
+            document.querySelector(".control-panel-inner").style.transform = "translateX(-100%)";
+            setTimeout(() => {
+                document.querySelector(".control-panel-outer").remove()
+            }, 200);
         }
 
         // set local storage
@@ -668,7 +694,7 @@ function eastereggs(e) {
         policePressedArr.push(Number(e.key));
         if (policeEgg[policePressedArr.length] == policePressedArr[policeEgg.length]) {
             window.removeEventListener("keydown", eastereggs);
-            document.querySelector(".control-panel-wrapper").classList.add("police");
+            document.querySelector(".control-panel-outer").classList.add("police");
             policePressedArr = [];
         }
     } else {

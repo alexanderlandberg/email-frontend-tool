@@ -1,4 +1,4 @@
-.control-panel-wrapper {
+.control-panel-outer {
 
     // Range wrapper (from x to y)
     .range-wrapper {
@@ -25,6 +25,7 @@
         input[type="range"] {
             -webkit-appearance: none;
             width: 100%;
+            max-width: 80px;
             height: 20px;
             background: $color-brand-2-lighter;
             outline: none;
@@ -91,11 +92,6 @@
                 background: $color-brand-2;
             }
         }
-    }
-
-    // Sub-label
-    [data-type="switch"] .panel-type-label {
-        margin-top: 20px;
     }
 
     .panel-type-label {
