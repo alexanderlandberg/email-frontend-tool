@@ -19,8 +19,8 @@
   box-sizing: border-box;
 }
 .control-panel-outer .control-panel-inner {
-  overflow: scroll;
   transition: transform 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98);
+  margin: 0 10px;
 }
 .control-panel-outer .control-panel {
   position: relative;
@@ -31,20 +31,14 @@
   border-radius: 4px;
   overflow: visible;
   align-items: flex-end;
-}
-.control-panel-outer .control-panel.wrap {
   flex-wrap: wrap;
   width: 100%;
-}
-.control-panel-outer .control-panel.wrap div[class*=col_] {
-  margin-bottom: 10px;
 }
 .control-panel-outer .control-panel div[class*=col_] {
   display: flex;
   position: relative;
   flex-direction: column-reverse;
   justify-content: center;
-  cursor: pointer;
   overflow: visible;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -52,42 +46,34 @@
           user-select: none;
   min-width: 130px;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 .control-panel-outer .control-panel div[class*=col_].on .slot-label {
   background: hsl(160deg, 50%, 43%);
   color: hsl(160deg, 50%, 95%);
-}
-.control-panel-outer .control-panel div[class*=col_]:not(.open) .accordion-content {
-  height: 0px;
-  padding: 0 10px;
-}
-.control-panel-outer .control-panel div[class*=col_].open .accordion-arrow {
-  transform: rotate(0);
-}
-.control-panel-outer .control-panel div[class*=col_].open .accordion-content {
-  transform: translateY(0);
 }
 .control-panel-outer .control-panel div[class*=col_] .slot-label {
   display: flex;
   justify-content: space-between;
   background: hsl(160deg, 50%, 95%);
   z-index: 1;
+  cursor: pointer;
 }
 .control-panel-outer .control-panel div[class*=col_] .slot-label > p {
   padding: 10px;
   display: flex;
   align-self: center;
   text-align: center;
-  font-size: 20px;
-  line-height: 25px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 700;
   margin: 0;
 }
 .control-panel-outer .control-panel div[class*=col_] .accordion-arrow {
   padding: 10px;
   text-align: center;
-  font-size: 20px;
-  line-height: 25px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 900;
   background-color: hsl(285deg, 50%, 43%);
   transform: rotate(180deg);
@@ -97,17 +83,37 @@
   display: block;
   color: hsl(160deg, 50%, 95%);
 }
+.control-panel-outer .control-panel div[class*=col_].open .accordion-arrow {
+  transform: rotate(0);
+}
 .control-panel-outer .control-panel div[class*=col_] .accordion-content {
   background-color: hsl(160deg, 50%, 85%);
   padding: 10px;
   overflow: hidden;
-  transition: transform 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98), padding 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98);
-  transform: translateY(100%);
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+  max-height: 0px;
+  transition: max-height 0.4s cubic-bezier(0.78, -0.07, 0.28, 0.98), padding 0s cubic-bezier(0.78, -0.07, 0.28, 0.98) 0.2s;
+}
+.control-panel-outer .control-panel div[class*=col_].open .accordion-content {
+  max-height: 200px;
+  padding: 10px;
+  transition: max-height 0.4s cubic-bezier(0.78, -0.07, 0.28, 0.98), padding 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98);
 }
 
+.control-panel-outer .control-panel div[data-type=interval] {
+  min-width: 160px;
+}
+.control-panel-outer .control-panel div[data-type=switch] {
+  min-width: 150px;
+}
 .control-panel-outer .range-wrapper {
   display: flex;
-  margin: 16px;
+  margin: 8px;
 }
 .control-panel-outer .range-wrapper > div {
   display: flex;
@@ -122,12 +128,13 @@
 }
 .control-panel-outer .range-wrapper > div > span:first-of-type {
   font-weight: bold;
+  font-size: 11px;
 }
 .control-panel-outer .range-wrapper input[type=range] {
   -webkit-appearance: none;
   width: 100%;
   max-width: 80px;
-  height: 20px;
+  height: 16px;
   background: hsl(285deg, 50%, 95%);
   outline: none;
   border-radius: 4px;
@@ -140,37 +147,18 @@
 .control-panel-outer .range-wrapper input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 4px;
   background: hsl(285deg, 50%, 85%);
   cursor: pointer;
 }
 .control-panel-outer .range-wrapper input[type=range]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 4px;
   background: hsl(285deg, 50%, 85%);
   cursor: pointer;
-}
-@media screen and (max-width: 767px) {
-  .control-panel-outer .range-wrapper {
-    margin: 8px;
-  }
-  .control-panel-outer .range-wrapper > div > span:first-of-type {
-    font-size: 11px;
-  }
-  .control-panel-outer .range-wrapper input[type=range] {
-    height: 16px;
-  }
-  .control-panel-outer .range-wrapper input[type=range]::-webkit-slider-thumb {
-    width: 16px;
-    height: 16px;
-  }
-  .control-panel-outer .range-wrapper input[type=range]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-  }
 }
 .control-panel-outer .on .range-wrapper input[type=range] {
   background: hsl(285deg, 50%, 85%);
@@ -190,7 +178,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 8px 10px;
+  margin: 8px 0;
 }
 .control-panel-outer .switch-wrapper > input {
   display: none;
@@ -199,8 +187,8 @@
   border: 2px solid hsl(285deg, 50%, 43%);
 }
 .control-panel-outer .switch-wrapper > label {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   box-sizing: border-box;
   border-radius: 50%;
@@ -218,12 +206,6 @@
 .control-panel-outer .switch-wrapper > label[for=aqua] {
   background-color: aqua;
 }
-@media screen and (max-width: 767px) {
-  .control-panel-outer .switch-wrapper > label {
-    width: 25px;
-    height: 25px;
-  }
-}
 .control-panel-outer [class*=col_].on .switch-wrapper > label {
   opacity: 1;
 }
@@ -231,28 +213,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: -10px;
 }
-@media screen and (max-width: 767px) {
-  .control-panel-outer .toggle-wrapper {
-    margin-top: 0px;
-  }
-}
 .control-panel-outer .toggle-wrapper span {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
-}
-@media screen and (max-width: 767px) {
-  .control-panel-outer .toggle-wrapper span {
-    font-size: 10px;
-  }
 }
 .control-panel-outer .toggle-wrapper label {
   display: inline-block;
-  height: 28px;
+  height: 24px;
   position: relative;
-  width: 52px;
+  width: 42px;
   margin: 6px;
 }
 .control-panel-outer .toggle-wrapper label .toggleSlider {
@@ -274,33 +246,18 @@
   content: "";
   background-color: hsl(285deg, 50%, 85%);
   bottom: 4px;
-  height: 20px;
+  height: 16px;
   left: 4px;
   position: absolute;
   transition: transform 0.4s;
-  width: 20px;
+  width: 16px;
   border-radius: 4px;
 }
 .control-panel-outer .toggle-wrapper label input {
   display: none;
 }
 .control-panel-outer .toggle-wrapper label input:checked + .toggleSlider:before {
-  transform: translateX(24px);
-}
-@media screen and (max-width: 767px) {
-  .control-panel-outer .toggle-wrapper label input:checked + .toggleSlider:before {
-    transform: translateX(18px);
-  }
-}
-@media screen and (max-width: 767px) {
-  .control-panel-outer .toggle-wrapper label {
-    height: 24px;
-    width: 42px;
-  }
-  .control-panel-outer .toggle-wrapper label .toggleSlider:before {
-    height: 16px;
-    width: 16px;
-  }
+  transform: translateX(18px);
 }
 .control-panel-outer .on .toggle-wrapper .toggleSlider {
   background: hsl(285deg, 50%, 85%);
@@ -414,33 +371,10 @@ img {
   transform: scale(1.1);
 }
 
-.control-panel-wrapper.police .control-panel {
-  overflow: hidden;
-  position: relative;
-}
-.control-panel-wrapper.police .control-panel div[class*=col_] {
-  background-color: hsl(160deg, 50%, 95%);
-  color: hsl(160deg, 50%, 10%);
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
-          animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  box-shadow: blue;
-}
-.control-panel-wrapper.police .control-panel div[class*=col_]:nth-child(odd) {
-  -webkit-animation-name: kf_police_odd;
-          animation-name: kf_police_odd;
-}
-.control-panel-wrapper.police .control-panel div[class*=col_]:nth-child(even) {
-  -webkit-animation-name: kf_police_even;
-          animation-name: kf_police_even;
-}
-.control-panel-wrapper.police .control-panel:first-child:after {
+.control-panel-outer.police:after {
   content: "";
   position: absolute;
-  top: 10%;
+  top: 0;
   left: 0;
   width: 100%;
   background-image: url("https://preview.redd.it/q5a6096y6ia51.png?auto=webp&s=ae860856526b62199852f60555e983cfd9f3c2b1");
@@ -454,6 +388,28 @@ img {
           animation-duration: 3s;
   -webkit-animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
           animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
+}
+.control-panel-outer.police .control-panel {
+  overflow: hidden;
+  position: relative;
+}
+.control-panel-outer.police .control-panel div[class*=col_] .slot-label {
+  background-color: hsl(160deg, 50%, 95%);
+  color: hsl(160deg, 50%, 10%);
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
+          animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.control-panel-outer.police .control-panel div[class*=col_]:nth-child(odd) .slot-label {
+  -webkit-animation-name: kf_police_odd;
+          animation-name: kf_police_odd;
+}
+.control-panel-outer.police .control-panel div[class*=col_]:nth-child(even) .slot-label {
+  -webkit-animation-name: kf_police_even;
+          animation-name: kf_police_even;
 }
 
 @-webkit-keyframes kf_police_odd {
@@ -518,7 +474,7 @@ img {
     top: 100%;
   }
   100% {
-    top: 10%;
+    top: 0%;
   }
 }
 @keyframes kf_police_officer {
@@ -526,6 +482,6 @@ img {
     top: 100%;
   }
   100% {
-    top: 10%;
+    top: 0%;
   }
 }/*# sourceMappingURL=email-frontend-tool.css.map */

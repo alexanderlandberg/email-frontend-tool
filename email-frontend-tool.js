@@ -1,11 +1,5 @@
 "use strict";
 
-// ----- SETTINGS -----
-
-const panelLayout = "wrap"; // wrap / *empty*
-
-// ----- SETTINGS -----
-
 function addToggleBtn() {
     let newBtn = document.createElement("div");
     newBtn.classList.add("control-panel-button");
@@ -129,7 +123,6 @@ function showControlPanel() {
 
     let newPanel = document.createElement("div");
     newPanel.classList.add("control-panel");
-    panelLayout === "wrap" ? newPanel.classList.add("wrap") : null;
     newInner.appendChild(newPanel);
 
     for (let i = 0; i < Object.keys(effectObj).length; i++) {
@@ -161,7 +154,7 @@ function showControlPanel() {
         if (effectObj[i + 1].type !== "styling") {
             let newAccordionArrow = document.createElement("div");
             newAccordionArrow.classList.add("accordion-arrow");
-            newAccordionArrow.setAttribute("onclick", "toggleAccordion(this)");
+            newAccordionArrow.setAttribute("onclick", "handleAccordion(this)");
             newSlotLabel.appendChild(newAccordionArrow);
         }
 
@@ -279,7 +272,7 @@ function intervalHandler(e) {
 function switchHandler(e) {
 
     // get slot number and radio value
-    const slotNum = e.parentNode.parentNode.parentNode.getAttribute("data-slot");
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
     const selectedColor = e.getAttribute("id");
 
     // update effectObj
@@ -317,6 +310,13 @@ function handleMouseClick(clickTarget) {
 
     let t = clickTarget.target;
 
+    let allSlots = document.querySelectorAll(`div[data-slot]`);
+    for (let i = 0; i < allSlots.length; i++) {
+        if (allSlots[i] !== t.closest("[data-slot]")) {
+            allSlots[i].classList.remove("open");
+        }
+    }
+
     if (!t.closest(".accordion-content") && !t.classList.contains("accordion-arrow")) {
         runEffects(slotNum, slotDOM)
     }
@@ -343,6 +343,24 @@ function handleKeyDown(e) {
         closeControlPanel("Escape");
     }
 
+}
+
+// Handle accordion
+function handleAccordion(e) {
+    let selectedSlot = e.closest("[data-slot]");
+
+    let allSlots = document.querySelectorAll(`div[data-slot]`);
+    for (let i = 0; i < allSlots.length; i++) {
+        if (allSlots[i] !== selectedSlot) {
+            allSlots[i].classList.remove("open");
+        }
+    }
+
+    if (selectedSlot.classList.contains("open")) {
+        selectedSlot.classList.remove("open");
+    } else {
+        selectedSlot.classList.add("open");
+    }
 }
 
 // Close control panel
@@ -693,6 +711,7 @@ function eastereggs(e) {
     if (Number(e.key) === policeEgg[policePressedArr.length]) {
         policePressedArr.push(Number(e.key));
         if (policeEgg[policePressedArr.length] == policePressedArr[policeEgg.length]) {
+            console.log("police")
             window.removeEventListener("keydown", eastereggs);
             document.querySelector(".control-panel-outer").classList.add("police");
             policePressedArr = [];

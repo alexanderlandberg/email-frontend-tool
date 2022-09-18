@@ -1451,7 +1451,7 @@
     </table>
     <script type="text/javascript" src="email-frontend-tool.js"></script>
     <script>
-        showControlPanel()
+        // showControlPanel()
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -1489,24 +1489,6 @@
             padding: 20px;
         }
     </style>
-    <script>
-        function toggleAccordion(parm) {
-            let selectedSlot = parm.closest("[data-slot]");
-
-            let allSlots = document.querySelectorAll(`div[data-slot]`);
-            for (let i = 0; i < allSlots.length; i++) {
-                if (allSlots[i] !== selectedSlot) {
-                    allSlots[i].classList.remove("open");
-                }
-            }
-
-            if (selectedSlot.classList.contains("open")) {
-                selectedSlot.classList.remove("open");
-            } else {
-                selectedSlot.classList.add("open");
-            }
-        }
-    </script>
 </body>
 
 </html>
