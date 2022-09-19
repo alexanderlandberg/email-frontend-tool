@@ -1,30 +1,9 @@
-.control-panel-wrapper.police {
+.control-panel-outer.police {
 
-    .control-panel {
-        overflow: hidden;
-        position: relative;
-    }
-
-    .control-panel div[class*="col_"] {
-        background-color: $color-brand-1-lighter;
-        color: $color-text-dark;
-        animation-duration: 0.5s;
-        animation-timing-function: $easing;
-        animation-iteration-count: infinite;
-        box-shadow: blue;
-
-        &:nth-child(odd){
-            animation-name: kf_police_odd;
-        }
-        &:nth-child(even){
-            animation-name: kf_police_even;
-        }
-    }
-
-    .control-panel:first-child:after {
+    &:after {
         content: "";
         position: absolute;
-        top: 10%;
+        top: 0;
         left: 0;
         width: 100%;
         background-image: url("https://preview.redd.it/q5a6096y6ia51.png?auto=webp&s=ae860856526b62199852f60555e983cfd9f3c2b1");
@@ -36,6 +15,29 @@
         animation-duration: 3s;
         animation-timing-function: $easing;
     }
+
+    .control-panel {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .control-panel div[class*="col_"] {
+        .slot-label {
+            background-color: $color-brand-1-lighter;
+            color: $color-text-dark;
+            animation-duration: 0.5s;
+            animation-timing-function: $easing;
+            animation-iteration-count: infinite;
+        }
+
+        &:nth-child(odd) .slot-label{
+            animation-name: kf_police_odd;
+        }
+        &:nth-child(even) .slot-label{
+            animation-name: kf_police_even;
+        }
+    }
+    
 }
 
 @keyframes kf_police_odd {
@@ -71,6 +73,6 @@
         top: 100%;
     }
     100% {
-        top: 10%;
+        top: 0%;
     }
 }
