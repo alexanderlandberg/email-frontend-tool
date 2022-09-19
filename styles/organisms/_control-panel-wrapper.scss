@@ -36,7 +36,6 @@
             justify-content: center;
             overflow: visible;
             user-select:none;
-            min-width: 130px;
             margin-right: 10px;
             margin-bottom: 10px;
 
@@ -72,6 +71,7 @@
                 font-weight: 900;
                 background-color: $color-brand-2;
                 transform: rotate(180deg);
+                cursor: initial;
                 &::after {
                     content: "\2191";
                     display: block;
@@ -86,24 +86,29 @@
             
             .accordion-content {
                 background-color: $color-brand-1-light;
-                padding: 10px;
                 overflow: hidden;
 
-                
                 position: absolute;
                 bottom: 100%;
                 left: 0;
                 z-index: 1;
                 width: 100%;
-                padding: 0;
                 
                 max-height: 0px;
-                transition: max-height .4s $easing, padding 0s $easing .2s;
+                transition: max-height .2s $easing;
+                &>div {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    &:first-child{
+                        padding-top: 10px;
+                    }
+                    &:last-child{
+                        padding-bottom: 10px;
+                    }
+                }
             }
             &.open .accordion-content {
                 max-height: 200px;
-                padding: 10px;
-                transition: max-height .4s $easing, padding .2s $easing;
             }
         }
     }

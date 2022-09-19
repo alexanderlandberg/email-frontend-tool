@@ -131,6 +131,9 @@ function showControlPanel() {
         newSlot.classList.add(`col_${effectObj[i + 1].col}`);
         newSlot.setAttribute("data-slot", i + 1);
         newSlot.setAttribute("data-type", effectObj[i + 1].type);
+        newSlot.addEventListener("mouseleave", (e) => {
+            e.target.classList.remove("open");
+        })
 
         if (effectObj[i + 1].on == true) {
             newSlot.classList.add(`on`);
@@ -154,7 +157,9 @@ function showControlPanel() {
         if (effectObj[i + 1].type !== "styling") {
             let newAccordionArrow = document.createElement("div");
             newAccordionArrow.classList.add("accordion-arrow");
-            newAccordionArrow.setAttribute("onclick", "handleAccordion(this)");
+            newAccordionArrow.addEventListener("mouseover", (e) => {
+                e.target.closest("div[data-slot]").classList.add("open");
+            })
             newSlotLabel.appendChild(newAccordionArrow);
         }
 
@@ -343,24 +348,6 @@ function handleKeyDown(e) {
         closeControlPanel("Escape");
     }
 
-}
-
-// Handle accordion
-function handleAccordion(e) {
-    let selectedSlot = e.closest("[data-slot]");
-
-    let allSlots = document.querySelectorAll(`div[data-slot]`);
-    for (let i = 0; i < allSlots.length; i++) {
-        if (allSlots[i] !== selectedSlot) {
-            allSlots[i].classList.remove("open");
-        }
-    }
-
-    if (selectedSlot.classList.contains("open")) {
-        selectedSlot.classList.remove("open");
-    } else {
-        selectedSlot.classList.add("open");
-    }
 }
 
 // Close control panel

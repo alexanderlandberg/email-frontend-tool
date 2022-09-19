@@ -44,7 +44,6 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  min-width: 130px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -77,6 +76,7 @@
   font-weight: 900;
   background-color: hsl(285deg, 50%, 43%);
   transform: rotate(180deg);
+  cursor: initial;
 }
 .control-panel-outer .control-panel div[class*=col_] .accordion-arrow::after {
   content: "↑";
@@ -88,21 +88,27 @@
 }
 .control-panel-outer .control-panel div[class*=col_] .accordion-content {
   background-color: hsl(160deg, 50%, 85%);
-  padding: 10px;
   overflow: hidden;
   position: absolute;
   bottom: 100%;
   left: 0;
   z-index: 1;
   width: 100%;
-  padding: 0;
   max-height: 0px;
-  transition: max-height 0.4s cubic-bezier(0.78, -0.07, 0.28, 0.98), padding 0s cubic-bezier(0.78, -0.07, 0.28, 0.98) 0.2s;
+  transition: max-height 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98);
+}
+.control-panel-outer .control-panel div[class*=col_] .accordion-content > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.control-panel-outer .control-panel div[class*=col_] .accordion-content > div:first-child {
+  padding-top: 10px;
+}
+.control-panel-outer .control-panel div[class*=col_] .accordion-content > div:last-child {
+  padding-bottom: 10px;
 }
 .control-panel-outer .control-panel div[class*=col_].open .accordion-content {
   max-height: 200px;
-  padding: 10px;
-  transition: max-height 0.4s cubic-bezier(0.78, -0.07, 0.28, 0.98), padding 0.2s cubic-bezier(0.78, -0.07, 0.28, 0.98);
 }
 
 .control-panel-outer .control-panel div[data-type=interval] {
@@ -113,7 +119,7 @@
 }
 .control-panel-outer .range-wrapper {
   display: flex;
-  margin: 8px;
+  margin: 16px 8px 0px;
 }
 .control-panel-outer .range-wrapper > div {
   display: flex;
