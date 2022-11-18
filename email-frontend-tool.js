@@ -298,6 +298,11 @@ function getModuleContainerSelector() {
         return ".acr-container";
     }
 
+    if (typeof (document.querySelector("div#MASECTION")) != 'undefined' && document.querySelector("div#MASECTION") != null) {
+        // selligent
+        return "body";
+    }
+
     // default
     return ".min-width";
 }
