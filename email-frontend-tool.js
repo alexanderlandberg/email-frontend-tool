@@ -90,20 +90,27 @@ let effectObj = {
         "type": "styling+label"
     },
     7: {
-        "name": "Inspector",
-        "col": 1,
-        "on": false,
-        "type": "styling",
-        "disabled": true
-    },
-    8: {
         "name": "Remove content-editable",
         "col": 1,
         "on": false,
         "type": "styling"
     },
-    9: {
+    8: {
         "name": "Dark mode",
+        "col": 1,
+        "on": false,
+        "type": "toggle",
+        "typeData": {
+            "toggleLabel": "Isolate images",
+            "toggleOn": "On",
+            "toggleOff": "Off",
+            "toggle": false,
+            "onInput": "isolateImages(this)",
+            "checkboxId": "toggle-isolate",
+        }
+    },
+    9: {
+        "name": "Selligent dynamic",
         "col": 1,
         "on": false,
         "type": "styling"
@@ -163,6 +170,7 @@ function showControlPanel() {
             newSlotLabel.appendChild(newAccordionArrow);
         }
 
+        // interval
         if (effectObj[i + 1].type == "interval") {
             let newToggle = document.createElement("div");
             newToggle.innerHTML = `
@@ -193,6 +201,7 @@ function showControlPanel() {
             newAccordionContent.appendChild(newInterval);
         }
 
+        // switch
         if (effectObj[i + 1].type == "switch") {
             let newSwitch = document.createElement("div");
             newSwitch.innerHTML = `
@@ -210,10 +219,27 @@ function showControlPanel() {
             newAccordionContent.appendChild(newSwitch);
         }
 
+        // +label
         if (effectObj[i + 1].type.includes("+label")) {
             let newSwitch = document.createElement("div");
             newSwitch.innerHTML = `<p class="panel-type-label">List in console</p>`;
             newAccordionContent.appendChild(newSwitch);
+        }
+        // toggle
+        if (effectObj[i + 1].type == "toggle") {
+            let newToggle = document.createElement("div");
+            newToggle.innerHTML = `
+            <p class="panel-type-label">${effectObj[i + 1].typeData.toggleLabel}</p>
+            <div class="toggle-wrapper">
+                <span class="toggle-left">${effectObj[i + 1].typeData.toggleOff}</span>
+                <label for="${effectObj[i + 1].typeData.checkboxId}">
+                <input type="checkbox" id="${effectObj[i + 1].typeData.checkboxId}" ${effectObj[i + 1].typeData.toggle ? "checked" : null} oninput="${effectObj[i + 1].typeData.onInput}">
+                <div class="toggleSlider"></div>
+                </label>
+                <span class="toggle-right">${effectObj[i + 1].typeData.toggleOn}</span>
+            </div>
+            `
+            newAccordionContent.appendChild(newToggle);
         }
 
         if (effectObj[i + 1].type !== "styling") {
@@ -472,6 +498,12 @@ function runEffects(slotNum, slotDOM) {
         } else {
             darkmode("off")
         }
+    } else if (effectObj[slotNum].name === "Selligent dynamic") {
+        if (effectObj[slotNum].on) {
+            selligentDynamic()
+        } else {
+            selligentDynamic("off")
+        }
     }
 
 }
@@ -585,6 +617,7 @@ function hoverInspect_RemoveHighlight(e) {
 // Dark Mode 
 function darkmode(toggle) {
     if (toggle !== "off") {
+        document.querySelector("body").classList.add("darkmode");
 
         let newDarkmode = document.createElement("div");
         newDarkmode.classList.add("darkmode-feature");
@@ -602,7 +635,59 @@ function darkmode(toggle) {
         document.body.insertBefore(newDarkmode, document.body.firstChild);
 
     } else {
+        document.querySelector("body").classList.remove("darkmode");
         document.querySelector(".darkmode-feature").remove();
+    }
+}
+function isolateImages(e) {
+
+    // get slot number and radio value
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
+
+    // update effectObj
+    effectObj[slotNum].typeData.toggle = e.checked;
+
+    if (e.checked === true) {
+        document.querySelector("body").classList.add("isolate-img");
+    } else {
+        document.querySelector("body").classList.remove("isolate-img");
+    }
+}
+
+// Selligent Dynamic
+function selligentDynamic(toggle) {
+    if (toggle !== "off") {
+        document.querySelector("body").classList.add("selligent-dynamic");
+
+        const macMaxChars = 30;
+
+        const macs = document.querySelectorAll("div#MASECTION, div#MACONTAINER");
+        for (let i = 0; i < macs.length; i++) {
+            let value = macs[i].getAttribute("maconstraint");
+
+            if (!macs[i].getAttribute("maconstraint") && macs[i].getAttribute("maparameter")) {
+                value = macs[i].getAttribute("maparameter");
+            }
+
+            if (value === `ATTRIBUTES_3.ATTRIBUTEVALUE = 9`) {
+                value = "SOHO"
+            } else if (value === `ATTRIBUTES_3.ATTRIBUTEVALUE <> 9`) {
+                value = "NON-SOHO"
+            } else if (value === `ACCOUNT.HASCLUBCARD = 1`) {
+                value = "CLUBCARD"
+            } else if (value === `ACCOUNT.HASCLUBCARD <> 1` || value === `ACCOUNT.HASCLUBCARD = 0`) {
+                value = "NON-CLUBCARD"
+            } else if (value === `ATTRIBUTES_3.ATTRIBUTEVALUE = 9`) {
+                value = "SOHO"
+            } else {
+                value = value.slice(0, macMaxChars) + (value.length > macMaxChars ? "..." : "");
+            }
+
+            macs[i].setAttribute("data-before", value)
+        }
+
+    } else {
+        document.querySelector("body").classList.remove("selligent-dynamic");
     }
 }
 
@@ -626,6 +711,11 @@ function addFromLocalStorage() {
             // get switch status from localstorage
             if (effectObj[i + 1].type === "switch") {
                 effectObj[i + 1].typeData.value = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.value;
+            }
+
+            // get toggle status from localstorage
+            if (effectObj[i + 1].type === "toggle") {
+                effectObj[i + 1].typeData.toggle = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.toggle;
             }
         }
 
@@ -672,13 +762,8 @@ function addFromLocalStorage() {
             getLinklist();
         }
 
-        // if inspector
-        if (effectObj[7] !== undefined && effectObj[7].on) {
-            hoverInspect();
-        }
-
         // if remove contenteditable
-        if (effectObj[8] !== undefined && effectObj[8].on) {
+        if (effectObj[7] !== undefined && effectObj[7].on) {
             let editableList = document.querySelectorAll("[contenteditable='true']");
             for (let i = 0; i < editableList.length; i++) {
                 editableList[i].setAttribute("contenteditable", "overwrite-disable")
@@ -686,8 +771,16 @@ function addFromLocalStorage() {
         }
 
         // if darkmode
-        if (effectObj[9] !== undefined && effectObj[9].on) {
+        if (effectObj[8] !== undefined && effectObj[8].on) {
             darkmode();
+            if (effectObj[8].typeData.toggle) {
+                document.querySelector("body").classList.add("isolate-img");
+            }
+        }
+
+        // if selligent dynamic
+        if (effectObj[9] !== undefined && effectObj[9].on) {
+            selligentDynamic();
         }
 
     } else {
@@ -703,7 +796,6 @@ function eastereggs(e) {
     if (Number(e.key) === policeEgg[policePressedArr.length]) {
         policePressedArr.push(Number(e.key));
         if (policeEgg[policePressedArr.length] == policePressedArr[policeEgg.length]) {
-            console.log("police")
             window.removeEventListener("keydown", eastereggs);
             document.querySelector(".control-panel-outer").classList.add("police");
             policePressedArr = [];
