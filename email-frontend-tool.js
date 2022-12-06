@@ -115,6 +115,12 @@ let effectObj = {
         "on": false,
         "type": "styling"
     },
+    10: {
+        "name": "Marketo defaults",
+        "col": 1,
+        "on": false,
+        "type": "styling"
+    },
 }
 
 // Build and show control panel
@@ -504,6 +510,16 @@ function runEffects(slotNum, slotDOM) {
         } else {
             selligentDynamic("off")
         }
+    } else if (effectObj[slotNum].name === "Marketo defaults") {
+        if (effectObj[slotNum].on) {
+            console.log("on")
+            marketoDefaultValues();
+            closeControlPanel("Escape");
+            document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
+        } else {
+            closeControlPanel("Escape");
+            location.reload();
+        }
     }
 
 }
@@ -691,6 +707,25 @@ function selligentDynamic(toggle) {
     }
 }
 
+// Marketo Default Values
+function marketoDefaultValues(toggle) {
+    const mktoMetas = document.querySelectorAll(`meta[mktoname]`);
+    const htmlWrapper = document.querySelector("body");
+    let regex;
+
+    for (let i = 0; i < mktoMetas.length; i++) {
+        const meta = mktoMetas[i];
+        const id = meta.getAttribute("id");
+        let value = meta.getAttribute("default");
+        if (meta.getAttribute("units")) {
+            value = value + meta.getAttribute("units");
+        }
+
+        regex = new RegExp(`\\$\\{${id}\\}`, "gi");
+        htmlWrapper.innerHTML = htmlWrapper.innerHTML.replace(regex, value);
+    }
+}
+
 // Add styles from local storage data
 function addFromLocalStorage() {
 
@@ -781,6 +816,13 @@ function addFromLocalStorage() {
         // if selligent dynamic
         if (effectObj[9] !== undefined && effectObj[9].on) {
             selligentDynamic();
+        }
+
+        // if marketo defaults
+        if (effectObj[10] !== undefined && effectObj[10].on) {
+            marketoDefaultValues();
+            // closeControlPanel("Escape");
+            document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
         }
 
     } else {

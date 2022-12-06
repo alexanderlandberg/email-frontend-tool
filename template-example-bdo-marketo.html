@@ -1,0 +1,1355 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Marketo Variable Definitions -->
+    <meta class="mktoColor" id="m_BgColor" mktoname="Background Color" default="#FFFFFF" mktoModuleScope="true" />
+
+    <meta class="mktoString" id="m_3imgTextCols_Col1BtnText" mktoname="Col. 1 Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_3imgTextCols_Col1BtnLink" mktoname="Col. 1 Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_3imgTextCols_Col2BtnText" mktoname="Col. 2 Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_3imgTextCols_Col2BtnLink" mktoname="Col. 2 Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_3imgTextCols_Col3BtnText" mktoname="Col. 3 Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_3imgTextCols_Col3BtnLink" mktoname="Col. 3 Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_3imgTextCols_BtnBgColor" mktoname="Button Bg Color" default="#ED1A3B" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_3imgTextCols_BtnTextColor" mktoname="Button Text Color" default="#FFFFFF" mktoModuleScope="true" />
+
+    <meta class="mktoString" id="m_2imgTextCols_Col1BtnText" mktoname="Col. 1 Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_2imgTextCols_Col1BtnLink" mktoname="Col. 1 Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_2imgTextCols_Col2BtnText" mktoname="Col. 2 Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_2imgTextCols_Col2BtnLink" mktoname="Col. 2 Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_2imgTextCols_BtnBgColor" mktoname="Button Bg Color" default="#ED1A3B" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_2imgTextCols_BtnTextColor" mktoname="Button Text Color" default="#FFFFFF" mktoModuleScope="true" />
+
+    <meta class="mktoNumber" id="m_Divider_Height" mktoname="Height" default="20" min="1" max="300" units="px" step="1">
+
+    <meta class="mktoString" id="m_Button_BtnText" mktoname="Button Text" default="LES MER" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_Button_BtnLink" mktoname="Button Link" default="#" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_Button_BtnBgColor" mktoname="Button Bg Color" default="#ED1A3B" mktoModuleScope="true" />
+    <meta class="mktoColor" id="m_Button_BtnTextColor" mktoname="Button Text Color" default="#FFFFFF" mktoModuleScope="true" />
+    <meta class="mktoString" id="m_Button_Align" mktoname="Align left/center/right" default="left" mktoModuleScope="true" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <style type="text/css">
+        .FullW {
+            width: 100% !important;
+        }
+
+        form td {
+            /* Removing padding in webversion */
+            padding: 0;
+        }
+
+        .ii a,
+        .ReadMsgBody .ExternalClass a:link,
+        .yshortcuts {
+            text-decoration: none !important;
+            color: transparent !important;
+        }
+
+        table th {
+            /* Fix for unwanted th styling in yahoo */
+            margin: inherit;
+            padding: inherit;
+            font-weight: normal;
+        }
+
+        table tr th {
+            vertical-align: top;
+        }
+
+        a[x-apple-data-detectors] {
+            /* Fix for unwanted styling of links in ios */
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        table,
+        td {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        .ExternalClass * {
+            /* Fix for Outlook.com */
+            line-height: normal;
+        }
+
+        body,
+        table,
+        div,
+        p,
+        a,
+        li,
+        td,
+        th {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            width: 100%;
+            padding: 0 !important;
+            margin: 0 auto !important;
+        }
+    </style>
+    <style type="text/css">
+        table,
+        .text {
+            font: 14px/1.5 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+            color: #333333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ed1a3b;
+        }
+
+        .headline {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: normal;
+            color: #333333;
+            padding: 0;
+            border-width: 0;
+        }
+
+        .bodytext,
+        .ftr_bodytext,
+        .ftr_bodytext2,
+        .ftr_bodytext2b {
+            padding: 0 0 10px;
+            border-width: 0;
+        }
+
+        .listtext {
+            padding: 0 0 10px;
+            border-width: 0;
+        }
+
+        .text {
+            padding: 0;
+            border-width: 0;
+        }
+
+        .bodytext2 {
+            padding: 10px 0;
+            border-width: 0;
+        }
+
+        .datetext {
+            color: #ed1a3b;
+            padding: 0 0 10px;
+        }
+
+        .datetext2 {
+            color: #333333;
+            padding: 0;
+        }
+
+        .datetext,
+        .datetext2 {
+            font-weight: bold;
+            border-width: 0;
+        }
+
+        .ftr_bodytext,
+        .ftr_headline {
+            color: #ffffff;
+        }
+
+        .ftr_bodytextb,
+        .ftr_headlineb {
+            color: #333333;
+        }
+
+        .ftr_headline,
+        .ftr_headlineb {
+            padding: 0 0 10px;
+            border-width: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .ftr_bodytext,
+        .ftr_bodytextb {
+            padding: 0;
+            border-width: 0;
+            font-size: 12px;
+        }
+
+        .ftr_bodytext2,
+        .ftr_bodytext2b {
+            border-width: 0;
+            font-size: 12px;
+        }
+
+        .one_col {
+            width: 820px;
+        }
+
+        .two_col {
+            width: 375px;
+        }
+
+        .three_col {
+            width: 240px;
+        }
+
+        .one_thirds {
+            width: 240px;
+        }
+
+        .two_thirds {
+            width: 510px;
+        }
+
+        .webv {
+            padding: 15px 0 20px;
+            border-width: 0;
+        }
+
+        .p_a {
+            padding: 20px;
+            border-width: 0;
+        }
+
+        .p_t {
+            padding: 20px 0 0;
+            border-width: 0;
+        }
+
+        .p_lr {
+            padding: 0 20px;
+            border-width: 0;
+        }
+
+        .p_lrb {
+            padding: 0 20px 20px;
+            border-width: 0;
+        }
+
+        .p_b {
+            padding: 0 0 20px;
+            border-width: 0;
+        }
+
+        .p_img {
+            padding: 0 0 10px;
+            border-width: 0;
+        }
+
+        .p_limg {
+            padding: 0 20px 10px 0;
+            border-width: 0;
+        }
+
+        .p_lwrap {
+            padding: 0 0 0 10px;
+            border-width: 0;
+        }
+
+        .p_rwrap {
+            padding: 0 10px 0 0;
+            border-width: 0;
+        }
+
+        .lh_f {
+            line-height: normal;
+            font-size: 1px;
+        }
+
+        .header_lrb {
+            padding: 0 0 20px;
+            border-width: 0;
+        }
+
+        .p_all {
+            padding: 20px 0;
+            border-width: 0;
+        }
+
+        .p_all_inner {
+            padding: 20px 10px;
+            border-width: 0;
+        }
+
+        .p_lr_inner {
+            padding: 0 10px;
+            border-width: 0;
+        }
+
+        .p_b20 {
+            padding: 0 0 20px;
+            border-width: 0;
+        }
+
+        .p_2030 {
+            padding: 20px 20px;
+            border-width: 0;
+        }
+
+        .p_tb20 {
+            padding: 20px 0;
+            border-width: 0;
+        }
+
+        .pm_lrb {
+            padding: 0 0 20px;
+            border-width: 0;
+        }
+
+        .ftr_col_one {
+            width: 360px;
+        }
+
+        .ftr_col_two {
+            width: 220px;
+        }
+
+        .ftr_col_three {
+            width: 138px;
+        }
+    </style>
+    <style type="text/css">
+        @media screen and (max-width: 600px) {
+
+            .one_col,
+            .two_col,
+            .three_col,
+            .one_thirds,
+            .two_thirds,
+            .ftr_col_one,
+            .ftr_col_two,
+            .ftr_col_three {
+                width: 100% !important;
+            }
+
+            .rsd,
+            td.rsd img,
+            th.rsd img,
+            div.rsd img,
+            div.rsd img {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .rsd47 {
+                width: 47% !important;
+                height: auto !important;
+            }
+
+            .nomob {
+                display: none !important;
+            }
+
+            .db {
+                display: block !important;
+                width: auto !important;
+            }
+
+            .webv {
+                padding: 10px 20px !important;
+            }
+
+            .p_n {
+                padding: 0 !important;
+            }
+
+            .p_a {
+                padding: 20px !important;
+            }
+
+            .p_t {
+                padding: 20px 0 0 !important;
+            }
+
+            .p_lr {
+                padding: 0 20px !important;
+            }
+
+            .p_b {
+                padding: 0 0 20px !important;
+            }
+
+            .p_lrb {
+                padding: 0 20px 20px !important;
+            }
+
+            .p_img {
+                padding: 0 0 15px !important;
+            }
+
+            .p_limg {
+                padding: 0 20px 15px 0 !important;
+            }
+
+            .p_lwrap {
+                padding: 0 0 20px 0 !important;
+            }
+
+            .p_rwrap {
+                padding: 0 0 20px 0 !important;
+            }
+
+            .a_l {
+                text-align: left !important;
+            }
+
+            .a_c {
+                text-align: center !important;
+            }
+
+            .a_r {
+                text-align: right !important;
+            }
+
+            .header_lrb {
+                padding: 0 20px 20px !important;
+            }
+
+            .p_all {
+                padding: 20px !important;
+            }
+
+            .p_2030 {
+                padding: 20px !important;
+            }
+
+            .p_tb20 {
+                padding: 20px 20px !important;
+            }
+
+            .pm_lrb {
+                padding: 0 20px 20px !important;
+                border-width: 0 !important;
+            }
+
+            .brdrbtm {
+                border-left: none !important;
+                border-right: none !important;
+                border-bottom: 1px solid #484747 !important;
+            }
+
+            .brdrtp {
+                border-left: none !important;
+                border-right: none !important;
+                border-top: 1px solid #424242 !important;
+            }
+        }
+    </style>
+    <style type="text/css">
+        @media screen and (max-width: 600px) {
+            @-ms-viewport {
+                width: 320px;
+            }
+        }
+    </style>
+    <style type="text/css">
+        p {
+            margin: 0;
+        }
+    </style>
+
+    <link type="text/css" rel="stylesheet" href="email-frontend-tool.css">
+    <!--[if gte mso 9]>
+<style type="text/css">
+	body, table {
+		mso-line-height-rule:exactly;
+		line-height:130%;
+	}
+	td.rsd, th.rsd, div.rsd {
+		line-height:normal;
+	}
+</style>
+<![endif]-->
+</head>
+
+<body style="padding:0;margin:0;-webkit-text-size-adjust:none;width:100%;background-color:#ffffff">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tr>
+            <td class="mktoContainer" id="template-wrapper" align="center" style="mso-line-height-rule:exactly;">
+                <table class="mktoModule m_Webbversion" id="m_Webbversion" mktoname="Webbversion" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="${m_BgColor}" width="100%">
+                    <tr valign="top">
+                        <th>
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="one_col">
+                                <tr valign="top">
+                                    <th class="webv">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <th align="left" valign="top" class="nomob">
+                                                    <div class="mktoText" id="m_Webbversion_textLeft" mktoName="Text Left">
+                                                        Lorem ipsum dolot sit amet
+                                                    </div>
+                                                </th>
+                                                <th class="nomob" width="20" height="5" style="line-height:1px;"></th>
+                                                <th align="right" valign="top" class="db a_l">
+                                                    <div class="mktoText" id="m_Webbversion_textRight" mktoName="Text Right">
+                                                        To see the web version, <a href="##WebVersion##" style="color:#000000; text-decoration:underline;">click here</a>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Header" id="m_Header" mktoname="Header" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="${m_BgColor}" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="header_lrb">
+                                        <div class="mktoImg" id="m_HeaderImg" mktoName="Logo Image" mktoImgLink="http://www.bdo.no/">
+                                            <a target="_blank">
+                                                <img src="https://customers.anpdm.com/bdo_as/1611_cus/logo.png" width="120" align="center">
+                                            </a>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_3imgTextCols" id="m_3imgTextCols" mktoname="3 image + text columns" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#f7f7f7" width="100%">
+                    <tr>
+                        <th align="center" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="one_col">
+                                <tr>
+                                    <th valign="top" class="p_all">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                            <tr>
+                                                <th valign="top" align="left" class="p_b20">
+                                                    <div class="headline">
+                                                        <div class="mktoText" id="m_3imgTextCols_Title" mktoName="Title">
+                                                            LOREM IPSUM
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                            <tr>
+                                                <th class="three_col db" valign="top" align="left">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_3imgTextCols_Col1Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/240/100" width="240" align="left" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="datetext2">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col1Headline" mktoName="Col. 1 Headline">
+                                                            Lorem ipsum dolor
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col1Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="${m_3imgTextCols_BtnBgColor}" width="100%">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_3imgTextCols_BtnTextColor}!important; text-transform:uppercase;" class="btnlink">
+                                                                    <a href="${m_3imgTextCols_Col1BtnLink}" name="" style="color:${m_3imgTextCols_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_3imgTextCols_Col1BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th width="30" class="p_b db"></th>
+                                                <th class="three_col db" valign="top" align="left">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_3imgTextCols_Col2Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/240/100" width="240" align="left" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="datetext2">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col2Headline" mktoName="Col. 1 Headline">
+                                                            Lorem ipsum dolor
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col2Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="${m_3imgTextCols_BtnBgColor}" width="100%">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_3imgTextCols_BtnTextColor}!important; text-transform:uppercase;" class="btnlink">
+                                                                    <a href="${m_3imgTextCols_Col2BtnLink}" name="" style="color:${m_3imgTextCols_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_3imgTextCols_Col2BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th width="30" class="db p_b"></th>
+                                                <th class="three_col db" valign="top" align="left">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_3imgTextCols_Col3Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/240/100" width="240" align="left" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="datetext2">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col3Headline" mktoName="Col. 1 Headline">
+                                                            Lorem ipsum dolor
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_3imgTextCols_Col3Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="${m_3imgTextCols_BtnBgColor}" width="100%">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_3imgTextCols_BtnTextColor}!important; text-transform:uppercase;" class="btnlink">
+                                                                    <a href="${m_3imgTextCols_Col3BtnLink}" name="" style="color:${m_3imgTextCols_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_3imgTextCols_Col3BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_2ColsWList" id="m_2ColsWList" mktoname="2 columns w list" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff" width="100%">
+                    <tr>
+                        <th align="center" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="one_col">
+                                <tr>
+                                    <th valign="top" class="p_all">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <th bgcolor="#ececec" class="one_thirds db" valign="top" align="left">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="one_thirds db" valign="top" align="left">
+                                                                <div class="p_all_inner">
+                                                                    <div class="headline">
+                                                                        <div class="mktoText" id="m_2ColsWList_Title" mktoName="Title">
+                                                                            LOREM IPSUM
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="datetext">
+                                                                        <div class="mktoText" id="m_2ColsWList_Date" mktoName="Date">
+                                                                            15. November 2016
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="listtext">
+                                                                        <div class="mktoText" id="m_2ColsWList_BodyText" mktoName="Body Text">
+                                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+                                                                        </div>
+                                                                    </div>
+                                                                    <div align="left" style="color:#ed1a3b!important; text-tranform:uppercase;" class="link">
+                                                                        <div class="mktoText" id="m_2ColsWList_Link" mktoName="Link">
+                                                                            <a href="#" style="color:#ed1a3b; text-decoration:none; font-weight:bold;" target="_blank">LES MER</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <table border="0" cellspacing="0" cellpadding="0" class="one_thirds">
+                                                        <tr>
+                                                            <th class="p_all_inner db" valign="bottom" align="left">
+                                                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                    <tr style="line-height:1px;">
+                                                                        <td height="1" style="line-height:1px;" bgcolor="#d1d1d1"><img src="https://static.anpdm.com/shared/images/pixel.gif" width="1" height="1" style="display:block;"></td>
+                                                                    </tr>
+                                                                    <tr style="line-height:1px;">
+                                                                        <td height="1" style="line-height:1px;" bgcolor="#e5e5e5"><img src="https://static.anpdm.com/shared/images/pixel.gif" width="1" height="1" style="display:block;"></td>
+                                                                    </tr>
+                                                                    <tr style="line-height:1px;">
+                                                                        <td height="10" style="line-height:1px;"><img src="https://static.anpdm.com/shared/images/pixel.gif" width="1" height="10" style="display:block;"></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="db p_b" width="30"></th>
+                                                <th class="two_thirds db" valign="top" align="left">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_2ColsWList_Img" mktoName="Image">
+                                                                    <img src="https://i.anpwidget.com/img/510/170" width="510" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="headline">
+                                                        <div class="mktoText" id="m_2ColsWList_Title2" mktoName="Title 2">
+                                                            LOREM IPSUM
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext2">
+
+                                                        <div class="mktoText" id="m_2ColsWList_BodyText2" mktoName="Body Text 2">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ed1a3b!important; text-tranform:uppercase;" class="link">
+                                                        <div class="mktoText" id="m_2ColsWList_Link2" mktoName="Link 2">
+                                                            <a href="#" style="color:#ed1a3b; text-decoration:none; font-weight:bold;" target="_blank">LES MER</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_2imgTextCols" id="m_2imgTextCols" mktoname="2 image + text columns" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#f7f7f7" width="100%">
+                    <tr>
+                        <th align="center" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="one_col">
+                                <tr>
+                                    <th valign="top" class="p_all">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                            <tr>
+                                                <th valign="top" align="left" class="p_b20">
+                                                    <div class="headline">
+                                                        <div class="mktoText" id="m_2imgTextCols_Title" mktoName="Title">
+                                                            LOREM IPSUM
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                            <tr>
+                                                <th class="two_col db" valign="top" align="left">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_2imgTextCols_Col1Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/395/170" width="395" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="datetext2">
+                                                        <div class="mktoText" id="m_2imgTextCols_Col1Headline" mktoName="Col. 1 Headline">
+                                                            Lorem ipsum dolor
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_2imgTextCols_Col1Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="${m_2imgTextCols_BtnBgColor}" width="100%">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_2imgTextCols_BtnTextColor}!important; text-transform:uppercase;" class="btnlink">
+                                                                    <a href="${m_2imgTextCols_Col1BtnLink}" name="" style="color:${m_2imgTextCols_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_2imgTextCols_Col1BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th width="30" class="p_b db"></th>
+                                                <th class="two_col db" valign="top" align="left">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <th class="p_img rsd">
+                                                                <div class="mktoImg" id="m_2imgTextCols_Col2Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/395/170" width="395" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="datetext2">
+                                                        <div class="mktoText" id="m_2imgTextCols_Col2Headline" mktoName="Col. 1 Headline">
+                                                            Lorem ipsum dolor
+                                                        </div>
+                                                    </div>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_2imgTextCols_Col2Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="${m_2imgTextCols_BtnBgColor}" width="100%">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_2imgTextCols_BtnTextColor}!important; text-transform:uppercase;" class="btnlink">
+                                                                    <a href="${m_2imgTextCols_Col2BtnLink}" name="" style="color:${m_2imgTextCols_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_2imgTextCols_Col2BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_TextWrap" id="m_TextWrap" mktoname="Text Wrap" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff" width="100%">
+                    <tr valign="top">
+                        <th align="center" class="p_b">
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#323232" class="one_col">
+                                <tr valign="top">
+                                    <th align="left" class="p_2030">
+                                        <div style="color:#ffffff;" class="headline">
+                                            <div class="mktoText" id="m_TextWrap_Title" mktoName="Title">
+                                                LOREM IPSUM
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#f7f7f7" class="one_col">
+                                <tr valign="top">
+                                    <th class="p_a">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="right">
+                                            <tr valign="top">
+                                                <th align="left">
+                                                    <table align="right" border="0" cellpadding="0" cellspacing="0" class="rsd">
+                                                        <tr>
+                                                            <th class="p_lwrap rsd">
+                                                                <div class="mktoImg" id="m_TextWrap_Img" mktoName="Image">
+                                                                    <img src="https://i.anpwidget.com/img/220/170" width="220" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="bodytext">
+                                                        <div class="mktoText" id="m_TextWrap_BodyText" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ed1a3b!important; text-tranform:uppercase;" class="link">
+                                                        <div class="mktoText" id="m_TextWrap_Link" mktoName="Link">
+                                                            <a href="#" style="color:#ed1a3b; text-decoration:none; font-weight:bold;" target="_blank">LES MER</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_2x2TextImg" id="m_2x2TextImg" mktoname="2x2 text and image" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#f7f7f7" width="100%">
+                    <tr>
+                        <th align="center" valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="one_col">
+                                <tr>
+                                    <th class="p_all">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <th class="two_col db" valign="top" align="left">
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="two_col">
+                                                        <tr>
+                                                            <th class="rsd">
+                                                                <div class="mktoImg" id="m_2x2TextImg_Col1Img" mktoName="Col. 1 Image">
+                                                                    <img src="https://i.anpwidget.com/img/375/170" width="375" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                    <div class="headline">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col1Headline" mktoName="Col. 1 Headline">
+                                                            <br>
+                                                            LOREM IPSUM
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col1Body" mktoName="Col. 1 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ed1a3b!important; text-tranform:uppercase;" class="link">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col1Link" mktoName="Col. 1 Link">
+                                                            <a href="#" style="color:#ed1a3b; text-decoration:none; font-weight:bold;" target="_blank">LES MER</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="db p_b" width="30"></th>
+                                                <th class="two_col db" valign="top" align="left">
+                                                    <div class="headline">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col2Headline" mktoName="Col. 2 Headline">
+                                                            LOREM IPSUM
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col2Body" mktoName="Col. 2 Body Text">
+                                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ed1a3b!important; text-tranform:uppercase;" class="link">
+                                                        <div class="mktoText" id="m_2x2TextImg_Col2Link" mktoName="Col. 2 Link">
+                                                            <a href="#" style="color:#ed1a3b; text-decoration:none; font-weight:bold;" target="_blank">LES MER</a>
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="two_col">
+                                                        <tr>
+                                                            <th class="rsd">
+                                                                <div class="mktoImg" id="m_2x2TextImg_Col2Img" mktoName="Col. 2 Image">
+                                                                    <img src="https://i.anpwidget.com/img/375/170" width="375" align="center" link="" style="" title="" alt="" border="">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Heading" id="m_Heading" mktoname="Heading" mktoAddByDefault="false" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="${m_BgColor}" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="pm_lrb">
+                                        <div class="headline">
+                                            <div class="mktoText" id="m_Heading_Heading" mktoName="Heading">
+                                                Lorem ipsum dolor
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Text" id="m_Text" mktoname="Text" mktoAddByDefault="false" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="${m_BgColor}" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="pm_lrb">
+                                        <div class="text">
+                                            <div class="mktoText" id="m_Text_Text" mktoName="Text">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Divider" id="m_Divider" mktoname="Divider" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff" width="100%">
+                    <tr>
+                        <th align="center" valign="top">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="${m_Divider_Height}" style="font-size: 1px; line-height: 1px; height: ${m_Divider_Height}px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Button" id="m_Button" mktoname="Button" mktoAddByDefault="false" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="${m_Button_Align}" class="pm_lrb">
+                                        <table border="0" cellspacing="0" cellpadding="0" class="rsd">
+                                            <tr>
+                                                <th align="center">
+                                                    <table border="0" cellpadding="0" cellspacing="0" bgcolor="${m_Button_BtnBgColor}" class="rsd">
+                                                        <tr>
+                                                            <th style="padding:15px 15px; line-height:normal; vertical-align:middle;" align="center" valign="middle">
+                                                                <font style="color:${m_Button_BtnTextColor}!important;" class="btnlink">
+                                                                    <a href="${m_Button_BtnLink}" name="" style="color:${m_Button_BtnTextColor}; line-height:normal; text-decoration:none; font-weight:bold;" target="_blank">${m_Button_BtnText}</a>
+                                                                </font>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_Image" id="m_Image" mktoname="Image" mktoAddByDefault="false" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th class="p_b rsd">
+                                        <div class="mktoImg" id="m_Image_Img" mktoName="Image">
+                                            <img src="https://i.anpwidget.com/img/820/270" width="820" align="center" link="" style="" title="" alt="" border="">
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_FooterSimple" id="m_FooterSimple" mktoname="Footer Simple" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#323232" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                    <td align="center" style="font-size: 14px; line-height: 18px; color: #FFFFFF;" class="mktoText" id="m_FooterSimple_Headline" mktoName="Headline">
+                                        TETT på samfunn og næringsliv
+                                    </td>
+                                    <td width="20" style="font-size: 1px; line-height: 1px; width: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="10" style="font-size: 1px; line-height: 1px; height: 10px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_FooterDefault" id="m_FooterDefault" mktoname="Footer Default" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#323232" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="p_tb20">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                            <tr>
+                                                <th class="ftr_col_one db a_center" valign="top" align="left">
+                                                    <div class="ftr_headline">
+                                                        <div class="mktoText" id="m_FooterDefault_Headline" mktoName="Headline">
+                                                            Tett på samfunn og næringsliv
+                                                        </div>
+                                                    </div>
+                                                    <div class="ftr_bodytext">
+                                                        <div class="mktoText" id="m_FooterDefault_BodyText" mktoName="Body Text">
+                                                            BDO AS, et norsk aksjeselskap, er deltaker i BDO International Limited, et engelsk selskap med begrenset ansvar, og er en del av det internasjonale BDO-nettverket, som best&#229;r av uavhengige selskaper i de enkelte land. BDO er varemerkenavnet for BDO-nettverket og for hvert enkelt BDO medlemsfirma.
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_two db" valign="top" align="left">
+                                                    <div class="ftr_headline nomob"> <span style="">&#160;</span>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterDefault_BodyText2" mktoName="Body Text 2">
+                                                            Du mottar denne mailen fordi du abonnerer på BDOs seminarinvitasjoner.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterDefault_Link2" mktoName="Link 2">
+                                                            <a href="https://www.bdo.no/nb-no/personvernerklæring" name="" style="color:#ffffff; text-decoration:underline; font-weight:normal;">Les mer om hvordan vi behandler personopplysninger her &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_three db" style="vertical-align:middle;" valign="middle" align="right">
+                                                    <table border="0" cellspacing="0" cellpadding="0" class="rsd">
+                                                        <tr>
+                                                            <th align="center">
+                                                                <table border="0" cellspacing="0" cellpadding="0" width="">
+                                                                    <tr>
+                                                                        <th width="42"><a target="_blank" href="https://www.facebook.com/bdonorge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/fb.png" height="41" align="center" link="https://www.facebook.com/bdonorge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://twitter.com/BDO_Norge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/tw.png" height="41" align="center" link="https://twitter.com/BDO_Norge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.linkedin.com/company/bdo-as" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/li.png" height="41" align="center" link="https://www.linkedin.com/company/bdo-as"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.instagram.com/bdonorge/" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/insta.png" height="41" align="center" link="https://www.instagram.com/bdonorge/"></a></th>
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_FooterNY" id="m_FooterNY" mktoname="Footer NY" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#323232" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="p_tb20">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                            <tr>
+                                                <th class="ftr_col_one db a_center" valign="top" align="left">
+                                                    <div class="ftr_headline">
+                                                        <div class="mktoText" id="m_FooterNY_Headline" mktoName="Headline">
+                                                            Tett på samfunn og næringsliv
+                                                        </div>
+                                                    </div>
+                                                    <div class="ftr_bodytext">
+                                                        <div class="mktoText" id="m_FooterNY_BodyText" mktoName="Body Text">
+                                                            BDO AS, et norsk aksjeselskap, er deltaker i BDO International Limited, et engelsk selskap med begrenset ansvar, og er en del av det internasjonale BDO-nettverket, som best&#229;r av uavhengige selskaper i de enkelte land. BDO er varemerkenavnet for BDO-nettverket og for hvert enkelt BDO medlemsfirma.
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_two db" valign="top" align="left">
+                                                    <div class="ftr_headline nomob"> <span style="">&#160;</span>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterNY_BodyText2" mktoName="Body Text 2">
+                                                            Du mottar denne invitasjonen fordi du er i BDOs kontaktlister.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterNY_Link1" mktoName="Link 1">
+                                                            <a href="##OptOutAll##" name="" style="color:#ffffff; text-decoration:underline; font-weight:normal;">Meld deg av seminarinvitasjoner &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterNY_Link2" mktoName="Link 2">
+                                                            <a href="https://www.bdo.no/nb-no/personvernerklæring" name="" style="color:#ffffff; text-decoration:underline; font-weight:normal;">Les mer om hvordan vi behandler personopplysninger her &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_three db" style="vertical-align:middle;" valign="middle" align="right">
+                                                    <table border="0" cellspacing="0" cellpadding="0" class="rsd">
+                                                        <tr>
+                                                            <th align="center">
+                                                                <table border="0" cellspacing="0" cellpadding="0" width="">
+                                                                    <tr>
+                                                                        <th width="42"><a target="_blank" href="https://www.facebook.com/bdonorge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/fb.png" height="41" align="center" link="https://www.facebook.com/bdonorge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://twitter.com/BDO_Norge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/tw.png" height="41" align="center" link="https://twitter.com/BDO_Norge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.linkedin.com/company/bdo-as" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/li.png" height="41" align="center" link="https://www.linkedin.com/company/bdo-as"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.instagram.com/bdonorge/" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/insta.png" height="41" align="center" link="https://www.instagram.com/bdonorge/"></a></th>
+                                                                        <!--
+    <th width="15"></th>
+    <th width="42"><img src="https://customers.anpdm.com/bdo_as/1611_cus/q.png" width="44" height="" align="center" link=""//></th>
+    -->
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_FooterLight" id="m_FooterLight" mktoname="Footer Light" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ececec" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="p_tb20">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                            <tr>
+                                                <th class="ftr_col_one db a_center" valign="top" align="left">
+                                                    <div class="ftr_headlineb">
+                                                        <div class="mktoText" id="m_FooterLight_Headline" mktoName="Headline">
+                                                            Tett på samfunn og næringsliv
+                                                        </div>
+                                                    </div>
+                                                    <div class="ftr_bodytextb">
+                                                        <div class="mktoText" id="m_FooterLight_BodyText" mktoName="Body Text">
+                                                            BDO AS, et norsk aksjeselskap, er deltaker i BDO International Limited, et engelsk selskap med begrenset ansvar, og er en del av det internasjonale BDO-nettverket, som best&#229;r av uavhengige selskaper i de enkelte land. BDO er varemerkenavnet for BDO-nettverket og for hvert enkelt BDO medlemsfirma.
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_two db" valign="top" align="left">
+                                                    <div class="ftr_headline nomob"> <span style="">&#160;</span>
+                                                    </div>
+                                                    <div align="left" style="color:#333333!important;" class="ftr_bodytext2b">
+                                                        <div class="mktoText" id="m_FooterLight_BodyText2" mktoName="Body Text 2">
+                                                            Du mottar denne mailen fordi du abonnerer på BDOs seminarinvitasjoner.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#333333!important;" class="ftr_bodytext2b">
+                                                        <div class="mktoText" id="m_FooterLight_Link1" mktoName="Link 1">
+                                                            <a href="##OptOutAll##" name="" style="color:#333333; text-decoration:underline; font-weight:normal;">Meld deg av seminarinvitasjoner &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#333333!important;" class="ftr_bodytext2b">
+                                                        <div class="mktoText" id="m_FooterLight_Link2" mktoName="Link 2">
+                                                            <a href="https://www.bdo.no/nb-no/personvernerklæring" name="" style="color:#333333; text-decoration:underline; font-weight:normal;">Les mer om hvordan vi behandler personopplysninger her &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_three db" style="vertical-align:middle;" valign="middle" align="right">
+                                                    <table border="0" cellspacing="0" cellpadding="0" class="rsd">
+                                                        <tr>
+                                                            <th align="center">
+                                                                <table border="0" cellspacing="0" cellpadding="0" width="">
+                                                                    <tr>
+                                                                        <th width="42"><a target="_blank" href="https://www.facebook.com/bdonorge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/fb.png" height="41" align="center" link="https://www.facebook.com/bdonorge"></a></th>
+                                                                        <th width="1" style="display:block;"></th>
+                                                                        <th width="42"><a target="_blank" href="https://twitter.com/BDO_Norge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/tw.png" height="41" align="center" link="https://twitter.com/BDO_Norge"></a></th>
+                                                                        <th width="1" style="display:block;"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.linkedin.com/company/bdo-as" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/li.png" height="41" align="center" link="https://www.linkedin.com/company/bdo-as"></a></th>
+                                                                        <th width="1" style="display:block;"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.instagram.com/bdonorge/" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/insta.png" height="41" align="center" link="https://www.instagram.com/bdonorge/"></a></th>
+                                                                        <!--
+    <th width="15"></th>
+    <th width="42"><img src="https://customers.anpdm.com/bdo_as/1611_cus/q.png" width="44" height="" align="center" link=""//></th>
+    -->
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+                <table class="mktoModule m_FooterDark" id="m_FooterDark" mktoname="Footer Dark" mktoAddByDefault="false" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#323232" width="100%">
+                    <tr>
+                        <th align="center">
+                            <table border="0" cellspacing="0" cellpadding="0" align="center" class="one_col">
+                                <tr>
+                                    <th align="left" class="p_tb20">
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left">
+                                            <tr>
+                                                <th class="ftr_col_one db a_center" valign="top" align="left">
+                                                    <div class="ftr_headline">
+                                                        <div class="mktoText" id="m_FooterDark_Headline" mktoName="Headline">
+                                                            Revisjon | Advokat | R&#229;dgivning | Regnskap
+                                                        </div>
+                                                    </div>
+                                                    <div class="ftr_bodytext">
+                                                        <div class="mktoText" id="m_FooterDark_BodyText" mktoName="Body Text">
+                                                            BDO AS, et norsk aksjeselskap, er deltaker i BDO International Limited, et engelsk selskap med begrenset ansvar, og er en del av det internasjonale BDO-nettverket, som best&#229;r av uavhengige selskaper i de enkelte land. BDO er varemerkenavnet for BDO-nettverket og for hvert enkelt BDO medlemsfirma.
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_two db" valign="top" align="left">
+                                                    <div class="ftr_headline nomob"> <span style="">&#160;</span>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterDark_BodyText2" mktoName="Body Text 2">
+                                                            Du mottar denne invitasjonen fordi du er i BDOs kontaktlister.
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterDark_Link1" mktoName="Link 1">
+                                                            <a href="##OptOutAll##" name="" style="color:#ffffff; text-decoration:underline; font-weight:normal;">Meld deg av seminarinvitasjoner &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                    <div align="left" style="color:#ffffff!important;" class="ftr_bodytext2">
+                                                        <div class="mktoText" id="m_FooterDark_Link2" mktoName="Link 2">
+                                                            <a href="https://www.bdo.no/nb-no/personvernerklæring" name="" style="color:#ffffff; text-decoration:underline; font-weight:normal;">Les mer om hvordan vi behandler personopplysninger her &#187;</a>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th width="25" style="border-right:1px solid #484747" class="db p_b brdrbtm"></th>
+                                                <th width="25" style="border-left:1px solid #424242" class="db p_b brdrtp"></th>
+                                                <th class="ftr_col_three db" style="vertical-align:middle;" valign="middle" align="right">
+                                                    <table border="0" cellspacing="0" cellpadding="0" class="rsd">
+                                                        <tr>
+                                                            <th align="center">
+                                                                <table border="0" cellspacing="0" cellpadding="0" width="">
+                                                                    <tr>
+                                                                        <th width="42"><a target="_blank" href="https://www.facebook.com/bdonorge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/fb.png" height="41" align="center" link="https://www.facebook.com/bdonorge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://twitter.com/BDO_Norge" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/tw.png" height="41" align="center" link="https://twitter.com/BDO_Norge"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.linkedin.com/company/bdo-as" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/li.png" height="41" align="center" link="https://www.linkedin.com/company/bdo-as"></a></th>
+                                                                        <th width="15"></th>
+                                                                        <th width="42"><a target="_blank" href="https://www.instagram.com/bdonorge/" target="_blank"><img src="https://customers.anpdm.com/bdo_as/1611_cus/insta.png" height="41" align="center" link="https://www.instagram.com/bdonorge/"></a></th>
+                                                                        <!--
+    <th width="15"></th>
+    <th width="42"><img src="https://customers.anpdm.com/bdo_as/1611_cus/q.png" width="44" height="" align="center" link=""//></th>
+    -->
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="email-frontend-tool.js"></script>
+    <script>
+        // showControlPanel()
+    </script>
+</body>
+
+</html>
