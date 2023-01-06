@@ -119,7 +119,15 @@ let effectObj = {
         "name": "Marketo defaults",
         "col": 1,
         "on": false,
-        "type": "styling"
+        "type": "toggle",
+        "typeData": {
+            "toggleLabel": "mktoBoolean",
+            "toggleOn": "True value",
+            "toggleOff": "False value",
+            "toggle": false,
+            "onInput": "marketoBooleanToggle(this)",
+            "checkboxId": "toggle-marketoBoolean",
+        }
     },
 }
 
@@ -512,8 +520,7 @@ function runEffects(slotNum, slotDOM) {
         }
     } else if (effectObj[slotNum].name === "Marketo defaults") {
         if (effectObj[slotNum].on) {
-            console.log("on")
-            marketoDefaultValues();
+            marketoDefaultValues(slotNum);
             closeControlPanel("Escape");
             document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
         } else {
@@ -708,7 +715,7 @@ function selligentDynamic(toggle) {
 }
 
 // Marketo Default Values
-function marketoDefaultValues(toggle) {
+function marketoDefaultValues(slotNum) {
     const mktoMetas = document.querySelectorAll(`meta[mktoname]`);
     const htmlWrapper = document.querySelector("body");
     let regex;
@@ -720,10 +727,26 @@ function marketoDefaultValues(toggle) {
         if (meta.getAttribute("units")) {
             value = value + meta.getAttribute("units");
         }
+        if (meta.classList.contains("mktoBoolean")) {
+            let true_value = meta.getAttribute("true_value");
+            let false_value = meta.getAttribute("false_value");
+            if (effectObj[slotNum].typeData.toggle) {
+                value = true_value;
+            } else {
+                value = false_value;
+            }
+        }
 
         regex = new RegExp(`\\$\\{${id}\\}`, "gi");
         htmlWrapper.innerHTML = htmlWrapper.innerHTML.replace(regex, value);
     }
+}
+
+function marketoBooleanToggle(e) {
+    // get slot number and radio value
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
+    // update effectObj
+    effectObj[slotNum].typeData.toggle = e.checked;
 }
 
 // Add styles from local storage data
@@ -820,8 +843,7 @@ function addFromLocalStorage() {
 
         // if marketo defaults
         if (effectObj[10] !== undefined && effectObj[10].on) {
-            marketoDefaultValues();
-            // closeControlPanel("Escape");
+            marketoDefaultValues(10);
             document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
         }
 
