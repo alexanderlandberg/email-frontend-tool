@@ -108,7 +108,7 @@
   padding-bottom: 10px;
 }
 .control-panel-outer .control-panel div[class*=col_].open .accordion-content {
-  max-height: 300px;
+  max-height: 400px;
 }
 
 .control-panel-outer .control-panel div[data-type=interval] {
