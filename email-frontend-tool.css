@@ -483,6 +483,14 @@ body {
           animation-name: kf_police_even;
 }
 
+.input .breakpoint:hover {
+  font-size: 0px;
+}
+.input .breakpoint:hover::after {
+  content: "Point Break";
+  font-size: 11px;
+}
+
 @-webkit-keyframes kf_police_odd {
   0% {
     background-color: blue;

@@ -285,7 +285,7 @@ function showControlPanel() {
                     <input type="number" min="0" max="1" step="0.1" oninput="inputHandler(this)" data-typeData="opacity" value="${effectObj[i + 1].typeData.opacity == undefined ? 100 : effectObj[i + 1].typeData.opacity}">
                 </div>
                 <div class="input">
-                    <span>Breakpoint</span>
+                    <span class="breakpoint">Breakpoint</span>
                     <input type="number" min="0" max="1" oninput="inputHandler(this)" data-typeData="breakpoint" value="${effectObj[i + 1].typeData.breakpoint == undefined ? 100 : effectObj[i + 1].typeData.breakpoint}">
                 </div>
             </div>

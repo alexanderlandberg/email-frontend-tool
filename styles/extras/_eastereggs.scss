@@ -30,14 +30,24 @@
             animation-iteration-count: infinite;
         }
 
-        &:nth-child(odd) .slot-label{
+        &:nth-child(odd) .slot-label {
             animation-name: kf_police_odd;
         }
-        &:nth-child(even) .slot-label{
+
+        &:nth-child(even) .slot-label {
             animation-name: kf_police_even;
         }
     }
-    
+
+}
+
+.input .breakpoint:hover {
+    font-size: 0px;
+
+    &::after {
+        content: "Point Break";
+        font-size: 11px;
+    }
 }
 
 @keyframes kf_police_odd {
@@ -45,33 +55,40 @@
         background-color: blue;
         box-shadow: 0px 0px 10px 2px blue;
     }
+
     50% {
         background-color: red;
         box-shadow: 0px 0px 10px 2px red;
     }
+
     100% {
         background-color: blue;
         box-shadow: 0px 0px 10px 2px blue;
     }
 }
+
 @keyframes kf_police_even {
     0% {
         background-color: red;
         box-shadow: 0px 0px 10px 2px red;
     }
+
     50% {
         background-color: blue;
         box-shadow: 0px 0px 10px 2px blue;
     }
+
     100% {
         background-color: red;
         box-shadow: 0px 0px 10px 2px red;
     }
 }
+
 @keyframes kf_police_officer {
     0% {
         top: 100%;
     }
+
     100% {
         top: 0%;
     }
