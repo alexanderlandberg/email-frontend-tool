@@ -292,6 +292,7 @@
   border-radius: 0;
   border: none;
   background-color: hsl(160deg, 50%, 95%);
+  color: hsl(160deg, 50%, 10%);
   padding: 4px;
   margin: 2px 0;
 }
