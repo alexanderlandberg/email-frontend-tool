@@ -2,10 +2,11 @@
 
     // data types
     .control-panel {
-        div[data-type="interval"]{
+        div[data-type="interval"] {
             min-width: 160px;
         }
-        div[data-type="switch"]{
+
+        div[data-type="switch"] {
             min-width: 150px;
         }
     }
@@ -186,6 +187,7 @@
 
             input {
                 display: none;
+
                 &:checked+.toggleSlider:before {
                     transform: translateX(18px);
                 }
@@ -200,6 +202,35 @@
             &:before {
                 background: $color-brand-2;
             }
+        }
+    }
+
+    // Text input
+    .inputs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .input {
+        flex-basis: 50%;
+        overflow: hidden;
+        padding: 0 10px;
+
+        &>span {
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        input {
+            width: 100%;
+            font-family: inherit;
+            border-radius: 0;
+            border: none;
+            background-color: $color-brand-1-lighter;
+            padding: 4px;
+            margin: 2px 0;
         }
     }
 }

@@ -126,3 +126,19 @@
         font-weight: 400;
     }
 }
+
+// 11 Preview overlay 
+body {
+    position: relative;
+}
+
+.preview-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    z-index: 100;
+    pointer-events: none;
+}

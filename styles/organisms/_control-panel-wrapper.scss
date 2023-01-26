@@ -12,13 +12,16 @@
     min-width: 320px;
     box-sizing: border-box;
     z-index: 999999;
+
     * {
         box-sizing: border-box;
     }
+
     .control-panel-inner {
         transition: transform .2s $easing;
         margin: 0 10px;
     }
+
     .control-panel {
         position: relative;
         display: flex;
@@ -28,18 +31,18 @@
         align-items: flex-end;
         flex-wrap: wrap;
         width: 100%;
-    
+
         div[class*="col_"] {
             display: flex;
             position: relative;
             flex-direction: column-reverse;
             justify-content: center;
             overflow: visible;
-            user-select:none;
+            user-select: none;
             margin-right: 10px;
             margin-bottom: 10px;
 
-            &.on .slot-label{
+            &.on .slot-label {
                 background: $color-col-bg-active;
                 color: $color-text-light;
             }
@@ -50,7 +53,7 @@
                 background: $color-col-bg;
                 z-index: 1;
                 cursor: pointer;
-                
+
                 &>p {
                     padding: 10px;
                     display: flex;
@@ -72,6 +75,7 @@
                 background-color: $color-brand-2;
                 transform: rotate(180deg);
                 cursor: initial;
+
                 &::after {
                     content: "\2191";
                     display: block;
@@ -83,7 +87,7 @@
             &.open .accordion-arrow {
                 transform: rotate(0);
             }
-            
+
             .accordion-content {
                 background-color: $color-brand-1-light;
                 overflow: hidden;
@@ -93,22 +97,26 @@
                 left: 0;
                 z-index: 1;
                 width: 100%;
-                
+
                 max-height: 0px;
                 transition: max-height .2s $easing;
+
                 &>div {
                     padding-left: 10px;
                     padding-right: 10px;
-                    &:first-child{
+
+                    &:first-child {
                         padding-top: 10px;
                     }
-                    &:last-child{
+
+                    &:last-child {
                         padding-bottom: 10px;
                     }
                 }
             }
+
             &.open .accordion-content {
-                max-height: 200px;
+                max-height: 300px;
             }
         }
     }

@@ -129,6 +129,24 @@ let effectObj = {
             "checkboxId": "toggle-marketoBoolean",
         }
     },
+    11: {
+        "name": "Preview overlay",
+        "col": 1,
+        "on": false,
+        "type": "preview",
+        "typeData": {
+            "bgImageDesktop": "./example-imgs/example-desktop.png",
+            "bgImageMobile": "./example-imgs/example-mobile.png",
+            "heightDesktop": 2760,
+            "heightMobile": 3996,
+            "widthDesktop": 720,
+            "widthMobile": 360,
+            "topDesktop": 40,
+            "topMobile": 40,
+            "opacity": 0.5,
+            "breakpoint": 500,
+        }
+    },
 }
 
 // Build and show control panel
@@ -256,6 +274,64 @@ function showControlPanel() {
             newAccordionContent.appendChild(newToggle);
         }
 
+        // preview (custom)
+        if (effectObj[i + 1].type == "preview") {
+            let newInput = document.createElement("div");
+            newInput.innerHTML = `
+            <p class="panel-type-label">Shared</p>
+            <div class="inputs" style="padding-bottom: 10px;">
+                <div class="input">
+                    <span>Opacity</span>
+                    <input type="number" min="0" max="1" step="0.1" oninput="inputHandler(this)" data-typeData="opacity" value="${effectObj[i + 1].typeData.opacity == undefined ? 100 : effectObj[i + 1].typeData.opacity}">
+                </div>
+                <div class="input">
+                    <span>Breakpoint</span>
+                    <input type="number" min="0" max="1" oninput="inputHandler(this)" data-typeData="breakpoint" value="${effectObj[i + 1].typeData.breakpoint == undefined ? 100 : effectObj[i + 1].typeData.breakpoint}">
+                </div>
+            </div>
+            <p class="panel-type-label">Desktop</p>
+            <div class="inputs" style="padding-bottom: 10px;">
+                <div class="input">
+                    <span>Height (px)</span>
+                    <input type="number" min="1" oninput="inputHandler(this)" data-typeData="heightDesktop" value="${effectObj[i + 1].typeData.heightDesktop == undefined ? 100 : effectObj[i + 1].typeData.heightDesktop}">
+                </div>
+                <div class="input">
+                    <span>Width (px)</span>
+                    <input type="number" min="1" oninput="inputHandler(this)" data-typeData="widthDesktop" value="${effectObj[i + 1].typeData.widthDesktop == undefined ? 600 : effectObj[i + 1].typeData.widthDesktop}">
+                </div>
+                <div class="input">
+                    <span>Top (px)</span>
+                    <input type="number" min="0" oninput="inputHandler(this)" data-typeData="topDesktop" value="${effectObj[i + 1].typeData.topDesktop == undefined ? 0 : effectObj[i + 1].typeData.topDesktop}">
+                </div>
+                <div class="input">
+                    <span>BG image</span>
+                    <input type="text" oninput="inputHandler(this)" data-typeData="" typeData=bgImageDesktop" value="${effectObj[i + 1].typeData.bgImageDesktop == undefined ? "" : effectObj[i + 1].typeData.bgImageDesktop}">
+                </div>
+            </div>
+            <p class="panel-type-label">Mobile</p>
+            <div class="inputs">
+                <div class="input">
+                    <span>Height (px)</span>
+                    <input type="number" min="1" oninput="inputHandler(this)" data-typeData="heightMobile" value="${effectObj[i + 1].typeData.heightMobile == undefined ? 100 : effectObj[i + 1].typeData.heightMobile}">
+                </div>
+                <div class="input">
+                    <span>Width (px)</span>
+                    <input type="number" min="1" oninput="inputHandler(this)" data-typeData="widthMobile" value="${effectObj[i + 1].typeData.widthMobile == undefined ? 320 : effectObj[i + 1].typeData.widthMobile}">
+                </div>
+                <div class="input">
+                    <span>Top (px)</span>
+                    <input type="number" min="0" oninput="inputHandler(this)" data-typeData="topMobile" value="${effectObj[i + 1].typeData.topMobile == undefined ? 0 : effectObj[i + 1].typeData.topMobile}">
+                </div>
+                <div class="input">
+                    <span>BG image</span>
+                    <input type="text" oninput="inputHandler(this)" data-typeData="bgImageMobile" value="${effectObj[i + 1].typeData.bgImageMobile == undefined ? "" : effectObj[i + 1].typeData.bgImageMobile}">
+                </div>
+            </div>
+            `;
+            newAccordionContent.appendChild(newInput);
+        }
+
+        // default
         if (effectObj[i + 1].type !== "styling") {
             newSlot.appendChild(newAccordionContent);
         }
@@ -330,6 +406,16 @@ function switchHandler(e) {
     moduleWrapper.setAttribute("grid-color", selectedColor);
 }
 
+function inputHandler(e) {
+    // get slot number
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
+    // get data attribute
+    const dataAttribute = e.getAttribute("data-typedata");
+
+    // update effectObj
+    effectObj[slotNum].typeData[dataAttribute] = e.value;
+}
+
 // return module container selector
 function getModuleContainerSelector() {
 
@@ -374,6 +460,11 @@ function handleMouseClick(clickTarget) {
 
 // Handle key down
 function handleKeyDown(e) {
+
+    // ignore if input is selected
+    if (e.target.nodeName === "INPUT") {
+        return;
+    }
 
     if (Number(e.key) > 0 && Number(e.key) < (Object.keys(effectObj).length + 1)) {
         let slotNum = Number(e.key);
@@ -526,6 +617,12 @@ function runEffects(slotNum, slotDOM) {
         } else {
             closeControlPanel("Escape");
             location.reload();
+        }
+    } else if (effectObj[slotNum].name === "Preview overlay") {
+        if (effectObj[slotNum].on) {
+            previewOverlay()
+        } else {
+            previewOverlay("off")
         }
     }
 
@@ -749,6 +846,54 @@ function marketoBooleanToggle(e) {
     effectObj[slotNum].typeData.toggle = e.checked;
 }
 
+// Add Preview Overlay
+function previewOverlay(toggle) {
+    if (toggle !== "off") {
+        console.log("ADD")
+        let style = `
+        .preview-overlay {
+            opacity: [opacity];
+            background-image: url([bgImageDesktop]);
+            height: [heightDesktop]px;
+            width: [widthDesktop]px;
+            top: [topDesktop]px;
+        }
+        @media screen and (max-device-width: [breakpoint]px),
+        screen and (max-width: [breakpoint]px) {
+            .preview-overlay {
+                background-image: url([bgImageMobile]);
+                height: [heightMobile]px;
+                width: [widthMobile]px;
+                top: [topMobile]px;
+            }
+        }`;
+
+        // replace input variables with numbered variables
+        const regArr = ["opacity", "breakpoint", "bgImageDesktop", "bgImageMobile", "heightDesktop", "heightMobile", "widthDesktop", "widthMobile", "topDesktop", "topMobile"];
+        for (let i = 0; i < regArr.length; i++) {
+            let regex = new RegExp(`\\[${regArr[i]}\\]`, "gi");
+            style = style.replace(regex, `${effectObj[11].typeData[regArr[i]]}`);
+        }
+
+        let newStyle = document.createElement("style");
+        newStyle.setAttribute("type", "text/css");
+        newStyle.classList.add("preview-overlay-style");
+        newStyle.innerHTML = style;
+
+        let newOverlay = document.createElement("div");
+        newOverlay.classList.add("preview-overlay");
+
+        document.querySelector("body").appendChild(newStyle);
+        document.querySelector("body").appendChild(newOverlay);
+    } else {
+        console.log("REMOVE")
+        let overlay = document.querySelector(".preview-overlay");
+        let overlayStyle = document.querySelector(".preview-overlay-style");
+        overlay ? overlay.remove() : null;
+        overlayStyle ? overlayStyle.remove() : null;
+    }
+}
+
 // Add styles from local storage data
 function addFromLocalStorage() {
 
@@ -845,6 +990,11 @@ function addFromLocalStorage() {
         if (effectObj[10] !== undefined && effectObj[10].on) {
             marketoDefaultValues(10);
             document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
+        }
+
+        // if marketo defaults
+        if (effectObj[11] !== undefined && effectObj[11].on) {
+            previewOverlay()
         }
 
     } else {
