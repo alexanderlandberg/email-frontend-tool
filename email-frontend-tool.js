@@ -412,12 +412,6 @@ function inputHandler(e) {
     // get data attribute
     const dataAttribute = e.getAttribute("data-typedata");
 
-    console.log("data-attribute", dataAttribute);
-
-    console.log(effectObj[slotNum].typeData[dataAttribute])
-
-    console.log(effectObj)
-
     // update effectObj
     effectObj[slotNum].typeData[dataAttribute] = e.value;
 }
@@ -855,7 +849,6 @@ function marketoBooleanToggle(e) {
 // Add Preview Overlay
 function previewOverlay(toggle) {
     if (toggle !== "off") {
-        console.log("ADD")
         let style = `
         .preview-overlay {
             opacity: [opacity];
@@ -892,7 +885,6 @@ function previewOverlay(toggle) {
         document.querySelector("body").appendChild(newStyle);
         document.querySelector("body").appendChild(newOverlay);
     } else {
-        console.log("REMOVE")
         let overlay = document.querySelector(".preview-overlay");
         let overlayStyle = document.querySelector(".preview-overlay-style");
         overlay ? overlay.remove() : null;
@@ -925,6 +917,11 @@ function addFromLocalStorage() {
             // get toggle status from localstorage
             if (effectObj[i + 1].type === "toggle") {
                 effectObj[i + 1].typeData.toggle = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.toggle;
+            }
+
+            // preview overlay (custom)
+            if (effectObj[i + 1].type === "preview") {
+                effectObj[i + 1].typeData = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData;
             }
         }
 
