@@ -305,7 +305,7 @@ function showControlPanel() {
                 </div>
                 <div class="input">
                     <span>BG image</span>
-                    <input type="text" oninput="inputHandler(this)" data-typeData="" typeData=bgImageDesktop" value="${effectObj[i + 1].typeData.bgImageDesktop == undefined ? "" : effectObj[i + 1].typeData.bgImageDesktop}">
+                    <input type="text" oninput="inputHandler(this)" data-typeData="bgImageDesktop" typeData=bgImageDesktop" value="${effectObj[i + 1].typeData.bgImageDesktop == undefined ? "" : effectObj[i + 1].typeData.bgImageDesktop}">
                 </div>
             </div>
             <p class="panel-type-label">Mobile</p>
@@ -411,6 +411,12 @@ function inputHandler(e) {
     const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
     // get data attribute
     const dataAttribute = e.getAttribute("data-typedata");
+
+    console.log("data-attribute", dataAttribute);
+
+    console.log(effectObj[slotNum].typeData[dataAttribute])
+
+    console.log(effectObj)
 
     // update effectObj
     effectObj[slotNum].typeData[dataAttribute] = e.value;
