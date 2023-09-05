@@ -605,6 +605,9 @@ function runEffects(slotNum, slotDOM) {
     } else if (effectObj[slotNum].name === "Dark mode") {
         if (effectObj[slotNum].on) {
             darkmode()
+            if (effectObj[8].typeData.toggle) {
+                document.querySelector("body").classList.add("isolate-img");
+            }
         } else {
             darkmode("off")
         }
