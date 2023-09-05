@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   background-color: rgba(18, 18, 18, 0.6);
-  color: hsl(160deg, 50%, 10%);
+  color: hsl(160, 50%, 10%);
   font-family: "Fraunces", serif;
   min-width: 320px;
   box-sizing: border-box;
@@ -25,7 +25,6 @@
 .control-panel-outer .control-panel {
   position: relative;
   display: flex;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   border-radius: 4px;
@@ -42,19 +41,18 @@
   overflow: visible;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   margin-right: 10px;
   margin-bottom: 10px;
 }
 .control-panel-outer .control-panel div[class*=col_].on .slot-label {
-  background: hsl(160deg, 50%, 43%);
-  color: hsl(160deg, 50%, 95%);
+  background: hsl(160, 50%, 43%);
+  color: hsl(160, 50%, 95%);
 }
 .control-panel-outer .control-panel div[class*=col_] .slot-label {
   display: flex;
   justify-content: space-between;
-  background: hsl(160deg, 50%, 95%);
+  background: hsl(160, 50%, 95%);
   z-index: 1;
   cursor: pointer;
 }
@@ -74,20 +72,20 @@
   font-size: 16px;
   line-height: 20px;
   font-weight: 900;
-  background-color: hsl(285deg, 50%, 43%);
+  background-color: hsl(285, 50%, 43%);
   transform: rotate(180deg);
   cursor: initial;
 }
 .control-panel-outer .control-panel div[class*=col_] .accordion-arrow::after {
   content: "↑";
   display: block;
-  color: hsl(160deg, 50%, 95%);
+  color: hsl(160, 50%, 95%);
 }
 .control-panel-outer .control-panel div[class*=col_].open .accordion-arrow {
   transform: rotate(0);
 }
 .control-panel-outer .control-panel div[class*=col_] .accordion-content {
-  background-color: hsl(160deg, 50%, 85%);
+  background-color: hsl(160, 50%, 85%);
   overflow: hidden;
   position: absolute;
   bottom: 100%;
@@ -141,7 +139,7 @@
   width: 100%;
   max-width: 80px;
   height: 16px;
-  background: hsl(285deg, 50%, 95%);
+  background: hsl(285, 50%, 95%);
   outline: none;
   border-radius: 4px;
   opacity: 0.7;
@@ -156,24 +154,24 @@
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  background: hsl(285deg, 50%, 85%);
+  background: hsl(285, 50%, 85%);
   cursor: pointer;
 }
 .control-panel-outer .range-wrapper input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  background: hsl(285deg, 50%, 85%);
+  background: hsl(285, 50%, 85%);
   cursor: pointer;
 }
 .control-panel-outer .on .range-wrapper input[type=range] {
-  background: hsl(285deg, 50%, 85%);
+  background: hsl(285, 50%, 85%);
 }
 .control-panel-outer .on .range-wrapper input[type=range]::-webkit-slider-thumb {
-  background: hsl(285deg, 50%, 43%);
+  background: hsl(285, 50%, 43%);
 }
 .control-panel-outer .on .range-wrapper input[type=range]::-moz-range-thumb {
-  background: hsl(285deg, 50%, 43%);
+  background: hsl(285, 50%, 43%);
 }
 .control-panel-outer .panel-type-label {
   margin: 0;
@@ -190,7 +188,7 @@
   display: none;
 }
 .control-panel-outer .switch-wrapper > input[type=radio]:checked + label {
-  border: 2px solid hsl(285deg, 50%, 43%);
+  border: 2px solid hsl(285, 50%, 43%);
 }
 .control-panel-outer .switch-wrapper > label {
   width: 25px;
@@ -234,7 +232,7 @@
   margin: 6px;
 }
 .control-panel-outer .toggle-wrapper label .toggleSlider {
-  background-color: hsl(285deg, 50%, 95%);
+  background-color: hsl(285, 50%, 95%);
   bottom: 0;
   cursor: pointer;
   left: 0;
@@ -250,7 +248,7 @@
 }
 .control-panel-outer .toggle-wrapper label .toggleSlider:before {
   content: "";
-  background-color: hsl(285deg, 50%, 85%);
+  background-color: hsl(285, 50%, 85%);
   bottom: 4px;
   height: 16px;
   left: 4px;
@@ -266,10 +264,10 @@
   transform: translateX(18px);
 }
 .control-panel-outer .on .toggle-wrapper .toggleSlider {
-  background: hsl(285deg, 50%, 85%);
+  background: hsl(285, 50%, 85%);
 }
 .control-panel-outer .on .toggle-wrapper .toggleSlider:before {
-  background: hsl(285deg, 50%, 43%);
+  background: hsl(285, 50%, 43%);
 }
 .control-panel-outer .inputs {
   display: flex;
@@ -291,8 +289,8 @@
   font-family: inherit;
   border-radius: 0;
   border: none;
-  background-color: hsl(160deg, 50%, 95%);
-  color: hsl(160deg, 50%, 10%);
+  background-color: hsl(160, 50%, 95%);
+  color: hsl(160, 50%, 10%);
   padding: 4px;
   margin: 2px 0;
 }
@@ -409,14 +407,14 @@ body {
   margin: 0 auto;
   background-repeat: no-repeat;
   background-position: top;
-  z-index: 100;
+  z-index: 100000;
   pointer-events: none;
 }
 
 .control-panel-button {
   position: fixed;
   bottom: 0;
-  background-color: hsl(160deg, 50%, 43%);
+  background-color: hsl(160, 50%, 43%);
   width: 50px;
   height: 50px;
   border-radius: 0 100% 0 0;
@@ -433,7 +431,7 @@ body {
   box-sizing: border-box;
 }
 .control-panel-button svg {
-  fill: hsl(160deg, 50%, 95%);
+  fill: hsl(160, 50%, 95%);
   margin: 15%;
   transition: all 0.3s ease-in-out;
 }
@@ -453,34 +451,26 @@ body {
   background-size: 360px;
   background-repeat: no-repeat;
   background-position: center bottom;
-  -webkit-animation-name: kf_police_officer;
-          animation-name: kf_police_officer;
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s;
-  -webkit-animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
-          animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
+  animation-name: kf_police_officer;
+  animation-duration: 3s;
+  animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
 }
 .control-panel-outer.police .control-panel {
   overflow: hidden;
   position: relative;
 }
 .control-panel-outer.police .control-panel div[class*=col_] .slot-label {
-  background-color: hsl(160deg, 50%, 95%);
-  color: hsl(160deg, 50%, 10%);
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
-          animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  background-color: hsl(160, 50%, 95%);
+  color: hsl(160, 50%, 10%);
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.78, -0.07, 0.28, 0.98);
+  animation-iteration-count: infinite;
 }
 .control-panel-outer.police .control-panel div[class*=col_]:nth-child(odd) .slot-label {
-  -webkit-animation-name: kf_police_odd;
-          animation-name: kf_police_odd;
+  animation-name: kf_police_odd;
 }
 .control-panel-outer.police .control-panel div[class*=col_]:nth-child(even) .slot-label {
-  -webkit-animation-name: kf_police_even;
-          animation-name: kf_police_even;
+  animation-name: kf_police_even;
 }
 
 .input .breakpoint:hover {
@@ -489,21 +479,6 @@ body {
 .input .breakpoint:hover::after {
   content: "Point Break";
   font-size: 11px;
-}
-
-@-webkit-keyframes kf_police_odd {
-  0% {
-    background-color: blue;
-    box-shadow: 0px 0px 10px 2px blue;
-  }
-  50% {
-    background-color: red;
-    box-shadow: 0px 0px 10px 2px red;
-  }
-  100% {
-    background-color: blue;
-    box-shadow: 0px 0px 10px 2px blue;
-  }
 }
 
 @keyframes kf_police_odd {
@@ -520,20 +495,6 @@ body {
     box-shadow: 0px 0px 10px 2px blue;
   }
 }
-@-webkit-keyframes kf_police_even {
-  0% {
-    background-color: red;
-    box-shadow: 0px 0px 10px 2px red;
-  }
-  50% {
-    background-color: blue;
-    box-shadow: 0px 0px 10px 2px blue;
-  }
-  100% {
-    background-color: red;
-    box-shadow: 0px 0px 10px 2px red;
-  }
-}
 @keyframes kf_police_even {
   0% {
     background-color: red;
@@ -546,14 +507,6 @@ body {
   100% {
     background-color: red;
     box-shadow: 0px 0px 10px 2px red;
-  }
-}
-@-webkit-keyframes kf_police_officer {
-  0% {
-    top: 100%;
-  }
-  100% {
-    top: 0%;
   }
 }
 @keyframes kf_police_officer {
