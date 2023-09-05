@@ -286,7 +286,7 @@ function showControlPanel() {
                 </div>
                 <div class="input">
                     <span class="breakpoint">Breakpoint</span>
-                    <input type="number" min="0" max="1" oninput="inputHandler(this)" data-typeData="breakpoint" value="${effectObj[i + 1].typeData.breakpoint == undefined ? 100 : effectObj[i + 1].typeData.breakpoint}">
+                    <input type="number" min="0" oninput="inputHandler(this)" data-typeData="breakpoint" value="${effectObj[i + 1].typeData.breakpoint == undefined ? 100 : effectObj[i + 1].typeData.breakpoint}">
                 </div>
             </div>
             <p class="panel-type-label">Desktop</p>
@@ -301,7 +301,7 @@ function showControlPanel() {
                 </div>
                 <div class="input">
                     <span>Top (px)</span>
-                    <input type="number" min="0" oninput="inputHandler(this)" data-typeData="topDesktop" value="${effectObj[i + 1].typeData.topDesktop == undefined ? 0 : effectObj[i + 1].typeData.topDesktop}">
+                    <input type="number" oninput="inputHandler(this)" data-typeData="topDesktop" value="${effectObj[i + 1].typeData.topDesktop == undefined ? 0 : effectObj[i + 1].typeData.topDesktop}">
                 </div>
                 <div class="input">
                     <span>BG image</span>
@@ -320,7 +320,7 @@ function showControlPanel() {
                 </div>
                 <div class="input">
                     <span>Top (px)</span>
-                    <input type="number" min="0" oninput="inputHandler(this)" data-typeData="topMobile" value="${effectObj[i + 1].typeData.topMobile == undefined ? 0 : effectObj[i + 1].typeData.topMobile}">
+                    <input type="number" oninput="inputHandler(this)" data-typeData="topMobile" value="${effectObj[i + 1].typeData.topMobile == undefined ? 0 : effectObj[i + 1].typeData.topMobile}">
                 </div>
                 <div class="input">
                     <span>BG image</span>
@@ -414,6 +414,11 @@ function inputHandler(e) {
 
     // update effectObj
     effectObj[slotNum].typeData[dataAttribute] = e.value;
+
+    // update preview (if input is for preview)
+    if (effectObj[slotNum].type === "preview") {
+        updatePreviewOverlay();
+    }
 }
 
 // return module container selector
@@ -848,48 +853,63 @@ function marketoBooleanToggle(e) {
 
 // Add Preview Overlay
 function previewOverlay(toggle) {
+    let overlay = document.querySelector(".preview-overlay");
+    let overlayStyle = document.querySelector(".preview-overlay-style");
     if (toggle !== "off") {
-        let style = `
-        .preview-overlay {
-            opacity: [opacity];
-            background-image: url([bgImageDesktop]);
-            height: [heightDesktop]px;
-            width: [widthDesktop]px;
-            top: [topDesktop]px;
-        }
-        @media screen and (max-device-width: [breakpoint]px),
-        screen and (max-width: [breakpoint]px) {
-            .preview-overlay {
-                background-image: url([bgImageMobile]);
-                height: [heightMobile]px;
-                width: [widthMobile]px;
-                top: [topMobile]px;
-            }
-        }`;
-
-        // replace input variables with numbered variables
-        const regArr = ["opacity", "breakpoint", "bgImageDesktop", "bgImageMobile", "heightDesktop", "heightMobile", "widthDesktop", "widthMobile", "topDesktop", "topMobile"];
-        for (let i = 0; i < regArr.length; i++) {
-            let regex = new RegExp(`\\[${regArr[i]}\\]`, "gi");
-            style = style.replace(regex, `${effectObj[11].typeData[regArr[i]]}`);
-        }
-
-        let newStyle = document.createElement("style");
-        newStyle.setAttribute("type", "text/css");
-        newStyle.classList.add("preview-overlay-style");
-        newStyle.innerHTML = style;
-
-        let newOverlay = document.createElement("div");
-        newOverlay.classList.add("preview-overlay");
-
-        document.querySelector("body").appendChild(newStyle);
-        document.querySelector("body").appendChild(newOverlay);
+        document.body.classList.add("overlay");
+        updatePreviewOverlay()
     } else {
-        let overlay = document.querySelector(".preview-overlay");
-        let overlayStyle = document.querySelector(".preview-overlay-style");
+        document.body.classList.remove("overlay");
         overlay ? overlay.remove() : null;
         overlayStyle ? overlayStyle.remove() : null;
     }
+}
+// Update Preview Overlay
+function updatePreviewOverlay() {
+    if (!document.body.classList.contains("overlay")) {
+        return;
+    }
+    let overlay = document.querySelector(".preview-overlay");
+    let overlayStyle = document.querySelector(".preview-overlay-style");
+    // remove current preview overlay
+    overlay ? overlay.remove() : null;
+    overlayStyle ? overlayStyle.remove() : null;
+
+    let style = `
+    .preview-overlay {
+        opacity: [opacity];
+        background-image: url([bgImageDesktop]);
+        height: [heightDesktop]px;
+        width: [widthDesktop]px;
+        top: [topDesktop]px;
+    }
+    @media screen and (max-device-width: [breakpoint]px),
+    screen and (max-width: [breakpoint]px) {
+        .preview-overlay {
+            background-image: url([bgImageMobile]);
+            height: [heightMobile]px;
+            width: [widthMobile]px;
+            top: [topMobile]px;
+        }
+    }`;
+
+    // replace input variables with numbered variables
+    const regArr = ["opacity", "breakpoint", "bgImageDesktop", "bgImageMobile", "heightDesktop", "heightMobile", "widthDesktop", "widthMobile", "topDesktop", "topMobile"];
+    for (let i = 0; i < regArr.length; i++) {
+        let regex = new RegExp(`\\[${regArr[i]}\\]`, "gi");
+        style = style.replace(regex, `${effectObj[11].typeData[regArr[i]]}`);
+    }
+
+    let newStyle = document.createElement("style");
+    newStyle.setAttribute("type", "text/css");
+    newStyle.classList.add("preview-overlay-style");
+    newStyle.innerHTML = style;
+
+    let newOverlay = document.createElement("div");
+    newOverlay.classList.add("preview-overlay");
+
+    document.querySelector("body").appendChild(newStyle);
+    document.querySelector("body").appendChild(newOverlay);
 }
 
 // Add styles from local storage data
@@ -995,7 +1015,7 @@ function addFromLocalStorage() {
             document.querySelector(".control-panel-button").addEventListener("click", showControlPanel);
         }
 
-        // if marketo defaults
+        // if preview overlay
         if (effectObj[11] !== undefined && effectObj[11].on) {
             previewOverlay()
         }
