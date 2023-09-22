@@ -664,8 +664,9 @@ function getLinklist() {
 
         linkObj[i] = newlink;
         linkArr.push(linkList[i].href)
-
-        linkList[i].href.replace(window.location.href, "") === "#" ? emptyLinksAmount++ : null;
+        if (["", "#"].includes(linkList[i].href.replace(window.location.href, ""))) {
+            emptyLinksAmount++
+        }
     }
     console.log(`%c Link list: ${Object.keys(linkObj).length} %c Empty Links: ${emptyLinksAmount}`, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px; margin-right: 10px;', 'background: #c93737; color: #FFFFFF; padding: 6px; border-radius: 4px;', "\n", linkObj)
 }
