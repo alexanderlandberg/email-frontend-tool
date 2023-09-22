@@ -42,7 +42,7 @@ function konami(e) {
     }
 }
 
-const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*`);
+const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*:not(script):not(.control-panel-button)`);
 
 let effectObj = {
     1: {
