@@ -389,11 +389,12 @@
   left: -5px;
   border: 1px solid orange;
   line-height: 1;
-  color: orange;
+  color: black;
   background-color: white;
   padding: 4px;
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 700;
+  font-family: sans-serif;
 }
 
 body {

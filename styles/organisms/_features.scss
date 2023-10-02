@@ -6,12 +6,12 @@
 }
 
 // 1 Border
-.border-bottom>* {
+.border-bottom > * {
     border-bottom: 1px solid $color-dark;
 }
 
 // 2 Margin
-.margin>* {
+.margin > * {
     margin: 30px auto;
 }
 
@@ -22,16 +22,14 @@
 
 // 4 Grid
 @mixin mix-grid-color($grid-color) {
-
     table,
     th,
     td {
-        box-shadow: $grid-color 0 0 0 .5px;
+        box-shadow: $grid-color 0 0 0 0.5px;
     }
 }
 
 .grid {
-
     // border-color: black;
     &[grid-color="black"] {
         @include mix-grid-color($color-grid-black);
@@ -95,11 +93,8 @@
     }
 }
 
-
-
-// 9 Selligent dynamic 
+// 9 Selligent dynamic
 .selligent-dynamic {
-
     div#MASECTION,
     div#MACONTAINER {
         border-color: orange;
@@ -119,15 +114,16 @@
         left: -5px;
         border: 1px solid orange;
         line-height: 1;
-        color: orange;
+        color: black;
         background-color: white;
         padding: 4px;
         font-size: 10px;
-        font-weight: 400;
+        font-weight: 700;
+        font-family: sans-serif;
     }
 }
 
-// 11 Preview overlay 
+// 11 Preview overlay
 body {
     position: relative;
 }
