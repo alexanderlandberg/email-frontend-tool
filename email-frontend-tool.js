@@ -429,7 +429,7 @@ function getModuleContainerSelector() {
         return ".acr-container";
     }
 
-    if (typeof (document.querySelector("div#MASECTION")) != 'undefined' && document.querySelector("div#MASECTION") != null) {
+    if ((typeof (document.querySelector("div#MASECTION")) != 'undefined' && document.querySelector("div#MASECTION") != null) || typeof (document.querySelector("div#masection")) != 'undefined' && document.querySelector("div#masection") != null) {
         // selligent
         return "body";
     }
@@ -790,7 +790,7 @@ function selligentDynamic(toggle) {
 
         const macMaxChars = 30;
 
-        const macs = document.querySelectorAll("div#MASECTION, div#MACONTAINER");
+        const macs = document.querySelectorAll("div#MASECTION, div#MACONTAINER, div#masection, div#macontainer");
         for (let i = 0; i < macs.length; i++) {
             let value = macs[i].getAttribute("maconstraint");
 
