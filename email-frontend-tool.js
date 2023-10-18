@@ -87,7 +87,15 @@ let effectObj = {
         "name": "Link list",
         "col": 1,
         "on": false,
-        "type": "styling+label"
+        "type": "toggle",
+        "typeData": {
+            "toggleLabel": "<u>List in console</u><br><br>Group same links",
+            "toggleOn": "On",
+            "toggleOff": "Off",
+            "toggle": false,
+            "onInput": "toggleLinklistGroup(this)",
+            "checkboxId": "toggle-linkList",
+        }
     },
     7: {
         "name": "Remove content-editable",
@@ -639,16 +647,34 @@ function runEffects(slotNum, slotDOM) {
 // Link list
 function getLinklist() {
     const linkList = document.querySelectorAll("a");
-    let linkObj = {}
-    let linkArr = [];
+    let linkObj = [];
 
     let emptyLinksAmount = 0;
 
     for (let i = 0; i < linkList.length; i++) {
 
+        // --- Group same links ---
+        if (effectObj[6].typeData.toggle) {
+            // check if link exists
+            let sharedUrl = linkObj.find(x => x.url === linkList[i].getAttribute("href"));
+            if (sharedUrl) {
+                // check if DOM is array or a-tag
+                if (!Array.isArray(sharedUrl["DOM"])) {
+                    // nest a-tag in array
+                    sharedUrl["DOM"] = [sharedUrl["DOM"]]
+                }
+                // add a-tag to array
+                sharedUrl["DOM"].push(linkList[i]);
+                continue;
+            }
+        }
+        // --- \Group same links ---
+
         let newlink = {};
 
         newlink["url"] = linkList[i].getAttribute("href");
+
+        newlink["DOM"] = linkList[i];
 
         let currentInner = linkList[i].innerHTML.trim();
 
@@ -660,15 +686,25 @@ function getLinklist() {
             newlink["text"] = currentInner;
         }
 
-        newlink["DOM"] = linkList[i];
+        linkObj.push(newlink);
 
-        linkObj[i] = newlink;
-        linkArr.push(linkList[i].href)
         if (["", "#"].includes(linkList[i].href.replace(window.location.href, ""))) {
             emptyLinksAmount++
         }
     }
-    console.log(`%c Link list: ${Object.keys(linkObj).length} %c Empty Links: ${emptyLinksAmount}`, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px; margin-right: 10px;', 'background: #c93737; color: #FFFFFF; padding: 6px; border-radius: 4px;', "\n", linkObj)
+    console.log(`%c ${effectObj[6].typeData.toggle ? "Grouped l" : "L"}ink list: ${linkObj.length} %c Empty Links: ${emptyLinksAmount}`, 'background: #aaca85; color: #000000; padding: 6px; border-radius: 4px; margin-right: 10px;', 'background: #c93737; color: #FFFFFF; padding: 6px; border-radius: 4px;', "\n", linkObj)
+}
+function toggleLinklistGroup(e) {
+
+    // get slot number and radio value
+    const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
+
+    // update effectObj
+    effectObj[slotNum].typeData.toggle = e.checked;
+
+    if (effectObj[slotNum].on === true) {
+        getLinklist();
+    }
 }
 
 // Hover Inspect
