@@ -44,6 +44,7 @@ function konami(e) {
 
 const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*:not(script):not(.control-panel-button)`);
 
+let version = "v1.0.0"; // if this version doesn't match local storage version: clear local storage
 let effectObj = {
     1: {
         "name": "Border",
@@ -524,9 +525,7 @@ function closeControlPanel(parm) {
             }, 200);
         }
 
-        // set local storage
-        localStorage.setItem("EmailFrontendTool_DataObj", JSON.stringify(effectObj))
-
+        setLocalStorage();
     }
 }
 
@@ -952,36 +951,50 @@ function updatePreviewOverlay() {
     document.querySelector("body").appendChild(newOverlay);
 }
 
+// Set local storage
+function setLocalStorage() {
+    // set local storage
+    let localData = {
+        "version": version,
+        "effectObject": effectObj
+    }
+
+    localStorage.setItem("EmailFrontendTool_DataObj", JSON.stringify(localData));
+}
+
 // Add styles from local storage data
 function addFromLocalStorage() {
 
-    if (localStorage.getItem("EmailFrontendTool_DataObj") !== null && Object.keys(effectObj).length === Object.keys(JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))).length) {
+    if (version === JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))?.version) {
 
         // Get data from localstorage
+        let localEffectObj = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))["effectObject"];
+        console.log("TEST", localEffectObj);
+
         for (let i = 0; i < Object.keys(effectObj).length; i++) {
             // get on/off status from localstorage
-            effectObj[i + 1].on = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].on;
+            effectObj[i + 1].on = localEffectObj[i + 1].on;
 
             // get range status from localstorage
             if (effectObj[i + 1].type === "interval") {
-                effectObj[i + 1].typeData.from = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.from;
-                effectObj[i + 1].typeData.amount = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.amount;
-                effectObj[i + 1].typeData.toggle = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.toggle;
+                effectObj[i + 1].typeData.from = localEffectObj[i + 1].typeData.from;
+                effectObj[i + 1].typeData.amount = localEffectObj[i + 1].typeData.amount;
+                effectObj[i + 1].typeData.toggle = localEffectObj[i + 1].typeData.toggle;
             }
 
             // get switch status from localstorage
             if (effectObj[i + 1].type === "switch") {
-                effectObj[i + 1].typeData.value = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.value;
+                effectObj[i + 1].typeData.value = localEffectObj[i + 1].typeData.value;
             }
 
             // get toggle status from localstorage
             if (effectObj[i + 1].type === "toggle") {
-                effectObj[i + 1].typeData.toggle = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData.toggle;
+                effectObj[i + 1].typeData.toggle = localEffectObj[i + 1].typeData.toggle;
             }
 
             // preview overlay (custom)
             if (effectObj[i + 1].type === "preview") {
-                effectObj[i + 1].typeData = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))[i + 1].typeData;
+                effectObj[i + 1].typeData = localEffectObj[i + 1].typeData;
             }
         }
 
