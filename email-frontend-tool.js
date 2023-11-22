@@ -1,50 +1,8 @@
 "use strict";
 
-function addToggleBtn() {
-    let newBtn = document.createElement("div");
-    newBtn.classList.add("control-panel-button");
-    newBtn.setAttribute("title", "Open Email Frontend Tool");
-    newBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" /></svg>`
-    newBtn.addEventListener("click", showControlPanel);
-    document.querySelector("body").appendChild(newBtn);
-}
-addToggleBtn()
-
-const keysObj = {
-    13: "enter",
-    37: "left",
-    38: "up",
-    39: "right",
-    40: "down",
-    65: "a",
-    66: "b"
-}
-
-const konamiArr = ["up", "down", "left", "right"]
-let pressedArr = []
-
-window.addEventListener("keydown", konami);
-
-function konami(e) {
-    if (keysObj[e.keyCode] === konamiArr[pressedArr.length]) {
-        pressedArr.push(keysObj[e.keyCode]);
-        if (konamiArr[pressedArr.length] == pressedArr[konamiArr.length]) {
-            window.removeEventListener("keydown", konami);
-            showControlPanel()
-            // console.log("Control panel opened")
-            pressedArr = [];
-        }
-    } else {
-        pressedArr = [];
-        if (keysObj[e.keyCode] === konamiArr[pressedArr.length]) {
-            pressedArr.push(keysObj[e.keyCode]);
-        }
-    }
-}
-
+// global variables
 const moduleList = document.querySelectorAll(`${getModuleContainerSelector()}>*:not(script):not(.control-panel-button)`);
-
-let version = "v1.0.0"; // if this version doesn't match local storage version: clear local storage
+const version = "v1.0.0"; // if this version doesn't match local storage version: clear local storage
 let effectObj = {
     1: {
         "name": "Border",
@@ -156,6 +114,47 @@ let effectObj = {
             "breakpoint": 500,
         }
     },
+}
+const keysObj = {
+    13: "enter",
+    37: "left",
+    38: "up",
+    39: "right",
+    40: "down",
+    65: "a",
+    66: "b"
+}
+
+// add toggle button
+function addToggleBtn() {
+    let newBtn = document.createElement("div");
+    newBtn.classList.add("control-panel-button");
+    newBtn.setAttribute("title", "Open Email Frontend Tool");
+    newBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" /></svg>`
+    newBtn.addEventListener("click", showControlPanel);
+    document.querySelector("body").appendChild(newBtn);
+}
+addToggleBtn()
+
+// konami code
+const konamiArr = ["up", "down", "left", "right"]
+let pressedArr = []
+window.addEventListener("keydown", konami);
+function konami(e) {
+    if (keysObj[e.keyCode] === konamiArr[pressedArr.length]) {
+        pressedArr.push(keysObj[e.keyCode]);
+        if (konamiArr[pressedArr.length] == pressedArr[konamiArr.length]) {
+            window.removeEventListener("keydown", konami);
+            showControlPanel()
+            // console.log("Control panel opened")
+            pressedArr = [];
+        }
+    } else {
+        pressedArr = [];
+        if (keysObj[e.keyCode] === konamiArr[pressedArr.length]) {
+            pressedArr.push(keysObj[e.keyCode]);
+        }
+    }
 }
 
 // Build and show control panel
@@ -365,7 +364,6 @@ function showControlPanel() {
     window.addEventListener("keydown", eastereggs)
 
 }
-
 function intervalHandler(e) {
 
     const toggle = document.querySelector("#toggle-interval");
@@ -398,7 +396,6 @@ function intervalHandler(e) {
         }
     }
 }
-
 function switchHandler(e) {
 
     // get slot number and radio value
@@ -414,7 +411,6 @@ function switchHandler(e) {
 
     moduleWrapper.setAttribute("grid-color", selectedColor);
 }
-
 function inputHandler(e) {
     // get slot number
     const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
@@ -525,7 +521,9 @@ function closeControlPanel(parm) {
             }, 200);
         }
 
-        setLocalStorage();
+        if (getUrlParam("local") != 0) {
+            setLocalStorage();
+        }
     }
 }
 
@@ -882,7 +880,6 @@ function marketoDefaultValues(slotNum) {
         htmlWrapper.innerHTML = htmlWrapper.innerHTML.replace(regex, value);
     }
 }
-
 function marketoBooleanToggle(e) {
     // get slot number and radio value
     const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
@@ -969,7 +966,6 @@ function addFromLocalStorage() {
 
         // Get data from localstorage
         let localEffectObj = JSON.parse(localStorage.getItem("EmailFrontendTool_DataObj"))["effectObject"];
-        console.log("TEST", localEffectObj);
 
         for (let i = 0; i < Object.keys(effectObj).length; i++) {
             // get on/off status from localstorage
@@ -1077,7 +1073,16 @@ function addFromLocalStorage() {
         localStorage.removeItem('EmailFrontendTool_DataObj');
     }
 }
-addFromLocalStorage()
+if (getUrlParam("local") != 0) {
+    addFromLocalStorage()
+}
+
+// Return url parameter value
+function getUrlParam(parm) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(parm);
+}
 
 // EASTER EGG
 const policeEgg = [9, 1, 1];
