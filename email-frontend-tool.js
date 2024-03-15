@@ -581,9 +581,9 @@ function runEffects(slotNum, slotDOM) {
         }
     } else if (effectObj[slotNum].name === "Scrollbar") {
         if (effectObj[slotNum].on) {
-            document.querySelector("body").classList.add("hide-scrollbar");
+            document.querySelector("html").classList.add("hide-scrollbar");
         } else {
-            document.querySelector("body").classList.remove("hide-scrollbar");
+            document.querySelector("html").classList.remove("hide-scrollbar");
         }
     } else if (effectObj[slotNum].name === "Link list") {
         if (effectObj[slotNum].on) {
@@ -1029,7 +1029,7 @@ function addFromLocalStorage() {
 
         // if scrollbar
         if (effectObj[5] !== undefined && effectObj[5].on) {
-            document.querySelector("body").classList.add("hide-scrollbar");
+            document.querySelector("html").classList.add("hide-scrollbar");
         }
 
         // if link list
