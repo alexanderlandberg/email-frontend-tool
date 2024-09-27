@@ -875,6 +875,11 @@ function marketoDefaultValues(slotNum) {
                 value = false_value;
             }
         }
+        if (meta.classList.contains("mktoList")) {
+            let valuesString = meta.getAttribute("values");
+            let valuesArray = valuesString.split(",");
+            value = valuesArray[0];
+        }
 
         regex = new RegExp(`\\$\\{${id}\\}`, "gi");
         htmlWrapper.innerHTML = htmlWrapper.innerHTML.replace(regex, value);
