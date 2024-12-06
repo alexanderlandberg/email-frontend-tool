@@ -981,7 +981,7 @@ function darkmodeV2(toggle) {
     const replacementList = [
       {
         name: "text color",
-        target: `[style*="color:"]:not([style*="background-color:"])`,
+        target: `[style*="color:"]`,
         variable: "--textColor",
         propertyChain: (target) => target.style.color,
         className: "dm-text-color",
@@ -997,7 +997,14 @@ function darkmodeV2(toggle) {
     ];
 
     replacementList.forEach((replacement) => {
-      let targets = document.querySelectorAll(replacement.target);
+      // filter targets with property chain
+      // makes sure that selected element contains property
+      const filteredTargets = Array.from(
+        document.querySelectorAll(replacement.target)
+      ).filter((el) => replacement.propertyChain(el));
+
+      let targets = filteredTargets;
+
       for (let i = 0; i < targets.length; i++) {
         // use props from replacementList
         targets[i].classList.add(replacement.className);
