@@ -994,6 +994,18 @@ function darkmodeV2(toggle) {
           target.style.backgroundColor || target.getAttribute("bgcolor"),
         className: "dm-bg-color",
       },
+      {
+        name: "border color",
+        target: `[style*="border"]`,
+        variable: "--borderColor",
+        propertyChain: (target) =>
+          target.style.border ||
+          target.style.borderTop ||
+          target.style.borderRight ||
+          target.style.borderBottom ||
+          target.style.borderLeft,
+        className: "dm-border-color",
+      },
     ];
 
     replacementList.forEach((replacement) => {
@@ -1009,6 +1021,19 @@ function darkmodeV2(toggle) {
         // use props from replacementList
         targets[i].classList.add(replacement.className);
         let targetValue = replacement.propertyChain(targets[i]);
+
+        // if border
+        if (replacement.name === "border color") {
+          if (targetValue.includes("#") || targetValue.includes("rgb")) {
+            const match = targetValue.match(/(rgb\([^)]+\)|rgba\([^)]+\))$/);
+            const lastPart = match ? match[0] : null;
+            targetValue = lastPart;
+            console.log(targetValue);
+          } else {
+            // skip all border values without color
+            continue;
+          }
+        }
 
         // transform target to hex value
         let hexValue;

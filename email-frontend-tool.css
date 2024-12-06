@@ -424,6 +424,10 @@ body {
   background-color: var(--bgColor) !important;
 }
 
+.darkmode-v2 .dm-border-color {
+  border-color: var(--borderColor) !important;
+}
+
 .control-panel-button {
   position: fixed;
   bottom: 0;
