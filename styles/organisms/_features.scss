@@ -139,3 +139,12 @@ body {
     z-index: 100000;
     pointer-events: none;
 }
+
+// 12 Darkmode v2
+.darkmode-v2 .dm-text-color {
+    color: var(--textColor) !important;
+}
+
+.darkmode-v2 .dm-bg-color {
+    background-color: var(--bgColor) !important;
+}

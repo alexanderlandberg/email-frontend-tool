@@ -116,6 +116,12 @@ let effectObj = {
       breakpoint: 500,
     },
   },
+  12: {
+    name: "Darkmode v2",
+    col: 1,
+    on: false,
+    type: "styling",
+  },
 };
 const keysObj = {
   13: "enter",
@@ -768,6 +774,12 @@ function runEffects(slotNum, slotDOM) {
     } else {
       previewOverlay("off");
     }
+  } else if (effectObj[slotNum].name === "Darkmode v2") {
+    if (effectObj[slotNum].on) {
+      darkmodeV2();
+    } else {
+      darkmodeV2("off");
+    }
   }
 }
 
@@ -958,6 +970,151 @@ function isolateImages(e) {
   } else {
     document.querySelector("body").classList.remove("isolate-img");
   }
+}
+
+// Dark Mode V2
+function darkmodeV2(toggle) {
+  if (toggle !== "off") {
+    document.querySelector("body").classList.add("darkmode-v2");
+
+    // get all elements with colors
+    const replacementList = [
+      {
+        name: "text color",
+        target: `[style*="color:"]:not([style*="background-color:"])`,
+        variable: "--textColor",
+        propertyChain: (target) => target.style.color,
+        className: "dm-text-color",
+      },
+      {
+        name: "background color",
+        target: `[style*="background-color:"], [style*="background:"], [bgcolor]`,
+        variable: "--bgColor",
+        propertyChain: (target) =>
+          target.style.backgroundColor || target.getAttribute("bgcolor"),
+        className: "dm-bg-color",
+      },
+    ];
+
+    replacementList.forEach((replacement) => {
+      let targets = document.querySelectorAll(replacement.target);
+      for (let i = 0; i < targets.length; i++) {
+        // use props from replacementList
+        targets[i].classList.add(replacement.className);
+        let targetValue = replacement.propertyChain(targets[i]);
+
+        // transform target to hex value
+        let hexValue;
+        if (targetValue.includes("#")) {
+          hexValue = targetValue;
+        } else if (targetValue.includes("rgb")) {
+          hexValue = rgbStringToHex(targetValue);
+        }
+
+        const darkModeColor = getDarkModeColor(hexValue);
+
+        // add variables
+        // console.log("target:", targets[i]);
+        targets[i].style.setProperty(replacement.variable, darkModeColor);
+      }
+    });
+  } else {
+    document.querySelector("body").classList.remove("darkmode-v2");
+  }
+}
+function isolateImages(e) {
+  // get slot number and radio value
+  const slotNum = e.closest("[data-slot]").getAttribute("data-slot");
+
+  // update effectObj
+  effectObj[slotNum].typeData.toggle = e.checked;
+
+  if (e.checked === true) {
+    document.querySelector("body").classList.add("isolate-img");
+  } else {
+    document.querySelector("body").classList.remove("isolate-img");
+  }
+}
+
+function getDarkModeColor(hex) {
+  // Ensure the input is a valid hex color
+  const sanitizedHex = hex.replace("#", "").toUpperCase();
+  if (!/^([0-9A-F]{6})$/.test(sanitizedHex)) {
+    throw new Error("Invalid hex color code");
+  }
+
+  // Convert hex to RGB
+  const r = parseInt(sanitizedHex.slice(0, 2), 16) / 255;
+  const g = parseInt(sanitizedHex.slice(2, 4), 16) / 255;
+  const b = parseInt(sanitizedHex.slice(4, 6), 16) / 255;
+
+  // Convert RGB to HSL
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  const l = (max + min) / 2;
+
+  let h = 0,
+    s = 0;
+  if (delta !== 0) {
+    s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+    switch (max) {
+      case r:
+        h = (g - b) / delta + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / delta + 2;
+        break;
+      case b:
+        h = (r - g) / delta + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  // Invert lightness for dark mode
+  const invertedL = 1 - l;
+
+  // Convert HSL back to RGB
+  const hue2rgb = (p, q, t) => {
+    if (t < 0) t += 1;
+    if (t > 1) t -= 1;
+    if (t < 1 / 6) return p + (q - p) * 6 * t;
+    if (t < 1 / 2) return q;
+    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+    return p;
+  };
+
+  const q =
+    invertedL < 0.5 ? invertedL * (1 + s) : invertedL + s - invertedL * s;
+  const p = 2 * invertedL - q;
+  const invertedR = Math.round(hue2rgb(p, q, h + 1 / 3) * 255);
+  const invertedG = Math.round(hue2rgb(p, q, h) * 255);
+  const invertedB = Math.round(hue2rgb(p, q, h - 1 / 3) * 255);
+
+  // Convert RGB back to hex
+  const toHex = (channel) =>
+    channel.toString(16).padStart(2, "0").toUpperCase();
+
+  return `#${toHex(invertedR)}${toHex(invertedG)}${toHex(invertedB)}`;
+}
+
+function rgbStringToHex(rgbString) {
+  // Extract the numbers from the string
+  const match = rgbString.match(/\d+/g);
+
+  if (!match || match.length !== 3) {
+    throw new Error("Invalid RGB format");
+  }
+
+  // Convert the numbers to hex and format
+  const hex = match.map((value) => {
+    const clamped = Math.max(0, Math.min(255, parseInt(value, 10))); // Clamp to 0-255
+    return clamped.toString(16).padStart(2, "0"); // Convert to hex
+  });
+
+  // Combine into a hex color code
+  return `#${hex.join("")}`;
 }
 
 // Selligent Dynamic
@@ -1250,6 +1407,11 @@ function addFromLocalStorage() {
     // if preview overlay
     if (effectObj[11] !== undefined && effectObj[11].on) {
       previewOverlay();
+    }
+
+    // if darkmode
+    if (effectObj[12] !== undefined && effectObj[12].on) {
+      darkmodeV2();
     }
   } else {
     localStorage.removeItem("EmailFrontendTool_DataObj");

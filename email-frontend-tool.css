@@ -416,6 +416,14 @@ body {
   pointer-events: none;
 }
 
+.darkmode-v2 .dm-text-color {
+  color: var(--textColor) !important;
+}
+
+.darkmode-v2 .dm-bg-color {
+  background-color: var(--bgColor) !important;
+}
+
 .control-panel-button {
   position: fixed;
   bottom: 0;
